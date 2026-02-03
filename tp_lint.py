@@ -28,13 +28,27 @@ __version__ = "1.0.0"
 
 # Translation setup
 DOMAIN = "tp-lint"
-LOCALE_DIR = Path(__file__).parent / "locale"
+
+# Look for locale in multiple places
+_possible_locale_dirs = [
+    Path(__file__).parent / "locale",  # Development
+    Path("/usr/share/tp-lint/locale"),  # System install
+    Path("/usr/local/share/tp-lint/locale"),  # Local install
+]
+LOCALE_DIR = None
+for _dir in _possible_locale_dirs:
+    if _dir.exists():
+        LOCALE_DIR = _dir
+        break
 
 # Initialize gettext
 try:
     lang = locale.getlocale()[0] or "en"
     lang_code = lang.split("_")[0] if lang else "en"
-    translation = gettext.translation(DOMAIN, LOCALE_DIR, languages=[lang_code], fallback=True)
+    if LOCALE_DIR:
+        translation = gettext.translation(DOMAIN, LOCALE_DIR, languages=[lang_code], fallback=True)
+    else:
+        translation = gettext.NullTranslations()
     _ = translation.gettext
 except Exception:
     def _(s): return s
