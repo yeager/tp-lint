@@ -1,0 +1,94 @@
+# Translation template for tp-lint
+# Copyright (C) 2026 Daniel Nylander
+# This file is distributed under the GPL-3.0-or-later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tp-lint 1.0.0\n"
+"Report-Msgid-Bugs-To: daniel@danielnylander.se\n"
+"POT-Creation-Date: 2026-02-03 08:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Error fetching team index: {error}"
+msgstr ""
+
+msgid "Language '{lang}' not found on Translation Project"
+msgstr ""
+
+msgid "Error fetching team page: {error}"
+msgstr ""
+
+msgid "Error downloading {url}: {error}"
+msgstr ""
+
+msgid "Error: l10n-lint not found. Please install l10n-lint first."
+msgstr ""
+
+msgid "Lint PO files from the Translation Project (translationproject.org)"
+msgstr ""
+
+msgid "Example: tp-lint sv"
+msgstr ""
+
+msgid "Language code to lint (e.g., sv, de, fr)"
+msgstr ""
+
+msgid "List all available languages"
+msgstr ""
+
+msgid "Output format (default: text)"
+msgstr ""
+
+msgid "Treat warnings as errors"
+msgstr ""
+
+msgid "Keep downloaded PO files (don't delete temp directory)"
+msgstr ""
+
+msgid "Output directory for downloaded PO files (implies --keep)"
+msgstr ""
+
+msgid "Only lint specific package(s) (can be repeated)"
+msgstr ""
+
+msgid "Fetching languages from Translation Project..."
+msgstr ""
+
+msgid "Could not fetch language list"
+msgstr ""
+
+msgid "Available languages ({count}):"
+msgstr ""
+
+msgid "Fetching PO files for '{lang}'..."
+msgstr ""
+
+msgid "No PO files found for language '{lang}'"
+msgstr ""
+
+msgid "No matching packages found"
+msgstr ""
+
+msgid "Found {count} PO files"
+msgstr ""
+
+msgid "Downloading PO files..."
+msgstr ""
+
+msgid "Downloaded {count} files"
+msgstr ""
+
+msgid "No files to lint"
+msgstr ""
+
+msgid "Running l10n-lint..."
+msgstr ""
+
+msgid "PO files saved to: {path}"
+msgstr ""

@@ -1,0 +1,94 @@
+# Swedish translation for tp-lint
+# Copyright (C) 2026 Daniel Nylander
+# This file is distributed under the GPL-3.0-or-later license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tp-lint 1.0.0\n"
+"Report-Msgid-Bugs-To: daniel@danielnylander.se\n"
+"POT-Creation-Date: 2026-02-03 08:00+0100\n"
+"PO-Revision-Date: 2026-02-03 08:30+0100\n"
+"Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Error fetching team index: {error}"
+msgstr "Fel vid hämtning av teamindex: {error}"
+
+msgid "Language '{lang}' not found on Translation Project"
+msgstr "Språket \"{lang}\" hittades inte på Translation Project"
+
+msgid "Error fetching team page: {error}"
+msgstr "Fel vid hämtning av teamsida: {error}"
+
+msgid "Error downloading {url}: {error}"
+msgstr "Fel vid nedladdning av {url}: {error}"
+
+msgid "Error: l10n-lint not found. Please install l10n-lint first."
+msgstr "Fel: l10n-lint hittades inte. Installera l10n-lint först."
+
+msgid "Lint PO files from the Translation Project (translationproject.org)"
+msgstr "Granska PO-filer från Translation Project (translationproject.org)"
+
+msgid "Example: tp-lint sv"
+msgstr "Exempel: tp-lint sv"
+
+msgid "Language code to lint (e.g., sv, de, fr)"
+msgstr "Språkkod att granska (t.ex. sv, de, fr)"
+
+msgid "List all available languages"
+msgstr "Lista alla tillgängliga språk"
+
+msgid "Output format (default: text)"
+msgstr "Utdataformat (standard: text)"
+
+msgid "Treat warnings as errors"
+msgstr "Behandla varningar som fel"
+
+msgid "Keep downloaded PO files (don't delete temp directory)"
+msgstr "Behåll nedladdade PO-filer (ta inte bort temporär katalog)"
+
+msgid "Output directory for downloaded PO files (implies --keep)"
+msgstr "Utdatakatalog för nedladdade PO-filer (medför --keep)"
+
+msgid "Only lint specific package(s) (can be repeated)"
+msgstr "Granska endast specifika paket (kan upprepas)"
+
+msgid "Fetching languages from Translation Project..."
+msgstr "Hämtar språk från Translation Project..."
+
+msgid "Could not fetch language list"
+msgstr "Kunde inte hämta språklista"
+
+msgid "Available languages ({count}):"
+msgstr "Tillgängliga språk ({count}):"
+
+msgid "Fetching PO files for '{lang}'..."
+msgstr "Hämtar PO-filer för \"{lang}\"..."
+
+msgid "No PO files found for language '{lang}'"
+msgstr "Inga PO-filer hittades för språket \"{lang}\""
+
+msgid "No matching packages found"
+msgstr "Inga matchande paket hittades"
+
+msgid "Found {count} PO files"
+msgstr "Hittade {count} PO-filer"
+
+msgid "Downloading PO files..."
+msgstr "Laddar ned PO-filer..."
+
+msgid "Downloaded {count} files"
+msgstr "Laddade ned {count} filer"
+
+msgid "No files to lint"
+msgstr "Inga filer att granska"
+
+msgid "Running l10n-lint..."
+msgstr "Kör l10n-lint..."
+
+msgid "PO files saved to: {path}"
+msgstr "PO-filer sparade till: {path}"
