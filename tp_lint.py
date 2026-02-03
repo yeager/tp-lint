@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.3.0"
+__version__ = "1.3.1"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -42,7 +42,15 @@ for _dir in _possible_locale_dirs:
         break
 
 # Initialize gettext - detect language
-_system_lang = locale.getlocale()[0] or os.environ.get("LANG", "en")
+# Priority: LANGUAGE > LC_ALL > LC_MESSAGES > LANG > locale.getlocale()
+_system_lang = (
+    os.environ.get("LANGUAGE", "").split(":")[0] or
+    os.environ.get("LC_ALL", "") or
+    os.environ.get("LC_MESSAGES", "") or
+    os.environ.get("LANG", "") or
+    locale.getlocale()[0] or
+    "en"
+)
 _lang_code = _system_lang.split("_")[0].split(".")[0] if _system_lang else "en"
 
 try:
