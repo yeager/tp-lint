@@ -105,14 +105,17 @@ msgstr "   Filer: {count}"
 msgid "   Errors: {count}"
 msgstr "   Fel: {count}"
 
+msgid "   Fuzzy: {count}"
+msgstr "   Fuzzy: {count}"
+
 msgid "   Warnings: {count}"
 msgstr "   Varningar: {count}"
 
 msgid "Unknown"
 msgstr "Okänd"
 
-msgid "Total: {files} files, {errors} errors, {warnings} warnings"
-msgstr "Totalt: {files} filer, {errors} fel, {warnings} varningar"
+msgid "Total: {files} files, {errors} errors, {fuzzy} fuzzy, {warnings} warnings"
+msgstr "Totalt: {files} filer, {errors} fel, {fuzzy} fuzzy, {warnings} varningar"
 
 msgid "PO files saved to: {path}"
 msgstr "PO-filer sparade till: {path}"

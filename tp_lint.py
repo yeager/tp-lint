@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -421,12 +421,14 @@ def main():
             domain = get_domain_from_filename(filename)
             translator = translators.get(domain, _("Unknown"))
             if translator not in translator_results:
-                translator_results[translator] = {"files": [], "errors": 0, "warnings": 0}
+                translator_results[translator] = {"files": [], "errors": 0, "warnings": 0, "fuzzy": 0}
             translator_results[translator]["files"].append(filename)
             
             issues = data.get("issues", [])
             for issue in issues:
-                if issue.get("severity") == "error":
+                if issue.get("rule") == "fuzzy":
+                    translator_results[translator]["fuzzy"] += 1
+                elif issue.get("severity") == "error":
                     translator_results[translator]["errors"] += 1
                 else:
                     translator_results[translator]["warnings"] += 1
@@ -441,15 +443,17 @@ def main():
             print(f"👤 {translator}")
             print(_("   Files: {count}").format(count=len(stats["files"])))
             print(_("   Errors: {count}").format(count=stats["errors"]))
+            print(_("   Fuzzy: {count}").format(count=stats["fuzzy"]))
             print(_("   Warnings: {count}").format(count=stats["warnings"]))
             print()
         
         # Summary
         total_errors = sum(s["errors"] for s in translator_results.values())
+        total_fuzzy = sum(s["fuzzy"] for s in translator_results.values())
         total_warnings = sum(s["warnings"] for s in translator_results.values())
         print("=" * 60)
-        print(_("Total: {files} files, {errors} errors, {warnings} warnings").format(
-            files=len(downloaded), errors=total_errors, warnings=total_warnings
+        print(_("Total: {files} files, {errors} errors, {fuzzy} fuzzy, {warnings} warnings").format(
+            files=len(downloaded), errors=total_errors, fuzzy=total_fuzzy, warnings=total_warnings
         ))
         
         returncode = 1 if total_errors > 0 or (args.strict and total_warnings > 0) else 0
