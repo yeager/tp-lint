@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: tp-lint 1.0.0\n"
+"Project-Id-Version: tp-lint 1.1.0\n"
 "Report-Msgid-Bugs-To: daniel@danielnylander.se\n"
-"POT-Creation-Date: 2026-02-03 08:00+0100\n"
-"PO-Revision-Date: 2026-02-03 08:30+0100\n"
+"POT-Creation-Date: 2026-02-03 09:30+0100\n"
+"PO-Revision-Date: 2026-02-03 09:30+0100\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -57,6 +57,9 @@ msgstr "Utdatakatalog för nedladdade PO-filer (medför --keep)"
 msgid "Only lint specific package(s) (can be repeated)"
 msgstr "Granska endast specifika paket (kan upprepas)"
 
+msgid "Group results by translator"
+msgstr "Gruppera resultat per översättare"
+
 msgid "Fetching languages from Translation Project..."
 msgstr "Hämtar språk från Translation Project..."
 
@@ -81,6 +84,9 @@ msgstr "Hittade {count} PO-filer"
 msgid "Downloading PO files..."
 msgstr "Laddar ned PO-filer..."
 
+msgid "  [{current}/{total}] {filename}"
+msgstr "  [{current}/{total}] {filename}"
+
 msgid "Downloaded {count} files"
 msgstr "Laddade ned {count} filer"
 
@@ -89,6 +95,24 @@ msgstr "Inga filer att granska"
 
 msgid "Running l10n-lint..."
 msgstr "Kör l10n-lint..."
+
+msgid "Results by translator:"
+msgstr "Resultat per översättare:"
+
+msgid "   Files: {count}"
+msgstr "   Filer: {count}"
+
+msgid "   Errors: {count}"
+msgstr "   Fel: {count}"
+
+msgid "   Warnings: {count}"
+msgstr "   Varningar: {count}"
+
+msgid "Unknown"
+msgstr "Okänd"
+
+msgid "Total: {files} files, {errors} errors, {warnings} warnings"
+msgstr "Totalt: {files} filer, {errors} fel, {warnings} varningar"
 
 msgid "PO files saved to: {path}"
 msgstr "PO-filer sparade till: {path}"

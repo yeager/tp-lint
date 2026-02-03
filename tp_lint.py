@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -41,12 +41,13 @@ for _dir in _possible_locale_dirs:
         LOCALE_DIR = _dir
         break
 
-# Initialize gettext
+# Initialize gettext - detect language
+_system_lang = locale.getlocale()[0] or os.environ.get("LANG", "en")
+_lang_code = _system_lang.split("_")[0].split(".")[0] if _system_lang else "en"
+
 try:
-    lang = locale.getlocale()[0] or "en"
-    lang_code = lang.split("_")[0] if lang else "en"
     if LOCALE_DIR:
-        translation = gettext.translation(DOMAIN, LOCALE_DIR, languages=[lang_code], fallback=True)
+        translation = gettext.translation(DOMAIN, LOCALE_DIR, languages=[_lang_code], fallback=True)
     else:
         translation = gettext.NullTranslations()
     _ = translation.gettext
@@ -59,16 +60,21 @@ TP_BASE = "https://translationproject.org"
 
 
 class TeamPageParser(html.parser.HTMLParser):
-    """Parse a TP team page to extract PO file URLs."""
+    """Parse a TP team page to extract PO file URLs and translator assignments."""
     
     def __init__(self):
         super().__init__()
         self.po_files = []
-        self.in_td = False
+        self.translators = {}  # domain -> translator name
+        self._in_table = False
+        self._current_domain = None
+        self._in_translator_cell = False
+        self._current_translator = None
         
     def handle_starttag(self, tag, attrs):
+        attrs_dict = dict(attrs)
         if tag == "a":
-            href = dict(attrs).get("href", "")
+            href = attrs_dict.get("href", "")
             if "/PO-files/" in href and href.endswith(".po"):
                 # Convert relative URL to absolute
                 if href.startswith("../"):
@@ -76,6 +82,29 @@ class TeamPageParser(html.parser.HTMLParser):
                 elif href.startswith("/"):
                     href = TP_BASE + href
                 self.po_files.append(href)
+                # Extract domain from URL
+                filename = href.split("/")[-1]
+                match = re.match(r"([^-]+)-.*\.po$", filename)
+                if match:
+                    self._current_domain = match.group(1)
+            elif "/domain/" in href:
+                # Domain link in assignment table
+                match = re.match(r"\.\./domain/([^.]+)\.html$", href)
+                if match:
+                    self._current_domain = match.group(1)
+            elif "mailto:" in href:
+                self._in_translator_cell = True
+                
+    def handle_data(self, data):
+        data = data.strip()
+        if self._in_translator_cell and data and self._current_domain:
+            self.translators[self._current_domain] = data
+            self._in_translator_cell = False
+            
+    def handle_endtag(self, tag):
+        if tag == "tr":
+            self._current_domain = None
+            self._in_translator_cell = False
 
 
 class TeamIndexParser(html.parser.HTMLParser):
@@ -84,7 +113,6 @@ class TeamIndexParser(html.parser.HTMLParser):
     def __init__(self):
         super().__init__()
         self.languages = []
-        self.in_code_td = False
         self.prev_tag = None
         self.current_lang_name = None
         
@@ -92,7 +120,6 @@ class TeamIndexParser(html.parser.HTMLParser):
         self.prev_tag = tag
         if tag == "a":
             href = dict(attrs).get("href", "")
-            # Match links like "sv.html", "de.html"
             match = re.match(r"([a-z]{2,3})\.html$", href)
             if match:
                 self.current_lang_name = None
@@ -100,7 +127,7 @@ class TeamIndexParser(html.parser.HTMLParser):
     def handle_data(self, data):
         data = data.strip()
         if self.prev_tag == "a" and data and not data.startswith("mailto:"):
-            if re.match(r"^[A-Z][a-z]+", data):  # Language name
+            if re.match(r"^[A-Z][a-z]+", data):
                 self.current_lang_name = data
         elif self.prev_tag == "td" and re.match(r"^[a-z]{2,3}$", data):
             if self.current_lang_name:
@@ -122,8 +149,8 @@ def get_languages():
     return parser.languages
 
 
-def get_po_files(lang_code):
-    """Fetch list of PO file URLs for a language."""
+def get_po_files_and_translators(lang_code):
+    """Fetch list of PO file URLs and translator assignments for a language."""
     url = f"{TP_BASE}/team/{lang_code}.html"
     try:
         with urllib.request.urlopen(url, timeout=30) as resp:
@@ -133,14 +160,14 @@ def get_po_files(lang_code):
             print(_("Language '{lang}' not found on Translation Project").format(lang=lang_code), file=sys.stderr)
         else:
             print(_("Error fetching team page: {error}").format(error=e), file=sys.stderr)
-        return []
+        return [], {}
     except urllib.error.URLError as e:
         print(_("Error fetching team page: {error}").format(error=e), file=sys.stderr)
-        return []
+        return [], {}
     
     parser = TeamPageParser()
     parser.feed(html_content)
-    return parser.po_files
+    return parser.po_files, parser.translators
 
 
 def download_po_file(url, dest_dir):
@@ -158,7 +185,18 @@ def download_po_file(url, dest_dir):
         return None
 
 
-def run_l10n_lint(path, output_format="text", strict=False):
+def get_domain_from_filename(filename):
+    """Extract domain name from PO filename."""
+    match = re.match(r"([^-]+)-.*\.po$", filename)
+    if match:
+        return match.group(1)
+    match = re.match(r"([^.]+)\..*\.po$", filename)
+    if match:
+        return match.group(1)
+    return filename
+
+
+def run_l10n_lint(path, output_format="text", strict=False, lang_code=None):
     """Run l10n-lint on a file or directory."""
     cmd = ["l10n-lint"]
     
@@ -169,12 +207,50 @@ def run_l10n_lint(path, output_format="text", strict=False):
     
     cmd.append(str(path))
     
+    # Pass language to l10n-lint via environment
+    env = os.environ.copy()
+    if lang_code:
+        env["LANG"] = f"{lang_code}.UTF-8"
+        env["LC_ALL"] = f"{lang_code}.UTF-8"
+    
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        result = subprocess.run(cmd, capture_output=True, text=True, env=env)
         return result.stdout, result.stderr, result.returncode
     except FileNotFoundError:
         print(_("Error: l10n-lint not found. Please install l10n-lint first."), file=sys.stderr)
         sys.exit(1)
+
+
+def run_l10n_lint_per_file(files, output_format="text", strict=False, lang_code=None):
+    """Run l10n-lint on each file and return results per file."""
+    results = {}
+    
+    env = os.environ.copy()
+    if lang_code:
+        env["LANG"] = f"{lang_code}.UTF-8"
+        env["LC_ALL"] = f"{lang_code}.UTF-8"
+    
+    for filepath in files:
+        cmd = ["l10n-lint", "--format", "json", str(filepath)]
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, env=env)
+            if result.stdout.strip():
+                try:
+                    data = json.loads(result.stdout)
+                    results[filepath.name] = data
+                except json.JSONDecodeError:
+                    pass
+        except FileNotFoundError:
+            print(_("Error: l10n-lint not found. Please install l10n-lint first."), file=sys.stderr)
+            sys.exit(1)
+    
+    return results
+
+
+def clear_line():
+    """Clear the current terminal line."""
+    sys.stdout.write("\033[K")
+    sys.stdout.flush()
 
 
 def main():
@@ -228,6 +304,12 @@ def main():
     )
     
     parser.add_argument(
+        "-t", "--by-translator",
+        action="store_true",
+        help=_("Group results by translator")
+    )
+    
+    parser.add_argument(
         "-v", "--version",
         action="version",
         version=f"%(prog)s {__version__}"
@@ -257,9 +339,9 @@ def main():
     
     lang_code = args.language.lower()
     
-    # Fetch PO file list
+    # Fetch PO file list and translators
     print(_("Fetching PO files for '{lang}'...").format(lang=lang_code))
-    po_urls = get_po_files(lang_code)
+    po_urls, translators = get_po_files_and_translators(lang_code)
     
     if not po_urls:
         print(_("No PO files found for language '{lang}'").format(lang=lang_code), file=sys.stderr)
@@ -301,14 +383,23 @@ def main():
     # Download PO files
     print(_("Downloading PO files..."))
     downloaded = []
+    max_filename_len = 0
     for i, url in enumerate(po_urls, 1):
         filename = url.split("/")[-1]
-        print(f"  [{i}/{len(po_urls)}] {filename}", end="\r")
+        max_filename_len = max(max_filename_len, len(filename))
+        # Clear line and print progress
+        progress = _("  [{current}/{total}] {filename}").format(
+            current=i, total=len(po_urls), filename=filename
+        )
+        sys.stdout.write(f"\r\033[K{progress}")
+        sys.stdout.flush()
         path = download_po_file(url, output_dir)
         if path:
             downloaded.append(path)
     
-    print()  # Clear the progress line
+    # Clear progress line and print completion
+    sys.stdout.write("\r\033[K")
+    sys.stdout.flush()
     print(_("Downloaded {count} files").format(count=len(downloaded)))
     
     if not downloaded:
@@ -320,16 +411,61 @@ def main():
     print(_("Running l10n-lint..."))
     print("=" * 60)
     
-    stdout, stderr, returncode = run_l10n_lint(
-        output_dir,
-        output_format=args.format,
-        strict=args.strict
-    )
-    
-    if stdout:
-        print(stdout)
-    if stderr:
-        print(stderr, file=sys.stderr)
+    if args.by_translator:
+        # Group results by translator
+        lint_results = run_l10n_lint_per_file(downloaded, args.format, args.strict, _lang_code)
+        
+        # Group by translator
+        translator_results = {}
+        for filename, data in lint_results.items():
+            domain = get_domain_from_filename(filename)
+            translator = translators.get(domain, _("Unknown"))
+            if translator not in translator_results:
+                translator_results[translator] = {"files": [], "errors": 0, "warnings": 0}
+            translator_results[translator]["files"].append(filename)
+            
+            issues = data.get("issues", [])
+            for issue in issues:
+                if issue.get("severity") == "error":
+                    translator_results[translator]["errors"] += 1
+                else:
+                    translator_results[translator]["warnings"] += 1
+        
+        # Print results by translator
+        print()
+        print(_("Results by translator:"))
+        print()
+        
+        for translator in sorted(translator_results.keys()):
+            stats = translator_results[translator]
+            print(f"👤 {translator}")
+            print(_("   Files: {count}").format(count=len(stats["files"])))
+            print(_("   Errors: {count}").format(count=stats["errors"]))
+            print(_("   Warnings: {count}").format(count=stats["warnings"]))
+            print()
+        
+        # Summary
+        total_errors = sum(s["errors"] for s in translator_results.values())
+        total_warnings = sum(s["warnings"] for s in translator_results.values())
+        print("=" * 60)
+        print(_("Total: {files} files, {errors} errors, {warnings} warnings").format(
+            files=len(downloaded), errors=total_errors, warnings=total_warnings
+        ))
+        
+        returncode = 1 if total_errors > 0 or (args.strict and total_warnings > 0) else 0
+    else:
+        # Standard mode - run on whole directory
+        stdout, stderr, returncode = run_l10n_lint(
+            output_dir,
+            output_format=args.format,
+            strict=args.strict,
+            lang_code=_lang_code
+        )
+        
+        if stdout:
+            print(stdout)
+        if stderr:
+            print(stderr, file=sys.stderr)
     
     # Cleanup
     if not keep_files and temp_dir:
