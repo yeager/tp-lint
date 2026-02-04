@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.5.5"
+__version__ = "1.5.6"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -1008,6 +1008,12 @@ def main():
     )
     
     parser.add_argument(
+        "-V", "--verbose",
+        action="store_true",
+        help=_("Show detailed progress")
+    )
+    
+    parser.add_argument(
         "-v", "--version",
         action="version",
         version=f"%(prog)s {__version__}"
@@ -1015,8 +1021,17 @@ def main():
     
     args = parser.parse_args()
     
+    # Setup verbose printing
+    verbose = args.verbose
+    def vprint(msg):
+        if verbose:
+            print(msg, file=sys.stderr)
+    
+    vprint(_("🔧 tp-lint {version} starting...").format(version=__version__))
+    
     # List languages mode
     if args.list:
+        vprint(_("   Mode: List languages"))
         print(_("Fetching languages from Translation Project..."))
         languages = get_languages()
         if not languages:
@@ -1032,10 +1047,17 @@ def main():
     
     # Report mode
     if args.report:
+        vprint(_("   Mode: Generate report"))
+        vprint(_("   Format: {fmt}").format(fmt=args.report_format))
+        if args.report_output:
+            vprint(_("   Output file: {file}").format(file=args.report_output))
         print(_("Fetching translation matrix..."))
+        vprint(_("   Connecting to translationproject.org/extra/matrix.html..."))
         matrix = fetch_matrix()
         if not matrix:
             return 1
+        vprint(_("   Matrix loaded: {langs} languages, {domains} domains").format(
+            langs=len(matrix.languages), domains=len(matrix.domains)))
         
         lang_filter = args.report if args.report != "global" else None
         generate_report(
@@ -1048,10 +1070,16 @@ def main():
     
     # Statistics mode
     if args.stats or args.domain:
+        vprint(_("   Mode: Statistics"))
+        if args.domain:
+            vprint(_("   Domain filter: {domain}").format(domain=args.domain))
         print(_("Fetching translation matrix..."))
+        vprint(_("   Connecting to translationproject.org/extra/matrix.html..."))
         matrix = fetch_matrix()
         if not matrix:
             return 1
+        vprint(_("   Matrix loaded: {langs} languages, {domains} domains").format(
+            langs=len(matrix.languages), domains=len(matrix.domains)))
         
         lang_filter = args.stats if args.stats != "global" else None
         print_stats(
@@ -1069,10 +1097,17 @@ def main():
         return 1
     
     lang_code = args.language.lower()
+    vprint(_("   Mode: Lint language '{lang}'").format(lang=lang_code))
+    vprint(_("   Output format: {fmt}").format(fmt=args.format))
+    vprint(_("   Strict mode: {strict}").format(strict=args.strict))
+    if args.packages:
+        vprint(_("   Package filter: {pkgs}").format(pkgs=", ".join(args.packages)))
     
     # Fetch PO file list and translators
     print(_("Fetching PO files for '{lang}'...").format(lang=lang_code))
+    vprint(_("   Connecting to translationproject.org..."))
     po_urls, translators = get_po_files_and_translators(lang_code)
+    vprint(_("   Found {count} translators assigned").format(count=len(translators)))
     
     if not po_urls:
         print(_("No PO files found for language '{lang}'").format(lang=lang_code), file=sys.stderr)
@@ -1113,24 +1148,33 @@ def main():
     
     # Download PO files
     print(_("Downloading PO files..."))
+    vprint(_("   Output directory: {dir}").format(dir=output_dir))
     downloaded = []
     max_filename_len = 0
     for i, url in enumerate(po_urls, 1):
         filename = url.split("/")[-1]
         max_filename_len = max(max_filename_len, len(filename))
         # Clear line and print progress
-        progress = _("  [{current}/{total}] {filename}").format(
-            current=i, total=len(po_urls), filename=filename
-        )
-        sys.stdout.write(f"\r\033[K{progress}")
-        sys.stdout.flush()
+        if verbose:
+            vprint(_("  [{current}/{total}] {filename}").format(
+                current=i, total=len(po_urls), filename=filename
+            ))
+        else:
+            progress = _("  [{current}/{total}] {filename}").format(
+                current=i, total=len(po_urls), filename=filename
+            )
+            sys.stdout.write(f"\r\033[K{progress}")
+            sys.stdout.flush()
         path = download_po_file(url, output_dir)
         if path:
             downloaded.append(path)
+            if verbose:
+                vprint(_("       Size: {size} bytes").format(size=path.stat().st_size))
     
     # Clear progress line and print completion
-    sys.stdout.write("\r\033[K")
-    sys.stdout.flush()
+    if not verbose:
+        sys.stdout.write("\r\033[K")
+        sys.stdout.flush()
     print(_("Downloaded {count} files").format(count=len(downloaded)))
     
     if not downloaded:
@@ -1140,6 +1184,8 @@ def main():
     # Run l10n-lint
     print()
     print(_("Running l10n-lint..."))
+    vprint(_("   By translator: {by_translator}").format(by_translator=args.by_translator))
+    vprint(_("   Files to lint: {count}").format(count=len(downloaded)))
     print("=" * 60)
     
     if args.by_translator:
