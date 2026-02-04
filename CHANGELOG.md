@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.0] - 2026-02-04
+
+### Added
+- 📄 **Report generation** - Create translation status reports
+  - `--report` for global report, `--report LANG` for language-specific
+  - `--report-format markdown|html` for output format
+  - `--report-output FILE` to save to file
+  - Includes complete/partial/missing package breakdown
+
 ## [1.4.0] - 2026-02-04
 
 ### Added

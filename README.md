@@ -18,22 +18,22 @@ Fetch and lint translation files for any language team on the Translation Projec
 ### Debian/Ubuntu
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.4.0/tp-lint_1.4.0_all.deb
-sudo dpkg -i tp-lint_1.4.0_all.deb
+wget https://github.com/yeager/tp-lint/releases/download/v1.5.0/tp-lint_1.5.0_all.deb
+sudo dpkg -i tp-lint_1.5.0_all.deb
 ```
 
 ### Fedora/RHEL/openSUSE
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.4.0/tp-lint-1.4.0-1.noarch.rpm
-sudo rpm -i tp-lint-1.4.0-1.noarch.rpm
+wget https://github.com/yeager/tp-lint/releases/download/v1.5.0/tp-lint-1.5.0-1.noarch.rpm
+sudo rpm -i tp-lint-1.5.0-1.noarch.rpm
 ```
 
 ### Arch Linux
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.4.0/tp-lint-1.4.0.pkg.tar.zst
-sudo pacman -U tp-lint-1.4.0.pkg.tar.zst
+wget https://github.com/yeager/tp-lint/releases/download/v1.5.0/tp-lint-1.5.0.pkg.tar.zst
+sudo pacman -U tp-lint-1.5.0.pkg.tar.zst
 ```
 
 ### From source
@@ -119,6 +119,22 @@ tp-lint --stats sv --format json
 tp-lint --stats --top 20
 ```
 
+### Reports
+
+```bash
+# Generate markdown report for a language
+tp-lint --report sv
+
+# Generate HTML report
+tp-lint --report sv --report-format html
+
+# Save report to file
+tp-lint --report sv --report-output swedish-status.md
+
+# Global report (all languages)
+tp-lint --report --report-format html --report-output tp-report.html
+```
+
 ## Options
 
 | Option | Description |
@@ -126,6 +142,9 @@ tp-lint --stats --top 20
 | `-l`, `--list` | List all available languages |
 | `-s`, `--stats [LANG]` | Show statistics (global or per language) |
 | `-d`, `--domain PKG` | Show statistics for a specific package |
+| `-r`, `--report [LANG]` | Generate report (global or per language) |
+| `--report-format` | Report format: `markdown`, `html` |
+| `--report-output FILE` | Save report to file |
 | `-n`, `--top N` | Number of items in top lists (default: 15) |
 | `-f`, `--format` | Output format: `text`, `json`, `github` |
 | `-k`, `--keep` | Keep downloaded PO files |

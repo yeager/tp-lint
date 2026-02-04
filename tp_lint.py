@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.4.0"
+__version__ = "1.5.0"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -454,6 +454,192 @@ def print_stats(matrix, lang_filter=None, domain_filter=None, top_n=15, output_f
         print(f"  {i:2}. {domain:20} {count:2} langs, avg {avg_pct:.0f}%")
 
 
+def generate_report(matrix, lang_filter=None, output_file=None, report_format="markdown"):
+    """Generate a translation status report."""
+    from datetime import datetime
+    
+    lines = []
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    
+    if report_format == "markdown":
+        lines.append(f"# Translation Project Report")
+        lines.append(f"")
+        lines.append(f"Generated: {now}")
+        lines.append(f"")
+        
+        # Overview
+        total_langs = len(matrix.languages)
+        total_domains = len(matrix.domains)
+        total_translations = sum(len(t) for t in matrix.domains.values())
+        max_translations = total_langs * total_domains
+        overall_pct = (total_translations / max_translations * 100) if max_translations > 0 else 0
+        
+        lines.append(f"## Overview")
+        lines.append(f"")
+        lines.append(f"| Metric | Value |")
+        lines.append(f"|--------|-------|")
+        lines.append(f"| Languages | {total_langs} |")
+        lines.append(f"| Packages | {total_domains} |")
+        lines.append(f"| Total translations | {total_translations} |")
+        lines.append(f"| Overall coverage | {overall_pct:.1f}% |")
+        lines.append(f"")
+        
+        if lang_filter:
+            # Language-specific report
+            lang_key = lang_filter.lower()
+            if "_" in lang_filter and lang_key not in matrix.lang_percentages:
+                lang_key = lang_filter.split("_")[1].upper()
+            
+            pct = matrix.lang_percentages.get(lang_key, matrix.lang_percentages.get(lang_filter.lower(), 0))
+            
+            lines.append(f"## Language: {lang_filter.upper()}")
+            lines.append(f"")
+            lines.append(f"**Coverage:** {pct}%")
+            lines.append(f"")
+            
+            # Categorize packages
+            complete = []
+            partial = []
+            missing = []
+            
+            for domain, langs in matrix.domains.items():
+                if lang_key in langs or lang_filter.lower() in langs:
+                    p = langs.get(lang_key, langs.get(lang_filter.lower(), 0))
+                    if p == 100:
+                        complete.append(domain)
+                    else:
+                        partial.append((domain, p))
+                else:
+                    missing.append(domain)
+            
+            lines.append(f"### Complete (100%) – {len(complete)} packages")
+            lines.append(f"")
+            if complete:
+                for d in sorted(complete):
+                    lines.append(f"- {d}")
+            else:
+                lines.append(f"*None*")
+            lines.append(f"")
+            
+            lines.append(f"### Partial – {len(partial)} packages")
+            lines.append(f"")
+            if partial:
+                lines.append(f"| Package | Coverage |")
+                lines.append(f"|---------|----------|")
+                for d, p in sorted(partial, key=lambda x: x[1], reverse=True):
+                    lines.append(f"| {d} | {p}% |")
+            else:
+                lines.append(f"*None*")
+            lines.append(f"")
+            
+            lines.append(f"### Missing – {len(missing)} packages")
+            lines.append(f"")
+            if missing:
+                for d in sorted(missing):
+                    lines.append(f"- {d}")
+            else:
+                lines.append(f"*None – all packages translated!* 🎉")
+            lines.append(f"")
+        else:
+            # Global report - top languages
+            lines.append(f"## Top Languages")
+            lines.append(f"")
+            lines.append(f"| Rank | Language | Coverage |")
+            lines.append(f"|------|----------|----------|")
+            sorted_langs = sorted(matrix.lang_percentages.items(), key=lambda x: x[1], reverse=True)
+            for i, (lang, pct) in enumerate(sorted_langs[:20], 1):
+                lines.append(f"| {i} | {lang} | {pct}% |")
+            lines.append(f"")
+            
+            # Best covered packages
+            lines.append(f"## Best Covered Packages")
+            lines.append(f"")
+            lines.append(f"| Package | Languages | Avg Coverage |")
+            lines.append(f"|---------|-----------|--------------|")
+            domain_coverage = [(d, len(t), sum(t.values()) / len(t) if t else 0) 
+                               for d, t in matrix.domains.items()]
+            domain_coverage.sort(key=lambda x: (x[1], x[2]), reverse=True)
+            for d, count, avg in domain_coverage[:20]:
+                lines.append(f"| {d} | {count} | {avg:.0f}% |")
+            lines.append(f"")
+    
+    elif report_format == "html":
+        lines.append(f"<!DOCTYPE html>")
+        lines.append(f"<html><head><meta charset='utf-8'><title>TP Report</title>")
+        lines.append(f"<style>body{{font-family:system-ui;max-width:900px;margin:2em auto;padding:0 1em}}")
+        lines.append(f"table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #ddd;padding:8px;text-align:left}}")
+        lines.append(f"th{{background:#f5f5f5}}.complete{{color:green}}.partial{{color:orange}}.missing{{color:red}}</style></head>")
+        lines.append(f"<body><h1>Translation Project Report</h1>")
+        lines.append(f"<p><em>Generated: {now}</em></p>")
+        
+        total_langs = len(matrix.languages)
+        total_domains = len(matrix.domains)
+        total_translations = sum(len(t) for t in matrix.domains.values())
+        max_translations = total_langs * total_domains
+        overall_pct = (total_translations / max_translations * 100) if max_translations > 0 else 0
+        
+        lines.append(f"<h2>Overview</h2>")
+        lines.append(f"<table><tr><th>Metric</th><th>Value</th></tr>")
+        lines.append(f"<tr><td>Languages</td><td>{total_langs}</td></tr>")
+        lines.append(f"<tr><td>Packages</td><td>{total_domains}</td></tr>")
+        lines.append(f"<tr><td>Total translations</td><td>{total_translations}</td></tr>")
+        lines.append(f"<tr><td>Overall coverage</td><td>{overall_pct:.1f}%</td></tr></table>")
+        
+        if lang_filter:
+            lang_key = lang_filter.lower()
+            if "_" in lang_filter and lang_key not in matrix.lang_percentages:
+                lang_key = lang_filter.split("_")[1].upper()
+            pct = matrix.lang_percentages.get(lang_key, matrix.lang_percentages.get(lang_filter.lower(), 0))
+            
+            lines.append(f"<h2>Language: {lang_filter.upper()} ({pct}%)</h2>")
+            
+            complete, partial, missing = [], [], []
+            for domain, langs in matrix.domains.items():
+                if lang_key in langs or lang_filter.lower() in langs:
+                    p = langs.get(lang_key, langs.get(lang_filter.lower(), 0))
+                    if p == 100:
+                        complete.append(domain)
+                    else:
+                        partial.append((domain, p))
+                else:
+                    missing.append(domain)
+            
+            lines.append(f"<h3 class='complete'>Complete (100%) – {len(complete)}</h3><ul>")
+            for d in sorted(complete):
+                lines.append(f"<li>{d}</li>")
+            lines.append(f"</ul>")
+            
+            lines.append(f"<h3 class='partial'>Partial – {len(partial)}</h3>")
+            lines.append(f"<table><tr><th>Package</th><th>Coverage</th></tr>")
+            for d, p in sorted(partial, key=lambda x: x[1], reverse=True):
+                lines.append(f"<tr><td>{d}</td><td>{p}%</td></tr>")
+            lines.append(f"</table>")
+            
+            lines.append(f"<h3 class='missing'>Missing – {len(missing)}</h3><ul>")
+            for d in sorted(missing):
+                lines.append(f"<li>{d}</li>")
+            lines.append(f"</ul>")
+        else:
+            lines.append(f"<h2>Top Languages</h2>")
+            lines.append(f"<table><tr><th>#</th><th>Language</th><th>Coverage</th></tr>")
+            sorted_langs = sorted(matrix.lang_percentages.items(), key=lambda x: x[1], reverse=True)
+            for i, (lang, pct) in enumerate(sorted_langs[:20], 1):
+                lines.append(f"<tr><td>{i}</td><td>{lang}</td><td>{pct}%</td></tr>")
+            lines.append(f"</table>")
+        
+        lines.append(f"</body></html>")
+    
+    report = "\n".join(lines)
+    
+    if output_file:
+        Path(output_file).write_text(report, encoding="utf-8")
+        print(_("Report saved to: {path}").format(path=output_file))
+    else:
+        print(report)
+    
+    return report
+
+
 def get_languages():
     """Fetch list of languages from Translation Project."""
     url = f"{TP_BASE}/team/index.html"
@@ -615,6 +801,27 @@ def main():
     )
     
     parser.add_argument(
+        "-r", "--report",
+        nargs="?",
+        const="global",
+        metavar="LANG",
+        help=_("Generate report (optionally for a specific language)")
+    )
+    
+    parser.add_argument(
+        "--report-format",
+        choices=["markdown", "html"],
+        default="markdown",
+        help=_("Report format (default: markdown)")
+    )
+    
+    parser.add_argument(
+        "--report-output",
+        metavar="FILE",
+        help=_("Save report to file")
+    )
+    
+    parser.add_argument(
         "-f", "--format",
         choices=["text", "json", "github"],
         default="text",
@@ -672,6 +879,22 @@ def main():
         print()
         for code, name in sorted(languages, key=lambda x: x[1]):
             print(f"  {code:6} {name}")
+        return 0
+    
+    # Report mode
+    if args.report:
+        print(_("Fetching translation matrix..."))
+        matrix = fetch_matrix()
+        if not matrix:
+            return 1
+        
+        lang_filter = args.report if args.report != "global" else None
+        generate_report(
+            matrix,
+            lang_filter=lang_filter,
+            output_file=args.report_output,
+            report_format=args.report_format
+        )
         return 0
     
     # Statistics mode
