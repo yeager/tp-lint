@@ -4,7 +4,17 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
-msgstr "Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2026-02-04 08:34+0100\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\nLanguage: \nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-04 08:46+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: tp_lint.py:258
 #, fuzzy, python-brace-format
@@ -142,175 +152,196 @@ msgstr "📦 Best Covered Packages (most translations)"
 msgid "🆘 Least Covered Packages (need translations)"
 msgstr "🆘 Least Covered Packages (need translations)"
 
-#: tp_lint.py:464
+#: tp_lint.py:636
+#, fuzzy, python-brace-format
+msgid "Report saved to: {path}"
+msgstr "PO files saved to: {path}"
+
+#: tp_lint.py:650
 #, python-brace-format
 msgid "Error fetching team index: {error}"
 msgstr "Error fetching team index: {error}"
 
-#: tp_lint.py:480
+#: tp_lint.py:666
 #, python-brace-format
 msgid "Language '{lang}' not found on Translation Project"
 msgstr "Language '{lang}' not found on Translation Project"
 
-#: tp_lint.py:482 tp_lint.py:485
+#: tp_lint.py:668 tp_lint.py:671
 #, python-brace-format
 msgid "Error fetching team page: {error}"
 msgstr "Error fetching team page: {error}"
 
-#: tp_lint.py:504
+#: tp_lint.py:690
 #, python-brace-format
 msgid "Error downloading {url}: {error}"
 msgstr "Error downloading {url}: {error}"
 
-#: tp_lint.py:540 tp_lint.py:564
+#: tp_lint.py:726 tp_lint.py:750
 msgid "Error: l10n-lint not found. Please install l10n-lint first."
 msgstr "Error: l10n-lint not found. Please install l10n-lint first."
 
-#: tp_lint.py:579
+#: tp_lint.py:765
 msgid "Lint PO files from the Translation Project (translationproject.org)"
 msgstr "Lint PO files from the Translation Project (translationproject.org)"
 
-#: tp_lint.py:580
+#: tp_lint.py:766
 msgid "Example: tp-lint sv"
 msgstr "Example: tp-lint sv"
 
-#: tp_lint.py:586
+#: tp_lint.py:772
 msgid "Language code to lint (e.g., sv, de, fr)"
 msgstr "Language code to lint (e.g., sv, de, fr)"
 
-#: tp_lint.py:592
+#: tp_lint.py:778
 msgid "List all available languages"
 msgstr "List all available languages"
 
-#: tp_lint.py:600
+#: tp_lint.py:786
 msgid "Show statistics (optionally for a specific language)"
 msgstr "Show statistics (optionally for a specific language)"
 
-#: tp_lint.py:606
+#: tp_lint.py:792
 msgid "Show statistics for a specific package/domain"
 msgstr "Show statistics for a specific package/domain"
 
-#: tp_lint.py:614
+#: tp_lint.py:800
 msgid "Number of items in top lists (default: 15)"
 msgstr "Number of items in top lists (default: 15)"
 
-#: tp_lint.py:621
+#: tp_lint.py:808
+#, fuzzy
+msgid "Generate report (optionally for a specific language)"
+msgstr "Show statistics (optionally for a specific language)"
+
+#: tp_lint.py:815
+#, fuzzy
+msgid "Report format (default: markdown)"
+msgstr "Output format (default: text)"
+
+#: tp_lint.py:821
+msgid "Save report to file"
+msgstr ""
+
+#: tp_lint.py:828
 msgid "Output format (default: text)"
 msgstr "Output format (default: text)"
 
-#: tp_lint.py:627
+#: tp_lint.py:834
 msgid "Treat warnings as errors"
 msgstr "Treat warnings as errors"
 
-#: tp_lint.py:633
+#: tp_lint.py:840
 msgid "Keep downloaded PO files (don't delete temp directory)"
 msgstr "Keep downloaded PO files (don't delete temp directory)"
 
-#: tp_lint.py:638
+#: tp_lint.py:845
 msgid "Output directory for downloaded PO files (implies --keep)"
 msgstr "Output directory for downloaded PO files (implies --keep)"
 
-#: tp_lint.py:645
+#: tp_lint.py:852
 msgid "Only lint specific package(s) (can be repeated)"
 msgstr "Only lint specific package(s) (can be repeated)"
 
-#: tp_lint.py:651
+#: tp_lint.py:858
 msgid "Group results by translator"
 msgstr "Group results by translator"
 
-#: tp_lint.py:664
+#: tp_lint.py:871
 msgid "Fetching languages from Translation Project..."
 msgstr "Fetching languages from Translation Project..."
 
-#: tp_lint.py:667
+#: tp_lint.py:874
 msgid "Could not fetch language list"
 msgstr "Could not fetch language list"
 
-#: tp_lint.py:671
+#: tp_lint.py:878
 #, python-brace-format
 msgid "Available languages ({count}):"
 msgstr "Available languages ({count}):"
 
-#: tp_lint.py:679
+#: tp_lint.py:886 tp_lint.py:902
 #, fuzzy
 msgid "Fetching translation matrix..."
 msgstr "Fetching languages from Translation Project..."
 
-#: tp_lint.py:702
+#: tp_lint.py:925
 #, python-brace-format
 msgid "Fetching PO files for '{lang}'..."
 msgstr "Fetching PO files for '{lang}'..."
 
-#: tp_lint.py:706
+#: tp_lint.py:929
 #, python-brace-format
 msgid "No PO files found for language '{lang}'"
 msgstr "No PO files found for language '{lang}'"
 
-#: tp_lint.py:721
+#: tp_lint.py:944
 msgid "No matching packages found"
 msgstr "No matching packages found"
 
-#: tp_lint.py:724
+#: tp_lint.py:947
 #, python-brace-format
 msgid "Found {count} PO files"
 msgstr "Found {count} PO files"
 
-#: tp_lint.py:743
+#: tp_lint.py:966
 msgid "Downloading PO files..."
 msgstr "Downloading PO files..."
 
-#: tp_lint.py:750
+#: tp_lint.py:973
 #, python-brace-format
 msgid "  [{current}/{total}] {filename}"
 msgstr "  [{current}/{total}] {filename}"
 
-#: tp_lint.py:762
+#: tp_lint.py:985
 #, python-brace-format
 msgid "Downloaded {count} files"
 msgstr "Downloaded {count} files"
 
-#: tp_lint.py:765
+#: tp_lint.py:988
 msgid "No files to lint"
 msgstr "No files to lint"
 
-#: tp_lint.py:770
+#: tp_lint.py:993
 msgid "Running l10n-lint..."
 msgstr "Running l10n-lint..."
 
-#: tp_lint.py:781
+#: tp_lint.py:1004
 msgid "Unknown"
 msgstr "Unknown"
 
-#: tp_lint.py:797
+#: tp_lint.py:1020
 msgid "Results by translator:"
 msgstr "Results by translator:"
 
-#: tp_lint.py:803
+#: tp_lint.py:1026
 #, python-brace-format
 msgid "   Files: {count}"
 msgstr "   Files: {count}"
 
-#: tp_lint.py:804
+#: tp_lint.py:1027
 #, python-brace-format
 msgid "   Errors: {count}"
 msgstr "   Errors: {count}"
 
-#: tp_lint.py:805
+#: tp_lint.py:1028
 #, python-brace-format
 msgid "   Fuzzy: {count}"
 msgstr "   Fuzzy: {count}"
 
-#: tp_lint.py:806
+#: tp_lint.py:1029
 #, python-brace-format
 msgid "   Warnings: {count}"
 msgstr "   Warnings: {count}"
 
-#: tp_lint.py:814
+#: tp_lint.py:1037
 #, python-brace-format
-msgid "Total: {files} files, {errors} errors, {fuzzy} fuzzy, {warnings} warnings"
-msgstr "Total: {files} files, {errors} errors, {fuzzy} fuzzy, {warnings} warnings"
+msgid ""
+"Total: {files} files, {errors} errors, {fuzzy} fuzzy, {warnings} warnings"
+msgstr ""
+"Total: {files} files, {errors} errors, {fuzzy} fuzzy, {warnings} warnings"
 
-#: tp_lint.py:839
+#: tp_lint.py:1062
 #, python-brace-format
 msgid "PO files saved to: {path}"
 msgstr "PO files saved to: {path}"
