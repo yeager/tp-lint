@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "лютий 2026" "tp-lint 1.5.2" "Команди користувача"
 .SH НАЗВА
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- інструмент перевірки та статистики Translation Project
 .SH СИНТАКСИС
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIПАРАМЕТРИ\fR] [\fIМОВА\fR]
 .SH ОПИС
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+перевіряє статус перекладу відносно матриці GNU Translation Project.
+Показує статистику покриття та генерує звіти для команд перекладачів.
 .SH ПАРАМЕТРИ
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Показати довідкове повідомлення та вийти.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Показати номер версії та вийти.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIМОВА\fR]
+Показати статистику перекладів. Без МОВА показує глобальну статистику.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIПАКЕТ\fR
+Показати статистику для конкретного пакета/домену.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Кількість елементів у верхніх/нижніх списках (типово: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIМОВА\fR]
+Створити звіт про стан перекладу.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIФОРМАТ\fR
+Формат звіту: markdown (типово), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIФАЙЛ\fR
+Зберегти звіт у файл замість стандартного виводу.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIФОРМАТ\fR
+Формат виводу: text (типово), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
-.SH КОД ВИХОДУ
+Примусово оновити кешовані дані матриці TP.
+.SH КОД ЗАВЕРШЕННЯ
 .TP
 .B 0
-Success.
+Успіх.
 .TP
 .B 1
-Error occurred.
+Сталася помилка.
 .SH ПРИКЛАДИ
 .TP
-Show global translation statistics:
+Показати глобальну статистику перекладів:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Показати статистику для шведської:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Створити HTML звіт для німецької:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Перевірити конкретний пакет:
 .B tp-lint \-\-domain coreutils
 .SH АВТОР
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH ПОМИЛКИ
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Повідомляйте про помилки на: https://github.com/yeager/tp-lint/issues

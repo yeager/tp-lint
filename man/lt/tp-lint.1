@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "2026 m. vasaris" "tp-lint 1.5.2" "Vartotojo komandos"
 .SH PAVADINIMAS
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- Translation Project tikrinimo ir statistikos įrankis
 .SH SANTRAUKA
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIPARAMETRAI\fR] [\fIKALBA\fR]
 .SH APRAŠYMAS
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
-.SH PARINKTYS
+tikrina vertimo būseną pagal GNU Translation Project matricą.
+Rodo padengimo statistiką ir generuoja ataskaitas vertimo komandoms.
+.SH PARAMETRAI
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Rodyti pagalbos pranešimą ir išeiti.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Rodyti versijos numerį ir išeiti.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIKALBA\fR]
+Rodyti vertimo statistiką. Be KALBOS rodo globalią statistiką.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIPAKETAS\fR
+Rodyti statistiką konkrečiam paketui/domenui.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Elementų skaičius viršutiniuose/apatiniuose sąrašuose (numatytasis: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIKALBA\fR]
+Generuoti vertimo būsenos ataskaitą.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIFORMATAS\fR
+Ataskaitos formatas: markdown (numatytasis), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIFAILAS\fR
+Išsaugoti ataskaitą faile vietoj standartinės išvesties.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIFORMATAS\fR
+Išvesties formatas: text (numatytasis), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Priverstinai atnaujinti podėlyje saugomus TP matricos duomenis.
 .SH IŠĖJIMO BŪSENA
 .TP
 .B 0
-Success.
+Sėkmė.
 .TP
 .B 1
-Error occurred.
+Įvyko klaida.
 .SH PAVYZDŽIAI
 .TP
-Show global translation statistics:
+Rodyti globalią vertimo statistiką:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Rodyti statistiką švedų kalbai:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Generuoti HTML ataskaitą vokiečių kalbai:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Tikrinti konkretų paketą:
 .B tp-lint \-\-domain coreutils
 .SH AUTORIUS
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH KLAIDOS
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Pranešti apie klaidas: https://github.com/yeager/tp-lint/issues

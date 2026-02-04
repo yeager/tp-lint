@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "פברואר 2026" "tp-lint 1.5.2" "פקודות משתמש"
 .SH שם
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- כלי בדיקה וסטטיסטיקות של Translation Project
 .SH תקציר
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIאפשרויות\fR] [\fIשפה\fR]
 .SH תיאור
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+בודק את מצב התרגום מול מטריצת GNU Translation Project.
+מציג סטטיסטיקות כיסוי ומייצר דוחות לצוותי תרגום.
 .SH אפשרויות
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+הצג הודעת עזרה וצא.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+הצג מספר גרסה וצא.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIשפה\fR]
+הצג סטטיסטיקות תרגום. ללא שפה מציג סטטיסטיקות גלובליות.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIחבילה\fR
+הצג סטטיסטיקות לחבילה/תחום ספציפי.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+מספר פריטים ברשימות עליונות/תחתונות (ברירת מחדל: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIשפה\fR]
+צור דוח מצב תרגום.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIפורמט\fR
+פורמט דוח: markdown (ברירת מחדל), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIקובץ\fR
+שמור דוח לקובץ במקום פלט רגיל.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIפורמט\fR
+פורמט פלט: text (ברירת מחדל), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+כפה רענון נתוני מטריצת TP במטמון.
 .SH סטטוס יציאה
 .TP
 .B 0
-Success.
+הצלחה.
 .TP
 .B 1
-Error occurred.
+התרחשה שגיאה.
 .SH דוגמאות
 .TP
-Show global translation statistics:
+הצג סטטיסטיקות תרגום גלובליות:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+הצג סטטיסטיקות לשוודית:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+צור דוח HTML לגרמנית:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+בדוק חבילה ספציפית:
 .B tp-lint \-\-domain coreutils
 .SH מחבר
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH באגים
-Report bugs at: https://github.com/yeager/tp-lint/issues
+דווח על באגים ב: https://github.com/yeager/tp-lint/issues

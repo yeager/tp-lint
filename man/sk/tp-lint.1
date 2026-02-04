@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "február 2026" "tp-lint 1.5.2" "Používateľské príkazy"
 .SH NÁZOV
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- nástroj na kontrolu a štatistiky Translation Project
 .SH PREHĽAD
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIMOŽNOSTI\fR] [\fIJAZYK\fR]
 .SH POPIS
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+kontroluje stav prekladu voči matici GNU Translation Project.
+Zobrazuje štatistiky pokrytia a generuje správy pre prekladateľské tímy.
 .SH MOŽNOSTI
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Zobraziť správu s pomocou a skončiť.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Zobraziť číslo verzie a skončiť.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIJAZYK\fR]
+Zobraziť štatistiky prekladov. Bez JAZYK zobrazí globálne štatistiky.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIBALÍK\fR
+Zobraziť štatistiky pre konkrétny balík/doménu.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Počet položiek v horných/dolných zoznamoch (predvolené: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIJAZYK\fR]
+Vygenerovať správu o stave prekladu.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIFORMÁT\fR
+Formát správy: markdown (predvolený), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fISÚBOR\fR
+Uložiť správu do súboru namiesto štandardného výstupu.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIFORMÁT\fR
+Výstupný formát: text (predvolený), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Vynútiť obnovenie údajov matice TP z vyrovnávacej pamäte.
 .SH NÁVRATOVÝ KÓD
 .TP
 .B 0
-Success.
+Úspech.
 .TP
 .B 1
-Error occurred.
+Nastala chyba.
 .SH PRÍKLADY
 .TP
-Show global translation statistics:
+Zobraziť globálne štatistiky prekladov:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Zobraziť štatistiky pre švédčinu:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Vygenerovať HTML správu pre nemčinu:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Skontrolovať konkrétny balík:
 .B tp-lint \-\-domain coreutils
 .SH AUTOR
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH CHYBY
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Hláste chyby na: https://github.com/yeager/tp-lint/issues

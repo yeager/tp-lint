@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "กุมภาพันธ์ 2026" "tp-lint 1.5.2" "คำสั่งผู้ใช้"
 .SH ชื่อ
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- เครื่องมือตรวจสอบและสถิติ Translation Project
 .SH บทสรุป
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIตัวเลือก\fR] [\fIภาษา\fR]
 .SH คำอธิบาย
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+ตรวจสอบสถานะการแปลเทียบกับเมทริกซ์ GNU Translation Project
+แสดงสถิติความครอบคลุมและสร้างรายงานสำหรับทีมแปล
 .SH ตัวเลือก
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+แสดงข้อความช่วยเหลือและออก
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+แสดงหมายเลขเวอร์ชันและออก
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIภาษา\fR]
+แสดงสถิติการแปล ไม่ระบุภาษาจะแสดงสถิติรวม
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIแพ็กเกจ\fR
+แสดงสถิติสำหรับแพ็กเกจ/โดเมนที่ระบุ
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+จำนวนรายการในรายการบน/ล่าง (ค่าเริ่มต้น: 10)
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIภาษา\fR]
+สร้างรายงานสถานะการแปล
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIรูปแบบ\fR
+รูปแบบรายงาน: markdown (ค่าเริ่มต้น), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIไฟล์\fR
+บันทึกรายงานไปยังไฟล์แทนผลลัพธ์มาตรฐาน
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIรูปแบบ\fR
+รูปแบบผลลัพธ์: text (ค่าเริ่มต้น), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+บังคับรีเฟรชข้อมูลเมทริกซ์ TP ที่แคชไว้
 .SH สถานะออก
 .TP
 .B 0
-Success.
+สำเร็จ
 .TP
 .B 1
-Error occurred.
+เกิดข้อผิดพลาด
 .SH ตัวอย่าง
 .TP
-Show global translation statistics:
+แสดงสถิติการแปลรวม:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+แสดงสถิติสำหรับภาษาสวีเดน:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+สร้างรายงาน HTML สำหรับภาษาเยอรมัน:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+ตรวจสอบแพ็กเกจที่ระบุ:
 .B tp-lint \-\-domain coreutils
 .SH ผู้เขียน
 Daniel Nylander <daniel@danielnylander.se>
@@ -65,5 +65,5 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR l10n-lint (1),
 .BR po-translate (1),
 .BR msgfmt (1)
-.SH ข้อผิดพลาด
-Report bugs at: https://github.com/yeager/tp-lint/issues
+.SH ข้อบกพร่อง
+รายงานข้อบกพร่องที่: https://github.com/yeager/tp-lint/issues

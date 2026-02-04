@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "2026. gada februāris" "tp-lint 1.5.2" "Lietotāja komandas"
 .SH NOSAUKUMS
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- Translation Project pārbaudītājs un statistikas rīks
 .SH KOPSAVILKUMS
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIOPCIJAS\fR] [\fIVALODA\fR]
 .SH APRAKSTS
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+pārbauda tulkojuma statusu pret GNU Translation Project matricu.
+Parāda pārklājuma statistiku un ģenerē pārskatus tulkošanas komandām.
 .SH OPCIJAS
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Rādīt palīdzības ziņojumu un iziet.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Rādīt versijas numuru un iziet.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIVALODA\fR]
+Rādīt tulkojuma statistiku. Bez VALODAS rāda globālo statistiku.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIPAKOTNE\fR
+Rādīt statistiku konkrētai pakotnei/domēnam.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Elementu skaits augšējos/apakšējos sarakstos (noklusējums: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIVALODA\fR]
+Ģenerēt tulkojuma statusa pārskatu.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIFORMĀTS\fR
+Pārskata formāts: markdown (noklusējums), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIFAILS\fR
+Saglabāt pārskatu failā, nevis standarta izvadē.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIFORMĀTS\fR
+Izvades formāts: text (noklusējums), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Piespiest kešatmiņā saglabāto TP matricas datu atsvaidzināšanu.
 .SH IZEJAS STATUSS
 .TP
 .B 0
-Success.
+Veiksme.
 .TP
 .B 1
-Error occurred.
+Radās kļūda.
 .SH PIEMĒRI
 .TP
-Show global translation statistics:
+Rādīt globālo tulkojuma statistiku:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Rādīt statistiku zviedru valodai:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Ģenerēt HTML pārskatu vācu valodai:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Pārbaudīt konkrētu pakotni:
 .B tp-lint \-\-domain coreutils
 .SH AUTORS
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH KĻŪDAS
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Ziņot par kļūdām: https://github.com/yeager/tp-lint/issues

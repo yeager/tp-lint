@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "februar 2026" "tp-lint 1.5.2" "Brukerkommandoer"
 .SH NAVN
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- Translation Project kontroll- og statistikkverktøy
 .SH SYNOPSIS
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIVALG\fR] [\fISPRÅK\fR]
 .SH BESKRIVELSE
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+kontrollerer oversettelsesstatus mot GNU Translation Project-matrisen.
+Viser dekningsstatistikk og genererer rapporter for oversettelseteam.
 .SH VALG
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Vis hjelpemelding og avslutt.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Vis versjonsnummer og avslutt.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fISPRÅK\fR]
+Vis oversettelsesstatistikk. Uten SPRÅK vises global statistikk.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIPAKKE\fR
+Vis statistikk for spesifikk pakke/domene.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Antall elementer i topp/bunn-lister (standard: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fISPRÅK\fR]
+Generer oversettelsesstatusrapport.
 .TP
 .BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+Rapportformat: markdown (standard), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIFIL\fR
+Lagre rapport til fil i stedet for standard utdata.
 .TP
 .BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+Utdataformat: text (standard), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Tving oppdatering av hurtigbufrede TP-matrisedata.
 .SH AVSLUTNINGSSTATUS
 .TP
 .B 0
-Success.
+Suksess.
 .TP
 .B 1
-Error occurred.
+En feil oppstod.
 .SH EKSEMPLER
 .TP
-Show global translation statistics:
+Vis global oversettelsesstatistikk:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Vis statistikk for svensk:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Generer HTML-rapport for tysk:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Kontroller spesifikk pakke:
 .B tp-lint \-\-domain coreutils
 .SH FORFATTER
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH FEIL
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Rapporter feil på: https://github.com/yeager/tp-lint/issues

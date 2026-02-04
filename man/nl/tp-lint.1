@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "februari 2026" "tp-lint 1.5.2" "Gebruikerscommando's"
 .SH NAAM
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- Translation Project controle- en statistiekgereedschap
 .SH SAMENVATTING
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIOPTIES\fR] [\fITAAL\fR]
 .SH BESCHRIJVING
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+controleert de vertaalstatus tegen de GNU Translation Project-matrix.
+Toont dekkingsstatistieken en genereert rapporten voor vertaalteams.
 .SH OPTIES
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Toon hulpbericht en sluit af.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Toon versienummer en sluit af.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fITAAL\fR]
+Toon vertaalstatistieken. Zonder TAAL toont globale statistieken.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIPAKKET\fR
+Toon statistieken voor specifiek pakket/domein.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Aantal items in top/onderaan-lijsten (standaard: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fITAAL\fR]
+Genereer vertaalstatusrapport.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIFORMAAT\fR
+Rapportformaat: markdown (standaard), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIBESTAND\fR
+Sla rapport op in bestand in plaats van standaard uitvoer.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIFORMAAT\fR
+Uitvoerformaat: text (standaard), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Forceer verversing van gecachete TP-matrixgegevens.
 .SH AFSLUITSTATUS
 .TP
 .B 0
-Success.
+Succes.
 .TP
 .B 1
-Error occurred.
+Er is een fout opgetreden.
 .SH VOORBEELDEN
 .TP
-Show global translation statistics:
+Toon globale vertaalstatistieken:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Toon statistieken voor Zweeds:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Genereer HTML-rapport voor Duits:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Controleer specifiek pakket:
 .B tp-lint \-\-domain coreutils
 .SH AUTEUR
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH BUGS
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Meld bugs op: https://github.com/yeager/tp-lint/issues

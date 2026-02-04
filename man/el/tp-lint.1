@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "Φεβρουάριος 2026" "tp-lint 1.5.2" "Εντολές χρήστη"
 .SH ΟΝΟΜΑ
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- εργαλείο ελέγχου και στατιστικών του Translation Project
 .SH ΣΥΝΟΨΗ
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIΕΠΙΛΟΓΕΣ\fR] [\fIΓΛΩΣΣΑ\fR]
 .SH ΠΕΡΙΓΡΑΦΗ
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+ελέγχει την κατάσταση μετάφρασης έναντι του πίνακα GNU Translation Project.
+Εμφανίζει στατιστικά κάλυψης και δημιουργεί αναφορές για ομάδες μετάφρασης.
 .SH ΕΠΙΛΟΓΕΣ
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Εμφάνιση μηνύματος βοήθειας και έξοδος.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Εμφάνιση αριθμού έκδοσης και έξοδος.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIΓΛΩΣΣΑ\fR]
+Εμφάνιση στατιστικών μετάφρασης. Χωρίς ΓΛΩΣΣΑ εμφανίζει καθολικά στατιστικά.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIΠΑΚΕΤΟ\fR
+Εμφάνιση στατιστικών για συγκεκριμένο πακέτο/τομέα.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Αριθμός στοιχείων σε λίστες κορυφής/βάσης (προεπιλογή: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIΓΛΩΣΣΑ\fR]
+Δημιουργία αναφοράς κατάστασης μετάφρασης.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIΜΟΡΦΗ\fR
+Μορφή αναφοράς: markdown (προεπιλογή), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIΑΡΧΕΙΟ\fR
+Αποθήκευση αναφοράς σε αρχείο αντί για τυπική έξοδο.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIΜΟΡΦΗ\fR
+Μορφή εξόδου: text (προεπιλογή), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Εξαναγκασμός ανανέωσης των αποθηκευμένων δεδομένων πίνακα TP.
 .SH ΚΑΤΑΣΤΑΣΗ ΕΞΟΔΟΥ
 .TP
 .B 0
-Success.
+Επιτυχία.
 .TP
 .B 1
-Error occurred.
+Προέκυψε σφάλμα.
 .SH ΠΑΡΑΔΕΙΓΜΑΤΑ
 .TP
-Show global translation statistics:
+Εμφάνιση καθολικών στατιστικών μετάφρασης:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Εμφάνιση στατιστικών για Σουηδικά:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Δημιουργία αναφοράς HTML για Γερμανικά:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Έλεγχος συγκεκριμένου πακέτου:
 .B tp-lint \-\-domain coreutils
 .SH ΣΥΓΓΡΑΦΕΑΣ
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH ΣΦΑΛΜΑΤΑ
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Αναφέρετε σφάλματα στο: https://github.com/yeager/tp-lint/issues

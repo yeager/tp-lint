@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "Şubat 2026" "tp-lint 1.5.2" "Kullanıcı Komutları"
 .SH AD
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- Translation Project denetleyici ve istatistik aracı
 .SH ÖZET
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fISEÇENEKLER\fR] [\fIDİL\fR]
 .SH AÇIKLAMA
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+çeviri durumunu GNU Translation Project matrisine göre denetler.
+Kapsam istatistiklerini gösterir ve çeviri ekipleri için raporlar oluşturur.
 .SH SEÇENEKLER
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Yardım iletisini göster ve çık.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Sürüm numarasını göster ve çık.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIDİL\fR]
+Çeviri istatistiklerini göster. DİL olmadan küresel istatistikleri gösterir.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIPAKET\fR
+Belirli paket/etki alanı için istatistikleri göster.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Üst/alt listelerdeki öğe sayısı (varsayılan: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIDİL\fR]
+Çeviri durum raporu oluştur.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIBİÇİM\fR
+Rapor biçimi: markdown (varsayılan), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIDOSYA\fR
+Raporu standart çıktı yerine dosyaya kaydet.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIBİÇİM\fR
+Çıktı biçimi: text (varsayılan), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Önbellekteki TP matris verilerinin yenilenmesini zorla.
 .SH ÇIKIŞ DURUMU
 .TP
 .B 0
-Success.
+Başarı.
 .TP
 .B 1
-Error occurred.
+Hata oluştu.
 .SH ÖRNEKLER
 .TP
-Show global translation statistics:
+Küresel çeviri istatistiklerini göster:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+İsveççe için istatistikleri göster:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Almanca için HTML raporu oluştur:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Belirli paketi denetle:
 .B tp-lint \-\-domain coreutils
 .SH YAZAR
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH HATALAR
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Hataları şuraya bildirin: https://github.com/yeager/tp-lint/issues

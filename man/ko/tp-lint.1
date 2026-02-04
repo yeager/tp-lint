@@ -1,69 +1,69 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "2026년 2월" "tp-lint 1.5.2" "사용자 명령"
 .SH 이름
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- Translation Project 검사 및 통계 도구
 .SH 개요
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fI옵션\fR] [\fI언어\fR]
 .SH 설명
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+는 GNU Translation Project 매트릭스에 대해 번역 상태를 검사합니다.
+커버리지 통계를 표시하고 번역 팀을 위한 보고서를 생성합니다.
 .SH 옵션
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+도움말 메시지를 표시하고 종료합니다.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+버전 번호를 표시하고 종료합니다.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fI언어\fR]
+번역 통계를 표시합니다. 언어 없이 전역 통계를 표시합니다.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fI패키지\fR
+특정 패키지/도메인에 대한 통계를 표시합니다.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+상위/하위 목록의 항목 수 (기본값: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fI언어\fR]
+번역 상태 보고서를 생성합니다.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fI형식\fR
+보고서 형식: markdown (기본값), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fI파일\fR
+표준 출력 대신 파일에 보고서를 저장합니다.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fI형식\fR
+출력 형식: text (기본값), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+캐시된 TP 매트릭스 데이터 새로 고침을 강제합니다.
 .SH 종료 상태
 .TP
 .B 0
-Success.
+성공.
 .TP
 .B 1
-Error occurred.
+오류가 발생했습니다.
 .SH 예제
 .TP
-Show global translation statistics:
+전역 번역 통계 표시:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+스웨덴어 통계 표시:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+독일어 HTML 보고서 생성:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+특정 패키지 검사:
 .B tp-lint \-\-domain coreutils
 .SH 저자
 Daniel Nylander <daniel@danielnylander.se>
-.SH 같이 보기
+.SH 참조
 .BR l10n-lint (1),
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH 버그
-Report bugs at: https://github.com/yeager/tp-lint/issues
+버그 보고: https://github.com/yeager/tp-lint/issues

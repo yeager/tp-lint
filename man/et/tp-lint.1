@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "veebruar 2026" "tp-lint 1.5.2" "Kasutaja käsud"
 .SH NIMI
-tp-lint \- Translation Project linter and statistics tool
-.SH KOKKUVÕTE
+tp-lint \- Translation Projecti kontroll- ja statistikavahend
+.SH SÜNTAKS
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIVALIKUD\fR] [\fIKEEL\fR]
 .SH KIRJELDUS
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+kontrollib tõlke olekut GNU Translation Projecti maatriksi suhtes.
+Näitab katvuse statistikat ja loob aruandeid tõlkemeeskondadele.
 .SH VALIKUD
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Kuva abiteade ja välju.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Kuva versiooninumber ja välju.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIKEEL\fR]
+Näita tõlkestatistikat. Ilma KEEL-ita näitab globaalset statistikat.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIPAKETT\fR
+Näita statistikat konkreetse paketi/domeeni kohta.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Elementide arv ülemistes/alumistes loendites (vaikimisi: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIKEEL\fR]
+Loo tõlke oleku aruanne.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIVORMING\fR
+Aruande vorming: markdown (vaikimisi), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIFAIL\fR
+Salvesta aruanne faili standardväljundi asemel.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIVORMING\fR
+Väljundvorming: text (vaikimisi), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
-.SH VÄLJUMISE OLEK
+Sunni vahemällu salvestatud TP maatriksi andmete värskendamist.
+.SH VÄLJUMISOLEK
 .TP
 .B 0
-Success.
+Õnnestumine.
 .TP
 .B 1
-Error occurred.
+Tekkis viga.
 .SH NÄITED
 .TP
-Show global translation statistics:
+Näita globaalset tõlkestatistikat:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Näita statistikat rootsi keele kohta:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Loo HTML aruanne saksa keele kohta:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Kontrolli konkreetset paketti:
 .B tp-lint \-\-domain coreutils
 .SH AUTOR
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH VEAD
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Teata vigadest: https://github.com/yeager/tp-lint/issues

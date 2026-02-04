@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "febreiro 2026" "tp-lint 1.5.2" "Comandos de usuario"
 .SH NOME
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- ferramenta de verificación e estatísticas do Translation Project
 .SH SINOPSE
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIOPCIÓNS\fR] [\fIIDIOMA\fR]
 .SH DESCRICIÓN
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+comproba o estado da tradución contra a matriz do GNU Translation Project.
+Mostra estatísticas de cobertura e xera informes para equipos de tradución.
 .SH OPCIÓNS
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Mostrar mensaxe de axuda e saír.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Mostrar número de versión e saír.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIIDIOMA\fR]
+Mostrar estatísticas de tradución. Sen IDIOMA mostra estatísticas globais.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIPAQUETE\fR
+Mostrar estatísticas para paquete/dominio específico.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Número de elementos nas listas superiores/inferiores (predeterminado: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIIDIOMA\fR]
+Xerar informe de estado de tradución.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIFORMATO\fR
+Formato do informe: markdown (predeterminado), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIFICHEIRO\fR
+Gardar informe en ficheiro en lugar da saída estándar.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIFORMATO\fR
+Formato de saída: text (predeterminado), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Forzar actualización dos datos da matriz TP en caché.
 .SH ESTADO DE SAÍDA
 .TP
 .B 0
-Success.
+Éxito.
 .TP
 .B 1
-Error occurred.
+Produciuse un erro.
 .SH EXEMPLOS
 .TP
-Show global translation statistics:
+Mostrar estatísticas globais de tradución:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Mostrar estatísticas para sueco:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Xerar informe HTML para alemán:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Comprobar paquete específico:
 .B tp-lint \-\-domain coreutils
 .SH AUTOR
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH ERROS
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Informar de erros en: https://github.com/yeager/tp-lint/issues

@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "veljača 2026" "tp-lint 1.5.2" "Korisničke naredbe"
 .SH IME
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- alat za provjeru i statistiku Translation Projecta
 .SH PREGLED
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIOPCIJE\fR] [\fIJEZIK\fR]
 .SH OPIS
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+provjerava status prijevoda prema matrici GNU Translation Projecta.
+Prikazuje statistiku pokrivenosti i generira izvještaje za prevoditeljske timove.
 .SH OPCIJE
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Prikaži poruku pomoći i izađi.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Prikaži broj verzije i izađi.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIJEZIK\fR]
+Prikaži statistiku prijevoda. Bez JEZIK prikazuje globalnu statistiku.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIPAKET\fR
+Prikaži statistiku za određeni paket/domenu.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Broj stavki u gornjim/donjim popisima (zadano: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIJEZIK\fR]
+Generiraj izvještaj o statusu prijevoda.
 .TP
 .BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+Format izvještaja: markdown (zadano), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIDATOTEKA\fR
+Spremi izvještaj u datoteku umjesto standardnog izlaza.
 .TP
 .BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+Format izlaza: text (zadano), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Prisili osvježavanje podataka TP matrice u predmemoriji.
 .SH IZLAZNI STATUS
 .TP
 .B 0
-Success.
+Uspjeh.
 .TP
 .B 1
-Error occurred.
+Došlo je do pogreške.
 .SH PRIMJERI
 .TP
-Show global translation statistics:
+Prikaži globalnu statistiku prijevoda:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Prikaži statistiku za švedski:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Generiraj HTML izvještaj za njemački:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Provjeri određeni paket:
 .B tp-lint \-\-domain coreutils
 .SH AUTOR
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH GREŠKE
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Prijavite greške na: https://github.com/yeager/tp-lint/issues

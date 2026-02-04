@@ -1,69 +1,69 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "2026年2月" "tp-lint 1.5.2" "ユーザーコマンド"
 .SH 名前
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- Translation Projectのリンターおよび統計ツール
 .SH 書式
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIオプション\fR] [\fI言語\fR]
 .SH 説明
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+はGNU Translation Projectマトリックスに対して翻訳ステータスをチェックします。
+カバレッジ統計を表示し、翻訳チーム向けのレポートを生成します。
 .SH オプション
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+ヘルプメッセージを表示して終了します。
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+バージョン番号を表示して終了します。
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fI言語\fR]
+翻訳統計を表示します。言語なしでグローバル統計を表示します。
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIパッケージ\fR
+特定のパッケージ/ドメインの統計を表示します。
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+トップ/ボトムリストの項目数（デフォルト: 10）。
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fI言語\fR]
+翻訳ステータスレポートを生成します。
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIフォーマット\fR
+レポート形式: markdown（デフォルト）、html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIファイル\fR
+標準出力の代わりにファイルにレポートを保存します。
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIフォーマット\fR
+出力形式: text（デフォルト）、json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+キャッシュされたTPマトリックスデータの更新を強制します。
 .SH 終了ステータス
 .TP
 .B 0
-Success.
+成功。
 .TP
 .B 1
-Error occurred.
+エラーが発生しました。
 .SH 例
 .TP
-Show global translation statistics:
+グローバル翻訳統計を表示：
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+スウェーデン語の統計を表示：
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+ドイツ語のHTMLレポートを生成：
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+特定のパッケージをチェック：
 .B tp-lint \-\-domain coreutils
-.SH 作者
+.SH 著者
 Daniel Nylander <daniel@danielnylander.se>
 .SH 関連項目
 .BR l10n-lint (1),
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH バグ
-Report bugs at: https://github.com/yeager/tp-lint/issues
+バグの報告先: https://github.com/yeager/tp-lint/issues

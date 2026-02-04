@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4] - 2026-02-04
+
+### Added
+- **Translated man pages**: Man pages now available in 37 languages
+  - Section headers translated (NAME, DESCRIPTION, OPTIONS, etc.)
+  - Installed to `/usr/share/man/<lang>/man1/`
+
 ## [1.5.3] - 2026-02-04
 
 ### Added

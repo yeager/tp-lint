@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
-.SH ИМЯ
-tp-lint \- Translation Project linter and statistics tool
+.TH TP-LINT 1 "февраль 2026" "tp-lint 1.5.2" "Пользовательские команды"
+.SH НАЗВАНИЕ
+tp-lint \- инструмент проверки и статистики Translation Project
 .SH СИНТАКСИС
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIПАРАМЕТРЫ\fR] [\fIЯЗЫК\fR]
 .SH ОПИСАНИЕ
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+проверяет статус перевода относительно матрицы GNU Translation Project.
+Показывает статистику покрытия и генерирует отчёты для команд переводчиков.
 .SH ПАРАМЕТРЫ
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Показать справочное сообщение и выйти.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Показать номер версии и выйти.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIЯЗЫК\fR]
+Показать статистику переводов. Без ЯЗЫК показывает глобальную статистику.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIПАКЕТ\fR
+Показать статистику для конкретного пакета/домена.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Количество элементов в верхних/нижних списках (по умолчанию: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIЯЗЫК\fR]
+Создать отчёт о состоянии перевода.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIФОРМАТ\fR
+Формат отчёта: markdown (по умолчанию), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIФАЙЛ\fR
+Сохранить отчёт в файл вместо стандартного вывода.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIФОРМАТ\fR
+Формат вывода: text (по умолчанию), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
-.SH КОД ВОЗВРАТА
+Принудительно обновить кэшированные данные матрицы TP.
+.SH КОД ЗАВЕРШЕНИЯ
 .TP
 .B 0
-Success.
+Успех.
 .TP
 .B 1
-Error occurred.
+Произошла ошибка.
 .SH ПРИМЕРЫ
 .TP
-Show global translation statistics:
+Показать глобальную статистику переводов:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Показать статистику для шведского:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Создать HTML-отчёт для немецкого:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Проверить конкретный пакет:
 .B tp-lint \-\-domain coreutils
 .SH АВТОР
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH ОШИБКИ
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Сообщайте об ошибках на: https://github.com/yeager/tp-lint/issues

@@ -1,69 +1,69 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "2026ko otsaila" "tp-lint 1.5.2" "Erabiltzaile-komandoak"
 .SH IZENA
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- Translation Project egiaztatzaile eta estatistika-tresna
 .SH LABURPENA
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIAUKERAK\fR] [\fIHIZKUNTZA\fR]
 .SH DESKRIBAPENA
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+itzulpenaren egoera egiaztatzen du GNU Translation Project matrizearen aurka.
+Estaldura-estatistikak erakusten ditu eta txostenak sortzen ditu itzulpen-taldeentzat.
 .SH AUKERAK
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Erakutsi laguntza-mezua eta irten.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Erakutsi bertsio-zenbakia eta irten.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIHIZKUNTZA\fR]
+Erakutsi itzulpen-estatistikak. HIZKUNTZA gabe estatistika globalak erakusten ditu.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIPAKETEA\fR
+Erakutsi estatistikak pakete/domeinu zehatzerako.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Elementu kopurua goiko/beheko zerrendetan (lehenetsia: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIHIZKUNTZA\fR]
+Sortu itzulpen-egoeraren txostena.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIFORMATUA\fR
+Txosten-formatua: markdown (lehenetsia), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIFITXATEGIA\fR
+Gorde txostena fitxategian irteera estandarraren ordez.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIFORMATUA\fR
+Irteera-formatua: text (lehenetsia), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
-.SH IRTEERA EGOERA
+Behartu cachean gordetako TP matrize-datuen eguneratzea.
+.SH IRTEERA-EGOERA
 .TP
 .B 0
-Success.
+Arrakasta.
 .TP
 .B 1
-Error occurred.
+Errorea gertatu da.
 .SH ADIBIDEAK
 .TP
-Show global translation statistics:
+Erakutsi itzulpen-estatistika globalak:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Erakutsi estatistikak suedierarako:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Sortu HTML txostena alemanierako:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Egiaztatu pakete zehatza:
 .B tp-lint \-\-domain coreutils
 .SH EGILEA
 Daniel Nylander <daniel@danielnylander.se>
-.SH IKUSI ERE
+.SH IKUSI BAITA ERE
 .BR l10n-lint (1),
 .BR po-translate (1),
 .BR msgfmt (1)
-.SH AKATSAK
-Report bugs at: https://github.com/yeager/tp-lint/issues
+.SH ERROREAK
+Eman erroreen berri hemen: https://github.com/yeager/tp-lint/issues

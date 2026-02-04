@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "Februari 2026" "tp-lint 1.5.2" "Perintah Pengguna"
 .SH NAMA
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- alat pemeriksa dan statistik Translation Project
 .SH SINOPSIS
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIOPSI\fR] [\fIBAHASA\fR]
 .SH DESKRIPSI
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+memeriksa status terjemahan terhadap matriks GNU Translation Project.
+Menampilkan statistik cakupan dan membuat laporan untuk tim penerjemah.
 .SH OPSI
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Tampilkan pesan bantuan dan keluar.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Tampilkan nomor versi dan keluar.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fIBAHASA\fR]
+Tampilkan statistik terjemahan. Tanpa BAHASA menampilkan statistik global.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fIPAKET\fR
+Tampilkan statistik untuk paket/domain tertentu.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Jumlah item dalam daftar atas/bawah (bawaan: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fIBAHASA\fR]
+Buat laporan status terjemahan.
 .TP
 .BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+Format laporan: markdown (bawaan), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIBERKAS\fR
+Simpan laporan ke berkas alih-alih keluaran standar.
 .TP
 .BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+Format keluaran: text (bawaan), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Paksa penyegaran data matriks TP yang di-cache.
 .SH STATUS KELUAR
 .TP
 .B 0
-Success.
+Berhasil.
 .TP
 .B 1
-Error occurred.
+Terjadi kesalahan.
 .SH CONTOH
 .TP
-Show global translation statistics:
+Tampilkan statistik terjemahan global:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Tampilkan statistik untuk bahasa Swedia:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+Buat laporan HTML untuk bahasa Jerman:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Periksa paket tertentu:
 .B tp-lint \-\-domain coreutils
 .SH PENULIS
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH BUG
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Laporkan bug di: https://github.com/yeager/tp-lint/issues

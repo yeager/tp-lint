@@ -1,69 +1,69 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "2026年2月" "tp-lint 1.5.2" "用户命令"
 .SH 名称
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- Translation Project 检查和统计工具
 .SH 概要
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fI选项\fR] [\fI语言\fR]
 .SH 描述
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+根据 GNU Translation Project 矩阵检查翻译状态。
+显示覆盖率统计并为翻译团队生成报告。
 .SH 选项
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+显示帮助信息并退出。
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+显示版本号并退出。
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fI语言\fR]
+显示翻译统计。不指定语言显示全局统计。
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fI包\fR
+显示特定包/域的统计。
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+上/下列表中的项目数（默认：10）。
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fI语言\fR]
+生成翻译状态报告。
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fI格式\fR
+报告格式：markdown（默认）、html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fI文件\fR
+将报告保存到文件而不是标准输出。
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fI格式\fR
+输出格式：text（默认）、json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+强制刷新缓存的 TP 矩阵数据。
 .SH 退出状态
 .TP
 .B 0
-Success.
+成功。
 .TP
 .B 1
-Error occurred.
+发生错误。
 .SH 示例
 .TP
-Show global translation statistics:
+显示全局翻译统计：
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+显示瑞典语统计：
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+为德语生成 HTML 报告：
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+检查特定包：
 .B tp-lint \-\-domain coreutils
 .SH 作者
 Daniel Nylander <daniel@danielnylander.se>
-.SH 另请参阅
+.SH 另见
 .BR l10n-lint (1),
 .BR po-translate (1),
 .BR msgfmt (1)
-.SH 缺陷
-Report bugs at: https://github.com/yeager/tp-lint/issues
+.SH 错误
+在此报告错误：https://github.com/yeager/tp-lint/issues

@@ -1,63 +1,63 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.TH TP-LINT 1 "2026. február" "tp-lint 1.5.2" "Felhasználói parancsok"
 .SH NÉV
-tp-lint \- Translation Project linter and statistics tool
+tp-lint \- Translation Project ellenőrző és statisztikai eszköz
 .SH ÁTTEKINTÉS
 .B tp-lint
-[\fIOPTIONS\fR] [\fILANG\fR]
+[\fIOPCIÓK\fR] [\fINYELV\fR]
 .SH LEÍRÁS
 .B tp-lint
-checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
-.SH BEÁLLÍTÁSOK
+ellenőrzi a fordítás állapotát a GNU Translation Project mátrixával szemben.
+Lefedettségi statisztikákat jelenít meg és jelentéseket készít a fordítói csapatoknak.
+.SH OPCIÓK
 .TP
 .BR \-h ", " \-\-help
-Show help message and exit.
+Súgó megjelenítése és kilépés.
 .TP
 .BR \-v ", " \-\-version
-Show version number and exit.
+Verziószám megjelenítése és kilépés.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-\-stats " " [\fINYELV\fR]
+Fordítási statisztikák megjelenítése. NYELV nélkül globális statisztikákat mutat.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-\-domain " " \fICSOM\fR
+Statisztikák megjelenítése adott csomaghoz/tartományhoz.
 .TP
 .BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+Elemek száma a felső/alsó listákban (alapértelmezett: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-\-report " " [\fINYELV\fR]
+Fordítási állapotjelentés készítése.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+.BR \-\-report\-format " " \fIFORMÁTUM\fR
+Jelentés formátuma: markdown (alapértelmezett), html
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+.BR \-\-report\-output " " \fIFÁJL\fR
+Jelentés mentése fájlba a szabványos kimenet helyett.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-\-format " " \fIFORMÁTUM\fR
+Kimeneti formátum: text (alapértelmezett), json
 .TP
 .BR \-\-refresh
-Force refresh of cached TP matrix data.
+Gyorsítótárazott TP mátrix adatok frissítésének kényszerítése.
 .SH KILÉPÉSI ÁLLAPOT
 .TP
 .B 0
-Success.
+Sikeres.
 .TP
 .B 1
-Error occurred.
+Hiba történt.
 .SH PÉLDÁK
 .TP
-Show global translation statistics:
+Globális fordítási statisztikák megjelenítése:
 .B tp-lint \-\-stats
 .TP
-Show statistics for Swedish:
+Statisztikák megjelenítése svéd nyelvhez:
 .B tp-lint \-\-stats sv
 .TP
-Generate HTML report for German:
+HTML jelentés készítése német nyelvhez:
 .B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
 .TP
-Check specific package:
+Adott csomag ellenőrzése:
 .B tp-lint \-\-domain coreutils
 .SH SZERZŐ
 Daniel Nylander <daniel@danielnylander.se>
@@ -66,4 +66,4 @@ Daniel Nylander <daniel@danielnylander.se>
 .BR po-translate (1),
 .BR msgfmt (1)
 .SH HIBÁK
-Report bugs at: https://github.com/yeager/tp-lint/issues
+Hibák jelentése: https://github.com/yeager/tp-lint/issues
