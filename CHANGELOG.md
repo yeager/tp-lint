@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.3] - 2026-02-04
+
+### Added
+- **Man page**: `man tp-lint` now available
+  - Installed to `/usr/share/man/man1/tp-lint.1.gz`
+
 ## [1.5.2] - 2026-02-04
 
 ### Changed
