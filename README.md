@@ -18,22 +18,22 @@ Fetch and lint translation files for any language team on the Translation Projec
 ### Debian/Ubuntu
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.5.0/tp-lint_1.5.0_all.deb
-sudo dpkg -i tp-lint_1.5.0_all.deb
+wget https://github.com/yeager/tp-lint/releases/download/v1.5.1/tp-lint_1.5.1_all.deb
+sudo dpkg -i tp-lint_1.5.1_all.deb
 ```
 
 ### Fedora/RHEL/openSUSE
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.5.0/tp-lint-1.5.0-1.noarch.rpm
-sudo rpm -i tp-lint-1.5.0-1.noarch.rpm
+wget https://github.com/yeager/tp-lint/releases/download/v1.5.1/tp-lint-1.5.1-1.noarch.rpm
+sudo rpm -i tp-lint-1.5.1-1.noarch.rpm
 ```
 
 ### Arch Linux
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.5.0/tp-lint-1.5.0.pkg.tar.zst
-sudo pacman -U tp-lint-1.5.0.pkg.tar.zst
+wget https://github.com/yeager/tp-lint/releases/download/v1.5.1/tp-lint-1.5.1.pkg.tar.zst
+sudo pacman -U tp-lint-1.5.1.pkg.tar.zst
 ```
 
 ### From source

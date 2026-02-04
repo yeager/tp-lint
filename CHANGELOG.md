@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.1] - 2026-02-04
+
+### Fixed
+- **Debian package**: Rebuilt with correct ar format (was using macOS BSD format)
+  - Package now installs correctly on Debian/Ubuntu systems
+
 ## [1.5.0] - 2026-02-04
 
 ### Added

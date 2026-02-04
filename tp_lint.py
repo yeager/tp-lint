@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.5.0"
+__version__ = "1.5.1"
 
 # Translation setup
 DOMAIN = "tp-lint"
