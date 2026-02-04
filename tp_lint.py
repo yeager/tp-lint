@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.5.8"
+__version__ = "1.6.0"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -932,9 +932,9 @@ def main():
   tp-lint -l                    List all available languages
   tp-lint -s                    Show global translation statistics
   tp-lint -s sv                 Show statistics for Swedish
-  tp-lint sv                    Download Swedish PO files
-  tp-lint -L sv                 Download and lint all Swedish PO files
-  tp-lint -L -d coreutils sv    Lint only coreutils for Swedish
+  tp-lint sv                    Lint all Swedish PO files
+  tp-lint -d coreutils sv       Lint only coreutils for Swedish
+  tp-lint --no-lint sv          Download only, don't lint
   tp-lint -r sv --report-format html --report-output sv.html
                                 Generate HTML report for Swedish"""),
         formatter_class=argparse.RawDescriptionHelpFormatter
@@ -1027,9 +1027,9 @@ def main():
     )
     
     parser.add_argument(
-        "-L", "--lint",
+        "--no-lint",
         action="store_true",
-        help=_("Run l10n-lint on PO files (requires l10n-lint)")
+        help=_("Download only, don't run l10n-lint")
     )
     
     parser.add_argument(
@@ -1100,7 +1100,7 @@ def main():
         return 0
     
     # Statistics mode (but not if -L/--lint is specified with -d)
-    if args.stats or (args.domain and not args.lint):
+    if args.stats or (args.domain and args.no_lint):
         vprint(_("   Mode: Statistics"))
         if args.domain:
             vprint(_("   Domain filter: {domain}").format(domain=args.domain))
@@ -1133,7 +1133,7 @@ def main():
     vprint(_("   Strict mode: {strict}").format(strict=args.strict))
     
     # If -d is specified with -L, use it as package filter
-    if args.domain and args.lint:
+    if args.domain and not args.no_lint:
         if not args.packages:
             args.packages = []
         args.packages.append(args.domain)
@@ -1221,7 +1221,7 @@ def main():
         return 1
     
     # Run l10n-lint if requested
-    if args.lint:
+    if not args.no_lint:
         if not check_l10n_lint():
             print(_("❌ Error: l10n-lint not found. Install it first:"), file=sys.stderr)
             print(_("   sudo apt install l10n-lint"), file=sys.stderr)
@@ -1234,7 +1234,7 @@ def main():
         vprint(_("   Files to lint: {count}").format(count=len(downloaded)))
         print("=" * 60)
     
-    if args.lint and args.by_translator:
+    if not args.no_lint and args.by_translator:
         # Group results by translator
         lint_results = run_l10n_lint_per_file(downloaded, args.format, args.strict, _lang_code)
         
@@ -1280,7 +1280,7 @@ def main():
         ))
         
         returncode = 1 if total_errors > 0 or (args.strict and total_warnings > 0) else 0
-    elif args.lint:
+    elif not args.no_lint:
         # Standard mode - run on whole directory
         stdout, stderr, returncode = run_l10n_lint(
             output_dir,

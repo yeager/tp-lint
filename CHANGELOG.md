@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.6.0] - 2026-02-04
+
+### Changed
+- **Linting is now default** when language is specified
+- `tp-lint sv` now lints all Swedish PO files (was just download)
+- Added `--no-lint` flag to download without linting
+- `-d/--domain` now filters packages during linting
+
+### Removed
+- `-L/--lint` flag (linting is now default)
+
 ## [1.5.8] - 2026-02-04
 
 ### Added
