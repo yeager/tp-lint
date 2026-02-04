@@ -182,15 +182,15 @@ msgstr "Fel: l10n-lint hittades inte. Installera l10n-lint först."
 
 #: tp_lint.py:923
 msgid "⚠️  Warning: l10n-lint not found. Install it for linting functionality:"
-msgstr ""
+msgstr "⚠️  Varning: l10n-lint hittades inte. Installera för granskningsfunktionalitet:"
 
 #: tp_lint.py:924 tp_lint.py:1227
 msgid "   sudo apt install l10n-lint"
-msgstr ""
+msgstr "   sudo apt install l10n-lint"
 
 #: tp_lint.py:925 tp_lint.py:1228
 msgid "   pip install l10n-lint"
-msgstr ""
+msgstr "   pip install l10n-lint"
 
 #: tp_lint.py:930
 msgid "Lint PO files from the Translation Project (translationproject.org)"
@@ -208,6 +208,15 @@ msgid ""
 "  tp-lint -r sv --report-format html --report-output sv.html\n"
 "                                Generate HTML report for Swedish"
 msgstr ""
+"Exempel:\n"
+"  tp-lint -l                    Visa alla tillgängliga språk\n"
+"  tp-lint -s                    Visa global översättningsstatistik\n"
+"  tp-lint -s sv                 Visa statistik för svenska\n"
+"  tp-lint sv                    Granska alla svenska PO-filer\n"
+"  tp-lint -d coreutils sv       Granska endast coreutils för svenska\n"
+"  tp-lint --no-lint sv          Ladda endast ned, granska inte\n"
+"  tp-lint -r sv --report-format html --report-output sv.html\n"
+"                                Generera HTML-rapport för svenska"
 
 #: tp_lint.py:946
 msgid "Language code to lint (e.g., sv, de, fr)"
@@ -263,7 +272,7 @@ msgstr "Granska endast specifika paket (kan upprepas)"
 
 #: tp_lint.py:1032
 msgid "Download only, don't run l10n-lint"
-msgstr ""
+msgstr "Ladda endast ned, kör inte l10n-lint"
 
 #: tp_lint.py:1038
 msgid "Group results by translator"
@@ -271,16 +280,16 @@ msgstr "Gruppera resultat per översättare"
 
 #: tp_lint.py:1044
 msgid "Show detailed progress"
-msgstr ""
+msgstr "Visa detaljerad förlopp"
 
 #: tp_lint.py:1061
 #, python-brace-format
 msgid "🔧 tp-lint {version} starting..."
-msgstr ""
+msgstr "🔧 tp-lint {version} startar..."
 
 #: tp_lint.py:1065
 msgid "   Mode: List languages"
-msgstr ""
+msgstr "   Läge: Lista språk"
 
 #: tp_lint.py:1066
 msgid "Fetching languages from Translation Project..."
@@ -297,17 +306,17 @@ msgstr "Tillgängliga språk ({count}):"
 
 #: tp_lint.py:1081
 msgid "   Mode: Generate report"
-msgstr ""
+msgstr "   Läge: Generera rapport"
 
 #: tp_lint.py:1082
 #, python-brace-format
 msgid "   Format: {fmt}"
-msgstr ""
+msgstr "   Format: {fmt}"
 
 #: tp_lint.py:1084
 #, python-brace-format
 msgid "   Output file: {file}"
-msgstr ""
+msgstr "   Utdatafil: {file}"
 
 #: tp_lint.py:1085 tp_lint.py:1107
 msgid "Fetching translation matrix..."
@@ -315,46 +324,46 @@ msgstr "Hämtar översättningsmatris..."
 
 #: tp_lint.py:1086 tp_lint.py:1108
 msgid "   Connecting to translationproject.org/extra/matrix.html..."
-msgstr ""
+msgstr "   Ansluter till translationproject.org/extra/matrix.html..."
 
 #: tp_lint.py:1090 tp_lint.py:1112
 #, python-brace-format
 msgid "   Matrix loaded: {langs} languages, {domains} domains"
-msgstr ""
+msgstr "   Matris laddad: {langs} språk, {domains} domäner"
 
 #: tp_lint.py:1104
 msgid "   Mode: Statistics"
-msgstr ""
+msgstr "   Läge: Statistik"
 
 #: tp_lint.py:1106
 #, python-brace-format
 msgid "   Domain filter: {domain}"
-msgstr ""
+msgstr "   Domänfilter: {domain}"
 
 #: tp_lint.py:1131
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "   Mode: Lint language '{lang}'"
-msgstr "Inga PO-filer hittades för språket \"{lang}\""
+msgstr "   Läge: Granska språket '{lang}'"
 
 #: tp_lint.py:1132
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "   Output format: {fmt}"
-msgstr "Utdataformat (standard: text)"
+msgstr "   Utdataformat: {fmt}"
 
 #: tp_lint.py:1133
 #, python-brace-format
 msgid "   Strict mode: {strict}"
-msgstr ""
+msgstr "   Strikt läge: {strict}"
 
 #: tp_lint.py:1140
 #, python-brace-format
 msgid "   Domain filter (via -d): {domain}"
-msgstr ""
+msgstr "   Domänfilter (via -d): {domain}"
 
 #: tp_lint.py:1143
 #, python-brace-format
 msgid "   Package filter: {pkgs}"
-msgstr ""
+msgstr "   Paketfilter: {pkgs}"
 
 #: tp_lint.py:1146
 #, python-brace-format
@@ -362,14 +371,13 @@ msgid "Fetching PO files for '{lang}'..."
 msgstr "Hämtar PO-filer för \"{lang}\"..."
 
 #: tp_lint.py:1147
-#, fuzzy
 msgid "   Connecting to translationproject.org..."
-msgstr "Hämtar språk från Translation Project..."
+msgstr "   Ansluter till translationproject.org..."
 
 #: tp_lint.py:1149
 #, python-brace-format
 msgid "   Found {count} translators assigned"
-msgstr ""
+msgstr "   Hittade {count} tilldelade översättare"
 
 #: tp_lint.py:1152
 #, python-brace-format
@@ -392,7 +400,7 @@ msgstr "Laddar ned PO-filer..."
 #: tp_lint.py:1190
 #, python-brace-format
 msgid "   Output directory: {dir}"
-msgstr ""
+msgstr "   Utdatakatalog: {dir}"
 
 #: tp_lint.py:1198 tp_lint.py:1202
 #, python-brace-format
@@ -402,7 +410,7 @@ msgstr "  [{current}/{total}] {filename}"
 #: tp_lint.py:1211
 #, python-brace-format
 msgid "       Size: {size} bytes"
-msgstr ""
+msgstr "       Storlek: {size} byte"
 
 #: tp_lint.py:1217
 #, python-brace-format
@@ -410,28 +418,26 @@ msgid "Downloaded {count} files"
 msgstr "Laddade ned {count} filer"
 
 #: tp_lint.py:1220
-#, fuzzy
 msgid "No files downloaded"
-msgstr "Inga filer att granska"
+msgstr "Inga filer nedladdade"
 
 #: tp_lint.py:1226
-#, fuzzy
 msgid "❌ Error: l10n-lint not found. Install it first:"
-msgstr "Fel: l10n-lint hittades inte. Installera l10n-lint först."
+msgstr "❌ Fel: l10n-lint hittades inte. Installera först:"
 
 #: tp_lint.py:1232
 msgid "Running l10n-lint..."
 msgstr "Kör l10n-lint..."
 
 #: tp_lint.py:1233
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "   By translator: {by_translator}"
-msgstr "Gruppera resultat per översättare"
+msgstr "   Per översättare: {by_translator}"
 
 #: tp_lint.py:1234
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "   Files to lint: {count}"
-msgstr "   Filer: {count}"
+msgstr "   Filer att granska: {count}"
 
 #: tp_lint.py:1245
 msgid "Unknown"
@@ -469,13 +475,13 @@ msgstr ""
 "Totalt: {files} filer, {errors} fel, {fuzzy} fuzzy, {warnings} varningar"
 
 #: tp_lint.py:1299
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "✅ Downloaded {count} files to {path}"
-msgstr "Laddade ned {count} filer"
+msgstr "✅ Laddade ned {count} filer till {path}"
 
 #: tp_lint.py:1300
 msgid "   Run with --lint to check for issues"
-msgstr ""
+msgstr "   Kör utan --no-lint för att granska"
 
 #: tp_lint.py:1309
 #, python-brace-format
