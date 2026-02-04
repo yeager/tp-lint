@@ -1,0 +1,69 @@
+.TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
+.SH NAME
+tp-lint \- Translation Project linter and statistics tool
+.SH SYNOPSIS
+.B tp-lint
+[\fIOPTIONS\fR] [\fILANG\fR]
+.SH DESCRIPTION
+.B tp-lint
+checks translation status against the GNU Translation Project matrix.
+Shows coverage statistics and generates reports for translation teams.
+.SH OPTIONS
+.TP
+.BR \-h ", " \-\-help
+Show help message and exit.
+.TP
+.BR \-v ", " \-\-version
+Show version number and exit.
+.TP
+.BR \-\-stats " " [\fILANG\fR]
+Show translation statistics. Without LANG shows global stats.
+.TP
+.BR \-\-domain " " \fIPKG\fR
+Show statistics for specific package/domain.
+.TP
+.BR \-\-top " " \fIN\fR
+Number of items in top/bottom lists (default: 10).
+.TP
+.BR \-\-report " " [\fILANG\fR]
+Generate translation status report.
+.TP
+.BR \-\-report\-format " " \fIFORMAT\fR
+Report format: markdown (default), html
+.TP
+.BR \-\-report\-output " " \fIFILE\fR
+Save report to file instead of stdout.
+.TP
+.BR \-\-format " " \fIFORMAT\fR
+Output format: text (default), json
+.TP
+.BR \-\-refresh
+Force refresh of cached TP matrix data.
+.SH EXIT STATUS
+.TP
+.B 0
+Success.
+.TP
+.B 1
+Error occurred.
+.SH EXAMPLES
+.TP
+Show global translation statistics:
+.B tp-lint \-\-stats
+.TP
+Show statistics for Swedish:
+.B tp-lint \-\-stats sv
+.TP
+Generate HTML report for German:
+.B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
+.TP
+Check specific package:
+.B tp-lint \-\-domain coreutils
+.SH AUTHOR
+Daniel Nylander <daniel@danielnylander.se>
+.SH SEE ALSO
+.BR l10n-lint (1),
+.BR po-translate (1),
+.BR msgfmt (1)
+.SH BUGS
+Report bugs at: https://github.com/yeager/tp-lint/issues

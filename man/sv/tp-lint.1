@@ -1,0 +1,69 @@
+.TH TP-LINT 1 "Februari 2026" "tp-lint 1.5.3" "Användarkommandon"
+.SH NAMN
+tp-lint \- granskare och statistikverktyg för översättningsprojektet
+.SH SYNOPSIS
+.B tp-lint
+[\fIFLAGGOR\fR] [\fISPRÅK\fR]
+.SH BESKRIVNING
+.B tp-lint
+kontrollerar översättningsstatus mot GNU Translation Projects matris.
+Visar täckningsstatistik och genererar rapporter för översättningsteam.
+.SH FLAGGOR
+.TP
+.BR \-h ", " \-\-help
+Visa hjälpmeddelande och avsluta.
+.TP
+.BR \-v ", " \-\-version
+Visa versionsnummer och avsluta.
+.TP
+.BR \-\-stats " " [\fISPRÅK\fR]
+Visa översättningsstatistik. Utan SPRÅK visas global statistik.
+.TP
+.BR \-\-domain " " \fIPAKET\fR
+Visa statistik för specifikt paket/domän.
+.TP
+.BR \-\-top " " \fIN\fR
+Antal poster i topp-/bottenlistor (standard: 10).
+.TP
+.BR \-\-report " " [\fISPRÅK\fR]
+Generera översättningsstatusrapport.
+.TP
+.BR \-\-report\-format " " \fIFORMAT\fR
+Rapportformat: markdown (standard), html
+.TP
+.BR \-\-report\-output " " \fIFIL\fR
+Spara rapport till fil istället för stdout.
+.TP
+.BR \-\-format " " \fIFORMAT\fR
+Utdataformat: text (standard), json
+.TP
+.BR \-\-refresh
+Tvinga uppdatering av cachad TP-matrisdata.
+.SH SLUTSTATUS
+.TP
+.B 0
+Lyckades.
+.TP
+.B 1
+Fel uppstod.
+.SH EXEMPEL
+.TP
+Visa global översättningsstatistik:
+.B tp-lint \-\-stats
+.TP
+Visa statistik för svenska:
+.B tp-lint \-\-stats sv
+.TP
+Generera HTML-rapport för tyska:
+.B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
+.TP
+Kontrollera specifikt paket:
+.B tp-lint \-\-domain coreutils
+.SH UPPHOVSMAN
+Daniel Nylander <daniel@danielnylander.se>
+.SH SE ÄVEN
+.BR l10n-lint (1),
+.BR po-translate (1),
+.BR msgfmt (1)
+.SH BUGGAR
+Rapportera buggar på: https://github.com/yeager/tp-lint/issues
