@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.5.2] - 2026-02-04
+
+### Changed
+- **Debian policy compliance**: Packages now follow Debian packaging guidelines
+  - Locale files installed to `/usr/share/tp-lint/locale/`
+  - Added `/usr/share/doc/tp-lint/copyright`
+  - Fixed locale lookup path in script
+
+### Fixed
+- **Debian package**: Rebuilt with correct ar format and structure
+
 ## [1.5.1] - 2026-02-04
 
 ### Fixed
