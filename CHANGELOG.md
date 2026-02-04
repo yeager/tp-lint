@@ -3,6 +3,14 @@
 ## [1.6.0] - 2026-02-04
 
 ### Changed
+## [1.7.0] - 2026-02-04
+
+### Added
+- Fully translated help text (positional arguments, options, -h, -v)
+
+### Changed
+- Custom TranslatedHelpFormatter for complete localization
+
 - **Linting is now default** when language is specified
 - `tp-lint sv` now lints all Swedish PO files (was just download)
 - Added `--no-lint` flag to download without linting

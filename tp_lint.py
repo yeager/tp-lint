@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.6.0"
+__version__ = "1.7.0"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -917,6 +917,19 @@ def check_l10n_lint():
         return False
 
 
+class TranslatedHelpFormatter(argparse.RawDescriptionHelpFormatter):
+    """Custom formatter that translates argparse default strings."""
+    
+    def start_section(self, heading):
+        translations = {
+            'positional arguments': _('positional arguments'),
+            'options': _('options'),
+            'optional arguments': _('options'),
+        }
+        heading = translations.get(heading, heading)
+        super().start_section(heading)
+
+
 def main():
     # Check for l10n-lint availability
     if not check_l10n_lint():
@@ -928,6 +941,7 @@ def main():
     parser = argparse.ArgumentParser(
         prog="tp-lint",
         description=_("Lint PO files from the Translation Project (translationproject.org)"),
+        add_help=False,
         epilog=_("""Examples:
   tp-lint -l                    List all available languages
   tp-lint -s                    Show global translation statistics
@@ -937,7 +951,7 @@ def main():
   tp-lint --no-lint sv          Download only, don't lint
   tp-lint -r sv --report-format html --report-output sv.html
                                 Generate HTML report for Swedish"""),
-        formatter_class=argparse.RawDescriptionHelpFormatter
+        formatter_class=TranslatedHelpFormatter
     )
     
     parser.add_argument(
@@ -1045,9 +1059,16 @@ def main():
     )
     
     parser.add_argument(
+        "-h", "--help",
+        action="help",
+        help=_("Show this help message and exit")
+    )
+    
+    parser.add_argument(
         "-v", "--version",
         action="version",
-        version=f"%(prog)s {__version__}"
+        version=f"%(prog)s {__version__}",
+        help=_("Show version number and exit")
     )
     
     args = parser.parse_args()
