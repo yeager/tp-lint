@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.5.7] - 2026-02-04
+
+### Added
+- **`--lint` flag**: Explicitly run l10n-lint on downloaded PO files
+- **l10n-lint check**: Shows warning at startup if l10n-lint is not installed
+
+### Changed
+- Linting is now optional (use `--lint` to enable)
+- Without `--lint`, tp-lint only downloads files and shows summary
+
+## [1.5.6] - 2026-02-04
+
+### Changed
+- Updated man pages to version 1.5.6
+
 ## [1.5.5] - 2026-02-04
 
 ### Changed

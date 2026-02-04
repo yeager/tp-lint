@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.5.6"
+__version__ = "1.5.7"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -908,7 +908,23 @@ def clear_line():
     sys.stdout.flush()
 
 
+def check_l10n_lint():
+    """Check if l10n-lint is available."""
+    try:
+        result = subprocess.run(["l10n-lint", "--version"], capture_output=True, text=True)
+        return result.returncode == 0
+    except FileNotFoundError:
+        return False
+
+
 def main():
+    # Check for l10n-lint availability
+    if not check_l10n_lint():
+        print(_("⚠️  Warning: l10n-lint not found. Install it for linting functionality:"), file=sys.stderr)
+        print(_("   sudo apt install l10n-lint"), file=sys.stderr)
+        print(_("   pip install l10n-lint"), file=sys.stderr)
+        print(file=sys.stderr)
+    
     parser = argparse.ArgumentParser(
         prog="tp-lint",
         description=_("Lint PO files from the Translation Project (translationproject.org)"),
@@ -999,6 +1015,12 @@ def main():
         action="append",
         dest="packages",
         help=_("Only lint specific package(s) (can be repeated)")
+    )
+    
+    parser.add_argument(
+        "--lint",
+        action="store_true",
+        help=_("Run l10n-lint on PO files (requires l10n-lint to be installed)")
     )
     
     parser.add_argument(
@@ -1178,17 +1200,24 @@ def main():
     print(_("Downloaded {count} files").format(count=len(downloaded)))
     
     if not downloaded:
-        print(_("No files to lint"), file=sys.stderr)
+        print(_("No files downloaded"), file=sys.stderr)
         return 1
     
-    # Run l10n-lint
-    print()
-    print(_("Running l10n-lint..."))
-    vprint(_("   By translator: {by_translator}").format(by_translator=args.by_translator))
-    vprint(_("   Files to lint: {count}").format(count=len(downloaded)))
-    print("=" * 60)
+    # Run l10n-lint if requested
+    if args.lint:
+        if not check_l10n_lint():
+            print(_("❌ Error: l10n-lint not found. Install it first:"), file=sys.stderr)
+            print(_("   sudo apt install l10n-lint"), file=sys.stderr)
+            print(_("   pip install l10n-lint"), file=sys.stderr)
+            return 1
+        
+        print()
+        print(_("Running l10n-lint..."))
+        vprint(_("   By translator: {by_translator}").format(by_translator=args.by_translator))
+        vprint(_("   Files to lint: {count}").format(count=len(downloaded)))
+        print("=" * 60)
     
-    if args.by_translator:
+    if args.lint and args.by_translator:
         # Group results by translator
         lint_results = run_l10n_lint_per_file(downloaded, args.format, args.strict, _lang_code)
         
@@ -1234,7 +1263,7 @@ def main():
         ))
         
         returncode = 1 if total_errors > 0 or (args.strict and total_warnings > 0) else 0
-    else:
+    elif args.lint:
         # Standard mode - run on whole directory
         stdout, stderr, returncode = run_l10n_lint(
             output_dir,
@@ -1247,6 +1276,12 @@ def main():
             print(stdout)
         if stderr:
             print(stderr, file=sys.stderr)
+    else:
+        # No linting requested, just download
+        print()
+        print(_("✅ Downloaded {count} files to {path}").format(count=len(downloaded), path=output_dir))
+        print(_("   Run with --lint to check for issues"))
+        returncode = 0
     
     # Cleanup
     if not keep_files and temp_dir:
