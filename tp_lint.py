@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.5.7"
+__version__ = "1.5.8"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -928,7 +928,16 @@ def main():
     parser = argparse.ArgumentParser(
         prog="tp-lint",
         description=_("Lint PO files from the Translation Project (translationproject.org)"),
-        epilog=_("Example: tp-lint sv")
+        epilog=_("""Examples:
+  tp-lint -l                    List all available languages
+  tp-lint -s                    Show global translation statistics
+  tp-lint -s sv                 Show statistics for Swedish
+  tp-lint sv                    Download Swedish PO files
+  tp-lint -L sv                 Download and lint all Swedish PO files
+  tp-lint -L -d coreutils sv    Lint only coreutils for Swedish
+  tp-lint -r sv --report-format html --report-output sv.html
+                                Generate HTML report for Swedish"""),
+        formatter_class=argparse.RawDescriptionHelpFormatter
     )
     
     parser.add_argument(
@@ -1018,9 +1027,9 @@ def main():
     )
     
     parser.add_argument(
-        "--lint",
+        "-L", "--lint",
         action="store_true",
-        help=_("Run l10n-lint on PO files (requires l10n-lint to be installed)")
+        help=_("Run l10n-lint on PO files (requires l10n-lint)")
     )
     
     parser.add_argument(
@@ -1090,8 +1099,8 @@ def main():
         )
         return 0
     
-    # Statistics mode
-    if args.stats or args.domain:
+    # Statistics mode (but not if -L/--lint is specified with -d)
+    if args.stats or (args.domain and not args.lint):
         vprint(_("   Mode: Statistics"))
         if args.domain:
             vprint(_("   Domain filter: {domain}").format(domain=args.domain))
@@ -1122,6 +1131,14 @@ def main():
     vprint(_("   Mode: Lint language '{lang}'").format(lang=lang_code))
     vprint(_("   Output format: {fmt}").format(fmt=args.format))
     vprint(_("   Strict mode: {strict}").format(strict=args.strict))
+    
+    # If -d is specified with -L, use it as package filter
+    if args.domain and args.lint:
+        if not args.packages:
+            args.packages = []
+        args.packages.append(args.domain)
+        vprint(_("   Domain filter (via -d): {domain}").format(domain=args.domain))
+    
     if args.packages:
         vprint(_("   Package filter: {pkgs}").format(pkgs=", ".join(args.packages)))
     

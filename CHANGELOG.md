@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.5.8] - 2026-02-04
+
+### Added
+- **`-L` short flag** for `--lint` (easier to type)
+- **Domain filter with lint**: `-L -d coreutils sv` lints only coreutils
+- **Examples in help**: `--help` now shows common usage examples
+
+### Changed
+- `-d/--domain` works with `-L/--lint` to filter which packages to lint
+
 ## [1.5.7] - 2026-02-04
 
 ### Added

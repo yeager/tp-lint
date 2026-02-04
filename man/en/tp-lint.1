@@ -1,4 +1,4 @@
-.TH TP-LINT 1 "February 2026" "tp-lint 1.5.7" "User Commands"
+.TH TP-LINT 1 "February 2026" "tp-lint 1.5.8" "User Commands"
 .SH NAME
 tp-lint \- Translation Project linter and statistics tool
 .SH SYNOPSIS
@@ -7,7 +7,7 @@ tp-lint \- Translation Project linter and statistics tool
 .SH DESCRIPTION
 .B tp-lint
 checks translation status against the GNU Translation Project matrix.
-Shows coverage statistics and generates reports for translation teams.
+Shows coverage statistics, generates reports, and runs l10n-lint on PO files.
 .SH OPTIONS
 .TP
 .BR \-h ", " \-\-help
@@ -16,16 +16,25 @@ Show help message and exit.
 .BR \-v ", " \-\-version
 Show version number and exit.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
+.BR \-l ", " \-\-list
+List all available languages.
+.TP
+.BR \-s ", " \-\-stats " " [\fILANG\fR]
 Show translation statistics. Without LANG shows global stats.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-d ", " \-\-domain " " \fIPKG\fR
+Show statistics for specific package/domain, or filter linting to this package.
+.TP
+.BR \-L ", " \-\-lint
+Run l10n-lint on downloaded PO files. Requires l10n-lint to be installed.
+.TP
+.BR \-p ", " \-\-package " " \fIPKG\fR
+Only lint specific package(s). Can be repeated.
 .TP
 .BR \-\-top " " \fIN\fR
 Number of items in top/bottom lists (default: 10).
 .TP
-.BR \-\-report " " [\fILANG\fR]
+.BR \-r ", " \-\-report " " [\fILANG\fR]
 Generate translation status report.
 .TP
 .BR \-\-report\-format " " \fIFORMAT\fR
@@ -37,39 +46,42 @@ Save report to file instead of stdout.
 .BR \-\-format " " \fIFORMAT\fR
 Output format: text (default), json
 .TP
-.BR \-\-refresh
-Force refresh of cached TP matrix data.
+.BR \-V ", " \-\-verbose
+Show detailed progress.
+.SH EXAMPLES
 .TP
-.BR \-\-lint
-Run l10n-lint on downloaded PO files. Requires l10n-lint to be installed.
+List all available languages:
+.B tp-lint -l
 .TP
-.BR \-p ", " \-\-package " " \fIPKG\fR
-Only lint specific package(s). Can be repeated.
+Show global translation statistics:
+.B tp-lint -s
+.TP
+Show statistics for Swedish:
+.B tp-lint -s sv
+.TP
+Download Swedish PO files:
+.B tp-lint sv
+.TP
+Download and lint all Swedish PO files:
+.B tp-lint -L sv
+.TP
+Lint only coreutils for Swedish:
+.B tp-lint -L -d coreutils sv
+.TP
+Generate HTML report for German:
+.B tp-lint -r de --report-format html --report-output de.html
 .SH EXIT STATUS
 .TP
 .B 0
 Success.
 .TP
 .B 1
-Error occurred.
-.SH EXAMPLES
-.TP
-Show global translation statistics:
-.B tp-lint \-\-stats
-.TP
-Show statistics for Swedish:
-.B tp-lint \-\-stats sv
-.TP
-Generate HTML report for German:
-.B tp-lint \-\-report de \-\-report\-format html \-\-report\-output de.html
-.TP
-Check specific package:
-.B tp-lint \-\-domain coreutils
-.SH AUTHOR
-Daniel Nylander <daniel@danielnylander.se>
+Error occurred or lint issues found.
 .SH SEE ALSO
 .BR l10n-lint (1),
 .BR po-translate (1),
 .BR msgfmt (1)
+.SH AUTHOR
+Daniel Nylander <daniel@danielnylander.se>
 .SH BUGS
 Report bugs at: https://github.com/yeager/tp-lint/issues
