@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-04 08:46+0100\n"
+"POT-Creation-Date: 2026-02-04 17:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,192 +153,315 @@ msgstr ""
 msgid "🆘 Least Covered Packages (need translations)"
 msgstr ""
 
-#: tp_lint.py:636
+#: tp_lint.py:785
 #, python-brace-format
 msgid "Report saved to: {path}"
 msgstr ""
 
-#: tp_lint.py:650
+#: tp_lint.py:799
 #, python-brace-format
 msgid "Error fetching team index: {error}"
 msgstr ""
 
-#: tp_lint.py:666
+#: tp_lint.py:815
 #, python-brace-format
 msgid "Language '{lang}' not found on Translation Project"
 msgstr ""
 
-#: tp_lint.py:668 tp_lint.py:671
+#: tp_lint.py:817 tp_lint.py:820
 #, python-brace-format
 msgid "Error fetching team page: {error}"
 msgstr ""
 
-#: tp_lint.py:690
+#: tp_lint.py:839
 #, python-brace-format
 msgid "Error downloading {url}: {error}"
 msgstr ""
 
-#: tp_lint.py:726 tp_lint.py:750
+#: tp_lint.py:875 tp_lint.py:899
 msgid "Error: l10n-lint not found. Please install l10n-lint first."
 msgstr ""
 
-#: tp_lint.py:765
+#: tp_lint.py:923
+msgid "⚠️  Warning: l10n-lint not found. Install it for linting functionality:"
+msgstr ""
+
+#: tp_lint.py:924 tp_lint.py:1210
+msgid "   sudo apt install l10n-lint"
+msgstr ""
+
+#: tp_lint.py:925 tp_lint.py:1211
+msgid "   pip install l10n-lint"
+msgstr ""
+
+#: tp_lint.py:930
 msgid "Lint PO files from the Translation Project (translationproject.org)"
 msgstr ""
 
-#: tp_lint.py:766
+#: tp_lint.py:931
 msgid "Example: tp-lint sv"
 msgstr ""
 
-#: tp_lint.py:772
+#: tp_lint.py:937
 msgid "Language code to lint (e.g., sv, de, fr)"
 msgstr ""
 
-#: tp_lint.py:778
+#: tp_lint.py:943
 msgid "List all available languages"
 msgstr ""
 
-#: tp_lint.py:786
+#: tp_lint.py:951
 msgid "Show statistics (optionally for a specific language)"
 msgstr ""
 
-#: tp_lint.py:792
+#: tp_lint.py:957
 msgid "Show statistics for a specific package/domain"
 msgstr ""
 
-#: tp_lint.py:800
+#: tp_lint.py:965
 msgid "Number of items in top lists (default: 15)"
 msgstr ""
 
-#: tp_lint.py:808
+#: tp_lint.py:973
 msgid "Generate report (optionally for a specific language)"
 msgstr ""
 
-#: tp_lint.py:815
+#: tp_lint.py:980
 msgid "Report format (default: markdown)"
 msgstr ""
 
-#: tp_lint.py:821
+#: tp_lint.py:986
 msgid "Save report to file"
 msgstr ""
 
-#: tp_lint.py:828
+#: tp_lint.py:993
 msgid "Output format (default: text)"
 msgstr ""
 
-#: tp_lint.py:834
+#: tp_lint.py:999
 msgid "Treat warnings as errors"
 msgstr ""
 
-#: tp_lint.py:840
+#: tp_lint.py:1005
 msgid "Keep downloaded PO files (don't delete temp directory)"
 msgstr ""
 
-#: tp_lint.py:845
+#: tp_lint.py:1010
 msgid "Output directory for downloaded PO files (implies --keep)"
 msgstr ""
 
-#: tp_lint.py:852
+#: tp_lint.py:1017
 msgid "Only lint specific package(s) (can be repeated)"
 msgstr ""
 
-#: tp_lint.py:858
+#: tp_lint.py:1023
+msgid "Run l10n-lint on PO files (requires l10n-lint to be installed)"
+msgstr ""
+
+#: tp_lint.py:1029
 msgid "Group results by translator"
 msgstr ""
 
-#: tp_lint.py:871
+#: tp_lint.py:1035
+msgid "Show detailed progress"
+msgstr ""
+
+#: tp_lint.py:1052
+#, python-brace-format
+msgid "🔧 tp-lint {version} starting..."
+msgstr ""
+
+#: tp_lint.py:1056
+msgid "   Mode: List languages"
+msgstr ""
+
+#: tp_lint.py:1057
 msgid "Fetching languages from Translation Project..."
 msgstr ""
 
-#: tp_lint.py:874
+#: tp_lint.py:1060
 msgid "Could not fetch language list"
 msgstr ""
 
-#: tp_lint.py:878
+#: tp_lint.py:1064
 #, python-brace-format
 msgid "Available languages ({count}):"
 msgstr ""
 
-#: tp_lint.py:886 tp_lint.py:902
+#: tp_lint.py:1072
+msgid "   Mode: Generate report"
+msgstr ""
+
+#: tp_lint.py:1073
+#, python-brace-format
+msgid "   Format: {fmt}"
+msgstr ""
+
+#: tp_lint.py:1075
+#, python-brace-format
+msgid "   Output file: {file}"
+msgstr ""
+
+#: tp_lint.py:1076 tp_lint.py:1098
 msgid "Fetching translation matrix..."
 msgstr ""
 
-#: tp_lint.py:925
+#: tp_lint.py:1077 tp_lint.py:1099
+msgid "   Connecting to translationproject.org/extra/matrix.html..."
+msgstr ""
+
+#: tp_lint.py:1081 tp_lint.py:1103
+#, python-brace-format
+msgid "   Matrix loaded: {langs} languages, {domains} domains"
+msgstr ""
+
+#: tp_lint.py:1095
+msgid "   Mode: Statistics"
+msgstr ""
+
+#: tp_lint.py:1097
+#, python-brace-format
+msgid "   Domain filter: {domain}"
+msgstr ""
+
+#: tp_lint.py:1122
+#, python-brace-format
+msgid "   Mode: Lint language '{lang}'"
+msgstr ""
+
+#: tp_lint.py:1123
+#, python-brace-format
+msgid "   Output format: {fmt}"
+msgstr ""
+
+#: tp_lint.py:1124
+#, python-brace-format
+msgid "   Strict mode: {strict}"
+msgstr ""
+
+#: tp_lint.py:1126
+#, python-brace-format
+msgid "   Package filter: {pkgs}"
+msgstr ""
+
+#: tp_lint.py:1129
 #, python-brace-format
 msgid "Fetching PO files for '{lang}'..."
 msgstr ""
 
-#: tp_lint.py:929
+#: tp_lint.py:1130
+msgid "   Connecting to translationproject.org..."
+msgstr ""
+
+#: tp_lint.py:1132
+#, python-brace-format
+msgid "   Found {count} translators assigned"
+msgstr ""
+
+#: tp_lint.py:1135
 #, python-brace-format
 msgid "No PO files found for language '{lang}'"
 msgstr ""
 
-#: tp_lint.py:944
+#: tp_lint.py:1150
 msgid "No matching packages found"
 msgstr ""
 
-#: tp_lint.py:947
+#: tp_lint.py:1153
 #, python-brace-format
 msgid "Found {count} PO files"
 msgstr ""
 
-#: tp_lint.py:966
+#: tp_lint.py:1172
 msgid "Downloading PO files..."
 msgstr ""
 
-#: tp_lint.py:973
+#: tp_lint.py:1173
+#, python-brace-format
+msgid "   Output directory: {dir}"
+msgstr ""
+
+#: tp_lint.py:1181 tp_lint.py:1185
 #, python-brace-format
 msgid "  [{current}/{total}] {filename}"
 msgstr ""
 
-#: tp_lint.py:985
+#: tp_lint.py:1194
+#, python-brace-format
+msgid "       Size: {size} bytes"
+msgstr ""
+
+#: tp_lint.py:1200
 #, python-brace-format
 msgid "Downloaded {count} files"
 msgstr ""
 
-#: tp_lint.py:988
-msgid "No files to lint"
+#: tp_lint.py:1203
+msgid "No files downloaded"
 msgstr ""
 
-#: tp_lint.py:993
+#: tp_lint.py:1209
+msgid "❌ Error: l10n-lint not found. Install it first:"
+msgstr ""
+
+#: tp_lint.py:1215
 msgid "Running l10n-lint..."
 msgstr ""
 
-#: tp_lint.py:1004
+#: tp_lint.py:1216
+#, python-brace-format
+msgid "   By translator: {by_translator}"
+msgstr ""
+
+#: tp_lint.py:1217
+#, python-brace-format
+msgid "   Files to lint: {count}"
+msgstr ""
+
+#: tp_lint.py:1228
 msgid "Unknown"
 msgstr ""
 
-#: tp_lint.py:1020
+#: tp_lint.py:1244
 msgid "Results by translator:"
 msgstr ""
 
-#: tp_lint.py:1026
+#: tp_lint.py:1250
 #, python-brace-format
 msgid "   Files: {count}"
 msgstr ""
 
-#: tp_lint.py:1027
+#: tp_lint.py:1251
 #, python-brace-format
 msgid "   Errors: {count}"
 msgstr ""
 
-#: tp_lint.py:1028
+#: tp_lint.py:1252
 #, python-brace-format
 msgid "   Fuzzy: {count}"
 msgstr ""
 
-#: tp_lint.py:1029
+#: tp_lint.py:1253
 #, python-brace-format
 msgid "   Warnings: {count}"
 msgstr ""
 
-#: tp_lint.py:1037
+#: tp_lint.py:1261
 #, python-brace-format
 msgid ""
 "Total: {files} files, {errors} errors, {fuzzy} fuzzy, {warnings} warnings"
 msgstr ""
 
-#: tp_lint.py:1062
+#: tp_lint.py:1282
+#, python-brace-format
+msgid "✅ Downloaded {count} files to {path}"
+msgstr ""
+
+#: tp_lint.py:1283
+msgid "   Run with --lint to check for issues"
+msgstr ""
+
+#: tp_lint.py:1292
 #, python-brace-format
 msgid "PO files saved to: {path}"
 msgstr ""
