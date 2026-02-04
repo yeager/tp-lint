@@ -1,14 +1,14 @@
 .TH TP-LINT 1 "February 2026" "tp-lint 1.5.2" "User Commands"
-.SH NAMN
+.SH 名称
 tp-lint \- Translation Project linter and statistics tool
-.SH SYNOPSIS
+.SH 概要
 .B tp-lint
 [\fIOPTIONS\fR] [\fILANG\fR]
-.SH BESKRIVNING
+.SH 描述
 .B tp-lint
 checks translation status against the GNU Translation Project matrix.
 Shows coverage statistics and generates reports for translation teams.
-.SH FLAGGOR
+.SH 选项
 .TP
 .BR \-h ", " \-\-help
 Show help message and exit.
@@ -39,14 +39,14 @@ Output format: text (default), json
 .TP
 .BR \-\-refresh
 Force refresh of cached TP matrix data.
-.SH SLUTSTATUS
+.SH 退出状态
 .TP
 .B 0
 Success.
 .TP
 .B 1
 Error occurred.
-.SH EXEMPEL
+.SH 示例
 .TP
 Show global translation statistics:
 .B tp-lint \-\-stats
@@ -59,11 +59,11 @@ Generate HTML report for German:
 .TP
 Check specific package:
 .B tp-lint \-\-domain coreutils
-.SH UPPHOVSMAN
+.SH 作者
 Daniel Nylander <daniel@danielnylander.se>
-.SH SE ÄVEN
+.SH 另请参阅
 .BR l10n-lint (1),
 .BR po-translate (1),
 .BR msgfmt (1)
-.SH BUGGAR
+.SH 缺陷
 Report bugs at: https://github.com/yeager/tp-lint/issues
