@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.5.4"
+__version__ = "1.5.5"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -564,13 +564,116 @@ def generate_report(matrix, lang_filter=None, output_file=None, report_format="m
             lines.append(f"")
     
     elif report_format == "html":
-        lines.append(f"<!DOCTYPE html>")
-        lines.append(f"<html><head><meta charset='utf-8'><title>TP Report</title>")
-        lines.append(f"<style>body{{font-family:system-ui;max-width:900px;margin:2em auto;padding:0 1em}}")
-        lines.append(f"table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #ddd;padding:8px;text-align:left}}")
-        lines.append(f"th{{background:#f5f5f5}}.complete{{color:green}}.partial{{color:orange}}.missing{{color:red}}</style></head>")
-        lines.append(f"<body><h1>Translation Project Report</h1>")
-        lines.append(f"<p><em>Generated: {now}</em></p>")
+        title = f"Translation Project Report" + (f" – {lang_filter.upper()}" if lang_filter else "")
+        lines.append(f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="tp-lint {__version__}">
+    <meta name="description" content="Translation status report from the GNU Translation Project">
+    <title>{title}</title>
+    <style>
+        :root {{
+            --primary: #2563eb;
+            --success: #16a34a;
+            --warning: #ca8a04;
+            --danger: #dc2626;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }}
+        * {{ box-sizing: border-box; }}
+        body {{
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }}
+        header {{
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }}
+        h1 {{ color: var(--primary); margin: 0 0 0.5rem; }}
+        .meta {{ color: var(--text-muted); font-size: 0.9rem; }}
+        .card {{
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }}
+        h2 {{ color: var(--text); margin: 0 0 1rem; font-size: 1.25rem; }}
+        h3 {{ margin: 1rem 0 0.5rem; font-size: 1rem; }}
+        h3.complete {{ color: var(--success); }}
+        h3.partial {{ color: var(--warning); }}
+        h3.missing {{ color: var(--danger); }}
+        table {{
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }}
+        th, td {{
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }}
+        th {{ background: var(--bg); font-weight: 600; }}
+        tr:hover {{ background: var(--bg); }}
+        .overview-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }}
+        .stat {{
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 6px;
+        }}
+        .stat-value {{ font-size: 1.75rem; font-weight: bold; color: var(--primary); }}
+        .stat-label {{ font-size: 0.85rem; color: var(--text-muted); }}
+        ul {{ padding-left: 1.5rem; }}
+        li {{ margin: 0.25rem 0; }}
+        .progress {{
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }}
+        .progress-bar {{
+            height: 100%;
+            background: var(--success);
+            transition: width 0.3s;
+        }}
+        footer {{
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }}
+        footer a {{ color: var(--primary); text-decoration: none; }}
+        footer a:hover {{ text-decoration: underline; }}
+        @media (max-width: 600px) {{
+            body {{ padding: 1rem 0.5rem; }}
+            .card {{ padding: 1rem; }}
+        }}
+    </style>
+</head>
+<body>
+<header>
+    <h1>📊 {title}</h1>
+    <p class="meta">Generated: {now} · Data source: <a href="https://translationproject.org/extra/matrix.html">Translation Project</a></p>
+</header>""")
         
         total_langs = len(matrix.languages)
         total_domains = len(matrix.domains)
@@ -578,20 +681,21 @@ def generate_report(matrix, lang_filter=None, output_file=None, report_format="m
         max_translations = total_langs * total_domains
         overall_pct = (total_translations / max_translations * 100) if max_translations > 0 else 0
         
-        lines.append(f"<h2>Overview</h2>")
-        lines.append(f"<table><tr><th>Metric</th><th>Value</th></tr>")
-        lines.append(f"<tr><td>Languages</td><td>{total_langs}</td></tr>")
-        lines.append(f"<tr><td>Packages</td><td>{total_domains}</td></tr>")
-        lines.append(f"<tr><td>Total translations</td><td>{total_translations}</td></tr>")
-        lines.append(f"<tr><td>Overall coverage</td><td>{overall_pct:.1f}%</td></tr></table>")
+        lines.append(f"""<div class="card">
+<h2>📈 Overview</h2>
+<div class="overview-grid">
+    <div class="stat"><div class="stat-value">{total_langs}</div><div class="stat-label">Languages</div></div>
+    <div class="stat"><div class="stat-value">{total_domains}</div><div class="stat-label">Packages</div></div>
+    <div class="stat"><div class="stat-value">{total_translations:,}</div><div class="stat-label">Translations</div></div>
+    <div class="stat"><div class="stat-value">{overall_pct:.1f}%</div><div class="stat-label">Coverage</div></div>
+</div>
+</div>""")
         
         if lang_filter:
             lang_key = lang_filter.lower()
             if "_" in lang_filter and lang_key not in matrix.lang_percentages:
                 lang_key = lang_filter.split("_")[1].upper()
             pct = matrix.lang_percentages.get(lang_key, matrix.lang_percentages.get(lang_filter.lower(), 0))
-            
-            lines.append(f"<h2>Language: {lang_filter.upper()} ({pct}%)</h2>")
             
             complete, partial, missing = [], [], []
             for domain, langs in matrix.domains.items():
@@ -604,30 +708,75 @@ def generate_report(matrix, lang_filter=None, output_file=None, report_format="m
                 else:
                     missing.append(domain)
             
-            lines.append(f"<h3 class='complete'>Complete (100%) – {len(complete)}</h3><ul>")
+            lines.append(f"""<div class="card">
+<h2>🌐 Language: {lang_filter.upper()}</h2>
+<div style="margin-bottom:1rem">
+    <div style="display:flex;justify-content:space-between;margin-bottom:0.25rem">
+        <span>Coverage</span><span><strong>{pct}%</strong></span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width:{pct}%"></div></div>
+</div>
+<div class="overview-grid">
+    <div class="stat"><div class="stat-value" style="color:var(--success)">{len(complete)}</div><div class="stat-label">Complete (100%)</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--warning)">{len(partial)}</div><div class="stat-label">Partial</div></div>
+    <div class="stat"><div class="stat-value" style="color:var(--danger)">{len(missing)}</div><div class="stat-label">Missing</div></div>
+</div>
+</div>""")
+            
+            lines.append(f"""<div class="card">
+<h3 class="complete">✅ Complete (100%) – {len(complete)} packages</h3>
+<ul>""")
             for d in sorted(complete):
-                lines.append(f"<li>{d}</li>")
-            lines.append(f"</ul>")
+                lines.append(f"<li><a href='https://translationproject.org/domain/{d}.html'>{d}</a></li>")
+            if not complete:
+                lines.append("<li><em>None</em></li>")
+            lines.append("</ul></div>")
             
-            lines.append(f"<h3 class='partial'>Partial – {len(partial)}</h3>")
-            lines.append(f"<table><tr><th>Package</th><th>Coverage</th></tr>")
-            for d, p in sorted(partial, key=lambda x: x[1], reverse=True):
-                lines.append(f"<tr><td>{d}</td><td>{p}%</td></tr>")
-            lines.append(f"</table>")
+            if partial:
+                lines.append(f"""<div class="card">
+<h3 class="partial">🔶 Partial – {len(partial)} packages</h3>
+<table><thead><tr><th>Package</th><th>Coverage</th><th>Progress</th></tr></thead><tbody>""")
+                for d, p in sorted(partial, key=lambda x: x[1], reverse=True):
+                    lines.append(f"<tr><td><a href='https://translationproject.org/domain/{d}.html'>{d}</a></td><td>{p}%</td><td><div class='progress' style='width:100px'><div class='progress-bar' style='width:{p}%;background:var(--warning)'></div></div></td></tr>")
+                lines.append("</tbody></table></div>")
             
-            lines.append(f"<h3 class='missing'>Missing – {len(missing)}</h3><ul>")
-            for d in sorted(missing):
-                lines.append(f"<li>{d}</li>")
-            lines.append(f"</ul>")
+            if missing:
+                lines.append(f"""<div class="card">
+<h3 class="missing">❌ Missing – {len(missing)} packages</h3>
+<ul style="column-count:3;column-gap:1rem">""")
+                for d in sorted(missing):
+                    lines.append(f"<li><a href='https://translationproject.org/domain/{d}.html'>{d}</a></li>")
+                lines.append("</ul></div>")
         else:
-            lines.append(f"<h2>Top Languages</h2>")
-            lines.append(f"<table><tr><th>#</th><th>Language</th><th>Coverage</th></tr>")
             sorted_langs = sorted(matrix.lang_percentages.items(), key=lambda x: x[1], reverse=True)
+            
+            lines.append(f"""<div class="card">
+<h2>🏆 Top 20 Languages</h2>
+<table><thead><tr><th>#</th><th>Language</th><th>Coverage</th><th>Progress</th></tr></thead><tbody>""")
             for i, (lang, pct) in enumerate(sorted_langs[:20], 1):
-                lines.append(f"<tr><td>{i}</td><td>{lang}</td><td>{pct}%</td></tr>")
-            lines.append(f"</table>")
+                lines.append(f"<tr><td>{i}</td><td><a href='https://translationproject.org/team/{lang}.html'>{lang}</a></td><td>{pct}%</td><td><div class='progress' style='width:150px'><div class='progress-bar' style='width:{pct}%'></div></div></td></tr>")
+            lines.append("</tbody></table></div>")
+            
+            # Best covered packages
+            lines.append(f"""<div class="card">
+<h2>📦 Best Covered Packages</h2>
+<table><thead><tr><th>Package</th><th>Languages</th><th>Avg Coverage</th></tr></thead><tbody>""")
+            domain_coverage = [(d, len(t), sum(t.values()) / len(t) if t else 0) 
+                               for d, t in matrix.domains.items()]
+            domain_coverage.sort(key=lambda x: (x[1], x[2]), reverse=True)
+            for d, count, avg in domain_coverage[:15]:
+                lines.append(f"<tr><td><a href='https://translationproject.org/domain/{d}.html'>{d}</a></td><td>{count}</td><td>{avg:.0f}%</td></tr>")
+            lines.append("</tbody></table></div>")
         
-        lines.append(f"</body></html>")
+        lines.append(f"""
+<footer>
+    <p>Generated by <a href="https://github.com/yeager/tp-lint"><strong>tp-lint</strong></a> v{__version__}</p>
+    <p>Data from <a href="https://translationproject.org">GNU Translation Project</a> · 
+       Report issues on <a href="https://github.com/yeager/tp-lint/issues">GitHub</a></p>
+    <p>© 2026 <a href="https://www.danielnylander.se">Daniel Nylander</a> · GPL-3.0-or-later</p>
+</footer>
+</body>
+</html>""")
     
     report = "\n".join(lines)
     

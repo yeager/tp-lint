@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.5.5] - 2026-02-04
+
+### Changed
+- **HTML reports**: Completely redesigned with modern styling
+  - Card-based layout with CSS variables
+  - Progress bars for coverage visualization
+  - Responsive design for mobile
+  - Links to TP domain/team pages
+- **Footer**: Now includes generator info, version, copyright and links
+- **Swedish translation**: 100% complete, fixed incorrect translations
+
 ## [1.5.4] - 2026-02-04
 
 ### Added
