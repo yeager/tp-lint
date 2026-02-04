@@ -31,12 +31,13 @@ DOMAIN = "tp-lint"
 
 # Look for locale in multiple places
 _possible_locale_dirs = [
-    Path(__file__).parent / "locale",  # Development
     Path("/usr/share/tp-lint/locale"),  # System install (Debian)
+    Path(__file__).parent / "locale",  # Development
 ]
 LOCALE_DIR = None
 for _dir in _possible_locale_dirs:
-    if _dir.exists():
+    # Check it's a real locale dir (has LC_MESSAGES subdir or .pot file)
+    if _dir.is_dir() and (list(_dir.glob("*/LC_MESSAGES")) or list(_dir.glob("*.pot"))):
         LOCALE_DIR = _dir
         break
 
