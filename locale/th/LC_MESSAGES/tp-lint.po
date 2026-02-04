@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -12,156 +11,156 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: th\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: tp_lint.py:144
 #, python-brace-format
 msgid "Error fetching team index: {error}"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดในการดึงดัชนีทีม: {error}"
 
 #: tp_lint.py:160
 #, python-brace-format
 msgid "Language '{lang}' not found on Translation Project"
-msgstr ""
+msgstr "ไม่พบภาษา '{lang}' ใน Translation Project"
 
 #: tp_lint.py:162 tp_lint.py:165
 #, python-brace-format
 msgid "Error fetching team page: {error}"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดในการดึงหน้าทีม: {error}"
 
 #: tp_lint.py:184
 #, python-brace-format
 msgid "Error downloading {url}: {error}"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดในการดาวน์โหลด {url}: {error}"
 
 #: tp_lint.py:220 tp_lint.py:244
 msgid "Error: l10n-lint not found. Please install l10n-lint first."
-msgstr ""
+msgstr "ข้อผิดพลาด: ไม่พบ l10n-lint กรุณาติดตั้ง l10n-lint ก่อน"
 
 #: tp_lint.py:259
 msgid "Lint PO files from the Translation Project (translationproject.org)"
-msgstr ""
+msgstr "ตรวจสอบไฟล์ PO จาก Translation Project (translationproject.org)"
 
 #: tp_lint.py:260
 msgid "Example: tp-lint sv"
-msgstr ""
+msgstr "ตัวอย่าง: tp-lint sv"
 
 #: tp_lint.py:266
 msgid "Language code to lint (e.g., sv, de, fr)"
-msgstr ""
+msgstr "รหัสภาษาที่จะตรวจสอบ (เช่น sv, de, fr)"
 
 #: tp_lint.py:272
 msgid "List all available languages"
-msgstr ""
+msgstr "แสดงรายการภาษาทั้งหมดที่มี"
 
 #: tp_lint.py:279
 msgid "Output format (default: text)"
-msgstr ""
+msgstr "รูปแบบผลลัพธ์ (ค่าเริ่มต้น: text)"
 
 #: tp_lint.py:285
 msgid "Treat warnings as errors"
-msgstr ""
+msgstr "ถือว่าคำเตือนเป็นข้อผิดพลาด"
 
 #: tp_lint.py:291
 msgid "Keep downloaded PO files (don't delete temp directory)"
-msgstr ""
+msgstr "เก็บไฟล์ PO ที่ดาวน์โหลด (ไม่ลบไดเรกทอรีชั่วคราว)"
 
 #: tp_lint.py:296
 msgid "Output directory for downloaded PO files (implies --keep)"
-msgstr ""
+msgstr "ไดเรกทอรีผลลัพธ์สำหรับไฟล์ PO ที่ดาวน์โหลด (หมายถึง --keep)"
 
 #: tp_lint.py:303
 msgid "Only lint specific package(s) (can be repeated)"
-msgstr ""
+msgstr "ตรวจสอบเฉพาะแพ็คเกจที่ระบุ (สามารถระบุซ้ำได้)"
 
 #: tp_lint.py:309
 msgid "Group results by translator"
-msgstr ""
+msgstr "จัดกลุ่มผลลัพธ์ตามนักแปล"
 
 #: tp_lint.py:322
 msgid "Fetching languages from Translation Project..."
-msgstr ""
+msgstr "กำลังดึงรายการภาษาจาก Translation Project..."
 
 #: tp_lint.py:325
 msgid "Could not fetch language list"
-msgstr ""
+msgstr "ไม่สามารถดึงรายการภาษาได้"
 
 #: tp_lint.py:329
 #, python-brace-format
 msgid "Available languages ({count}):"
-msgstr ""
+msgstr "ภาษาที่มี ({count}):"
 
 #: tp_lint.py:343
 #, python-brace-format
 msgid "Fetching PO files for '{lang}'..."
-msgstr ""
+msgstr "กำลังดึงไฟล์ PO สำหรับ '{lang}'..."
 
 #: tp_lint.py:347
 #, python-brace-format
 msgid "No PO files found for language '{lang}'"
-msgstr ""
+msgstr "ไม่พบไฟล์ PO สำหรับภาษา '{lang}'"
 
 #: tp_lint.py:362
 msgid "No matching packages found"
-msgstr ""
+msgstr "ไม่พบแพ็คเกจที่ตรงกัน"
 
 #: tp_lint.py:365
 #, python-brace-format
 msgid "Found {count} PO files"
-msgstr ""
+msgstr "พบ {count} ไฟล์ PO"
 
 #: tp_lint.py:384
 msgid "Downloading PO files..."
-msgstr ""
+msgstr "กำลังดาวน์โหลดไฟล์ PO..."
 
 #: tp_lint.py:391
 #, python-brace-format
 msgid "  [{current}/{total}] {filename}"
-msgstr ""
+msgstr "  [{current}/{total}] {filename}"
 
 #: tp_lint.py:403
 #, python-brace-format
 msgid "Downloaded {count} files"
-msgstr ""
+msgstr "ดาวน์โหลด {count} ไฟล์แล้ว"
 
 #: tp_lint.py:406
 msgid "No files to lint"
-msgstr ""
+msgstr "ไม่มีไฟล์ที่จะตรวจสอบ"
 
 #: tp_lint.py:411
 msgid "Running l10n-lint..."
-msgstr ""
+msgstr "กำลังรัน l10n-lint..."
 
 #: tp_lint.py:422
 msgid "Unknown"
-msgstr ""
+msgstr "ไม่ทราบ"
 
 #: tp_lint.py:438
 msgid "Results by translator:"
-msgstr ""
+msgstr "ผลลัพธ์ตามนักแปล:"
 
 #: tp_lint.py:444
 #, python-brace-format
 msgid "   Files: {count}"
-msgstr ""
+msgstr "   ไฟล์: {count}"
 
 #: tp_lint.py:445
 #, python-brace-format
 msgid "   Errors: {count}"
-msgstr ""
+msgstr "   ข้อผิดพลาด: {count}"
 
 #: tp_lint.py:446
 #, python-brace-format
 msgid "   Fuzzy: {count}"
-msgstr ""
+msgstr "   Fuzzy: {count}"
 
 #: tp_lint.py:447
 #, python-brace-format
 msgid "   Warnings: {count}"
-msgstr ""
+msgstr "   คำเตือน: {count}"
 
 #: tp_lint.py:455
 #, python-brace-format
@@ -172,4 +171,4 @@ msgstr ""
 #: tp_lint.py:480
 #, python-brace-format
 msgid "PO files saved to: {path}"
-msgstr ""
+msgstr "ไฟล์ PO ถูกบันทึกไว้ที่: {path}"

@@ -8,6 +8,7 @@ Fetch and lint translation files for any language team on the Translation Projec
 
 - **Fetch PO files** – Downloads all translations for a language from TP
 - **Lint with l10n-lint** – Checks for missing translations, fuzzy entries, placeholder mismatches
+- **📊 Statistics** – View translation coverage per language, per package, and global top lists
 - **Filter by package** – Lint only specific packages
 - **Multiple output formats** – Text, JSON, or GitHub Actions annotations
 - **Localized** – Available in Swedish and German (more coming)
@@ -17,22 +18,22 @@ Fetch and lint translation files for any language team on the Translation Projec
 ### Debian/Ubuntu
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.3.1/tp-lint_1.3.1_all.deb
-sudo dpkg -i tp-lint_1.3.1_all.deb
+wget https://github.com/yeager/tp-lint/releases/download/v1.4.0/tp-lint_1.4.0_all.deb
+sudo dpkg -i tp-lint_1.4.0_all.deb
 ```
 
 ### Fedora/RHEL/openSUSE
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.3.1/tp-lint-1.3.1-1.noarch.rpm
-sudo rpm -i tp-lint-1.3.1-1.noarch.rpm
+wget https://github.com/yeager/tp-lint/releases/download/v1.4.0/tp-lint-1.4.0-1.noarch.rpm
+sudo rpm -i tp-lint-1.4.0-1.noarch.rpm
 ```
 
 ### Arch Linux
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.3.1/tp-lint-1.3.1.pkg.tar.zst
-sudo pacman -U tp-lint-1.3.1.pkg.tar.zst
+wget https://github.com/yeager/tp-lint/releases/download/v1.4.0/tp-lint-1.4.0.pkg.tar.zst
+sudo pacman -U tp-lint-1.4.0.pkg.tar.zst
 ```
 
 ### From source
@@ -99,11 +100,33 @@ tp-lint sv --format github
 tp-lint sv --strict
 ```
 
+### Statistics
+
+```bash
+# Global statistics with top lists
+tp-lint --stats
+
+# Statistics for a specific language
+tp-lint --stats sv
+
+# Statistics for a specific package
+tp-lint --domain coreutils
+
+# JSON output
+tp-lint --stats sv --format json
+
+# Show top 20 instead of default 15
+tp-lint --stats --top 20
+```
+
 ## Options
 
 | Option | Description |
 |--------|-------------|
 | `-l`, `--list` | List all available languages |
+| `-s`, `--stats [LANG]` | Show statistics (global or per language) |
+| `-d`, `--domain PKG` | Show statistics for a specific package |
+| `-n`, `--top N` | Number of items in top lists (default: 15) |
 | `-f`, `--format` | Output format: `text`, `json`, `github` |
 | `-k`, `--keep` | Keep downloaded PO files |
 | `-o`, `--output` | Output directory for PO files |

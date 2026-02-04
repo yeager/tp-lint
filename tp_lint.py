@@ -24,7 +24,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.3.1"
+__version__ = "1.4.0"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -140,6 +140,318 @@ class TeamIndexParser(html.parser.HTMLParser):
         elif self.prev_tag == "td" and re.match(r"^[a-z]{2,3}$", data):
             if self.current_lang_name:
                 self.languages.append((data, self.current_lang_name))
+
+
+class MatrixParser(html.parser.HTMLParser):
+    """Parse the TP matrix page to extract translation statistics."""
+    
+    def __init__(self):
+        super().__init__()
+        self.languages = []  # List of language codes from header
+        self.lang_percentages = {}  # lang_code -> overall percentage
+        self.domains = {}  # domain -> {lang_code: percentage}
+        self.domain_counts = {}  # domain -> number of translations
+        self._in_header = False
+        self._in_pct_row = False
+        self._current_row = []
+        self._current_domain = None
+        self._cell_index = 0
+        self._in_td = False
+        self._td_content = ""
+        self._current_href = None
+        
+    def handle_starttag(self, tag, attrs):
+        attrs_dict = dict(attrs)
+        if tag == "thead":
+            self._in_header = True
+        elif tag == "tbody":
+            self._in_header = False
+        elif tag == "tr":
+            self._current_row = []
+            self._cell_index = 0
+            self._current_domain = None
+        elif tag == "th" and self._in_header:
+            self._in_td = True
+            self._td_content = ""
+            self._current_href = None
+        elif tag == "td":
+            self._in_td = True
+            self._td_content = ""
+            self._current_href = None
+        elif tag == "a" and self._in_td:
+            href = attrs_dict.get("href", "")
+            self._current_href = href
+            # Check for language link in header
+            if self._in_header and "/team/" in href:
+                match = re.search(r"/team/([^.]+)\.html", href)
+                if match:
+                    lang = match.group(1)
+                    self.languages.append(lang)
+            # Check for domain link
+            elif "/domain/" in href:
+                match = re.search(r"/domain/([^.]+)\.html", href)
+                if match:
+                    self._current_domain = match.group(1)
+                    
+    def handle_data(self, data):
+        if self._in_td:
+            self._td_content += data.strip()
+            
+    def handle_endtag(self, tag):
+        if tag in ("td", "th"):
+            content = self._td_content.strip()
+            self._current_row.append(content)
+            self._cell_index += 1
+            self._in_td = False
+        elif tag == "tr" and not self._in_header:
+            self._process_row()
+            
+    def _process_row(self):
+        if len(self._current_row) < 3:
+            return
+            
+        # Check if this is the percentage summary row
+        if self._current_row[1] == "Pct":
+            self._in_pct_row = True
+            # Parse language percentages (skip first 2 columns: empty + "Pct")
+            for i, lang in enumerate(self.languages):
+                if i + 2 < len(self._current_row):
+                    pct_str = self._current_row[i + 2].replace("%", "")
+                    try:
+                        self.lang_percentages[lang] = int(pct_str)
+                    except ValueError:
+                        self.lang_percentages[lang] = 0
+            return
+            
+        # Regular domain row
+        if self._current_domain:
+            self.domains[self._current_domain] = {}
+            count = 0
+            # Parse percentages for each language
+            for i, lang in enumerate(self.languages):
+                # Cell index: domain(0), pct(1), lang cells start at 2
+                cell_idx = i + 2
+                if cell_idx < len(self._current_row):
+                    cell = self._current_row[cell_idx]
+                    if cell and cell != "\xa0" and cell != "":
+                        pct_str = cell.replace("%", "")
+                        try:
+                            pct = int(pct_str)
+                            self.domains[self._current_domain][lang] = pct
+                            count += 1
+                        except ValueError:
+                            pass
+            # Get count from last column if available
+            if self._current_row[-1].isdigit():
+                self.domain_counts[self._current_domain] = int(self._current_row[-1])
+            else:
+                self.domain_counts[self._current_domain] = count
+
+
+def fetch_matrix():
+    """Fetch and parse the translation matrix."""
+    url = f"{TP_BASE}/extra/matrix.html"
+    try:
+        with urllib.request.urlopen(url, timeout=60) as resp:
+            html_content = resp.read().decode("utf-8")
+    except urllib.error.URLError as e:
+        print(_("Error fetching matrix: {error}").format(error=e), file=sys.stderr)
+        return None
+    
+    parser = MatrixParser()
+    parser.feed(html_content)
+    return parser
+
+
+def print_stats(matrix, lang_filter=None, domain_filter=None, top_n=15, output_format="text"):
+    """Print statistics from the matrix data."""
+    
+    if output_format == "json":
+        stats = {
+            "total_languages": len(matrix.languages),
+            "total_domains": len(matrix.domains),
+            "languages": matrix.lang_percentages,
+            "domains": {d: {"translations": len(t), "languages": t} for d, t in matrix.domains.items()}
+        }
+        if lang_filter:
+            stats["filter"] = {"language": lang_filter}
+        if domain_filter:
+            stats["filter"] = {"domain": domain_filter}
+        print(json.dumps(stats, indent=2, ensure_ascii=False))
+        return
+    
+    # Text output
+    print()
+    print("=" * 60)
+    print(_("📊 Translation Project Statistics"))
+    print("=" * 60)
+    print()
+    
+    # Overall stats
+    total_langs = len(matrix.languages)
+    total_domains = len(matrix.domains)
+    total_translations = sum(len(t) for t in matrix.domains.values())
+    max_translations = total_langs * total_domains
+    overall_pct = (total_translations / max_translations * 100) if max_translations > 0 else 0
+    
+    print(_("📈 Overview"))
+    print("-" * 40)
+    print(_("  Languages: {count}").format(count=total_langs))
+    print(_("  Domains (packages): {count}").format(count=total_domains))
+    print(_("  Total translations: {count}").format(count=total_translations))
+    print(_("  Overall coverage: {pct:.1f}%").format(pct=overall_pct))
+    print()
+    
+    # Filter by language
+    if lang_filter:
+        lang_filter = lang_filter.lower()
+        # Handle variants like pt_BR -> BR in matrix
+        lang_key = lang_filter
+        if lang_filter not in matrix.lang_percentages:
+            # Try uppercase suffix (pt_BR -> BR)
+            if "_" in lang_filter:
+                lang_key = lang_filter.split("_")[1].upper()
+        
+        if lang_key not in matrix.lang_percentages and lang_filter not in matrix.languages:
+            print(_("⚠️  Language '{lang}' not found in matrix").format(lang=lang_filter))
+            print(_("   Available: {langs}").format(langs=", ".join(sorted(matrix.languages)[:20]) + "..."))
+            return
+        
+        print(_("🔍 Statistics for: {lang}").format(lang=lang_filter.upper()))
+        print("-" * 40)
+        
+        pct = matrix.lang_percentages.get(lang_key, matrix.lang_percentages.get(lang_filter, 0))
+        print(_("  Overall coverage: {pct}%").format(pct=pct))
+        
+        # Count translations for this language
+        translated = []
+        not_translated = []
+        for domain, langs in matrix.domains.items():
+            if lang_key in langs or lang_filter in langs:
+                p = langs.get(lang_key, langs.get(lang_filter, 0))
+                translated.append((domain, p))
+            else:
+                not_translated.append(domain)
+        
+        print(_("  Translated: {count}/{total} packages").format(count=len(translated), total=total_domains))
+        print()
+        
+        # Top translated packages
+        print(_("✅ Best translations (100%):"))
+        complete = [(d, p) for d, p in translated if p == 100]
+        if complete:
+            for d, p in sorted(complete)[:top_n]:
+                print(f"     {d}")
+            if len(complete) > top_n:
+                print(_("     ... and {more} more").format(more=len(complete) - top_n))
+        else:
+            print(_("     (none)"))
+        print()
+        
+        # Partial translations
+        print(_("🔶 Partial translations:"))
+        partial = [(d, p) for d, p in translated if 0 < p < 100]
+        partial.sort(key=lambda x: x[1], reverse=True)
+        if partial:
+            for d, p in partial[:top_n]:
+                print(f"     {d}: {p}%")
+            if len(partial) > top_n:
+                print(_("     ... and {more} more").format(more=len(partial) - top_n))
+        else:
+            print(_("     (none)"))
+        print()
+        
+        # Missing translations (popular packages)
+        print(_("❌ Missing (not translated):"))
+        if not_translated:
+            # Show first N alphabetically
+            for d in sorted(not_translated)[:top_n]:
+                print(f"     {d}")
+            if len(not_translated) > top_n:
+                print(_("     ... and {more} more").format(more=len(not_translated) - top_n))
+        else:
+            print(_("     (none - all packages translated!)"))
+        return
+    
+    # Filter by domain
+    if domain_filter:
+        domain_filter = domain_filter.lower()
+        if domain_filter not in matrix.domains:
+            # Try fuzzy match
+            matches = [d for d in matrix.domains if domain_filter in d.lower()]
+            if matches:
+                print(_("⚠️  Domain '{domain}' not found. Did you mean:").format(domain=domain_filter))
+                for m in matches[:5]:
+                    print(f"     {m}")
+                return
+            print(_("⚠️  Domain '{domain}' not found").format(domain=domain_filter))
+            return
+        
+        print(_("🔍 Statistics for package: {domain}").format(domain=domain_filter))
+        print("-" * 40)
+        
+        langs = matrix.domains[domain_filter]
+        print(_("  Translations: {count}/{total} languages").format(count=len(langs), total=total_langs))
+        print()
+        
+        # Complete translations
+        complete = [(l, p) for l, p in langs.items() if p == 100]
+        print(_("✅ Complete (100%): {count}").format(count=len(complete)))
+        if complete:
+            lang_list = ", ".join(sorted(l for l, p in complete))
+            print(f"     {lang_list}")
+        print()
+        
+        # Partial
+        partial = [(l, p) for l, p in langs.items() if 0 < p < 100]
+        partial.sort(key=lambda x: x[1], reverse=True)
+        print(_("🔶 Partial: {count}").format(count=len(partial)))
+        if partial:
+            for l, p in partial[:top_n]:
+                print(f"     {l}: {p}%")
+        print()
+        
+        # Missing
+        translated_langs = set(langs.keys())
+        missing = [l for l in matrix.languages if l not in translated_langs]
+        print(_("❌ Missing: {count}").format(count=len(missing)))
+        if missing:
+            print(f"     {', '.join(sorted(missing)[:20])}{'...' if len(missing) > 20 else ''}")
+        return
+    
+    # Global top lists
+    print(_("🏆 Top {n} Languages (by coverage)").format(n=top_n))
+    print("-" * 40)
+    sorted_langs = sorted(matrix.lang_percentages.items(), key=lambda x: x[1], reverse=True)
+    for i, (lang, pct) in enumerate(sorted_langs[:top_n], 1):
+        bar = "█" * (pct // 5) + "░" * (20 - pct // 5)
+        print(f"  {i:2}. {lang:6} {bar} {pct}%")
+    print()
+    
+    # Bottom languages
+    print(_("📉 Bottom {n} Languages").format(n=min(10, top_n)))
+    print("-" * 40)
+    for i, (lang, pct) in enumerate(sorted_langs[-min(10, top_n):], 1):
+        bar = "█" * (pct // 5) + "░" * (20 - pct // 5)
+        print(f"  {i:2}. {lang:6} {bar} {pct}%")
+    print()
+    
+    # Best covered domains
+    print(_("📦 Best Covered Packages (most translations)"))
+    print("-" * 40)
+    domain_coverage = [(d, len(t), sum(t.values()) / len(t) if t else 0) 
+                       for d, t in matrix.domains.items()]
+    domain_coverage.sort(key=lambda x: (x[1], x[2]), reverse=True)
+    for i, (domain, count, avg_pct) in enumerate(domain_coverage[:top_n], 1):
+        print(f"  {i:2}. {domain:20} {count:2} langs, avg {avg_pct:.0f}%")
+    print()
+    
+    # Least covered domains
+    print(_("🆘 Least Covered Packages (need translations)"))
+    print("-" * 40)
+    domain_coverage.sort(key=lambda x: (x[1], x[2]))
+    for i, (domain, count, avg_pct) in enumerate(domain_coverage[:top_n], 1):
+        print(f"  {i:2}. {domain:20} {count:2} langs, avg {avg_pct:.0f}%")
 
 
 def get_languages():
@@ -281,6 +593,28 @@ def main():
     )
     
     parser.add_argument(
+        "-s", "--stats",
+        nargs="?",
+        const="global",
+        metavar="LANG",
+        help=_("Show statistics (optionally for a specific language)")
+    )
+    
+    parser.add_argument(
+        "-d", "--domain",
+        metavar="PACKAGE",
+        help=_("Show statistics for a specific package/domain")
+    )
+    
+    parser.add_argument(
+        "-n", "--top",
+        type=int,
+        default=15,
+        metavar="N",
+        help=_("Number of items in top lists (default: 15)")
+    )
+    
+    parser.add_argument(
         "-f", "--format",
         choices=["text", "json", "github"],
         default="text",
@@ -338,6 +672,23 @@ def main():
         print()
         for code, name in sorted(languages, key=lambda x: x[1]):
             print(f"  {code:6} {name}")
+        return 0
+    
+    # Statistics mode
+    if args.stats or args.domain:
+        print(_("Fetching translation matrix..."))
+        matrix = fetch_matrix()
+        if not matrix:
+            return 1
+        
+        lang_filter = args.stats if args.stats != "global" else None
+        print_stats(
+            matrix, 
+            lang_filter=lang_filter, 
+            domain_filter=args.domain,
+            top_n=args.top,
+            output_format=args.format
+        )
         return 0
     
     # Require language for linting

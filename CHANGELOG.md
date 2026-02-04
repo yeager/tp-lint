@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.4.0] - 2026-02-04
+
+### Added
+- 📊 **Statistics feature** - View translation coverage from the TP matrix
+  - `--stats` for global statistics with top/bottom language lists
+  - `--stats LANG` for language-specific stats (translated, partial, missing packages)
+  - `--domain PKG` for package-specific stats (which languages have translated it)
+  - `--top N` to customize number of items in top lists
+  - JSON output support for stats
+
 ## [1.3.1] - 2026-02-03
 
 ### Fixed

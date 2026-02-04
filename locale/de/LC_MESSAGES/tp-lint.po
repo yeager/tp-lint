@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: tp-lint 1.0.0\n"
-"Report-Msgid-Bugs-To: daniel@danielnylander.se\n"
-"POT-Creation-Date: 2026-02-03 08:00+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-03 09:39+0100\n"
 "PO-Revision-Date: 2026-02-03 08:30+0100\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -15,80 +15,162 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: tp_lint.py:144
+#, python-brace-format
 msgid "Error fetching team index: {error}"
-msgstr "Fehler beim Abrufen des Teamindexes: {error}"
+msgstr "Fehler beim Abrufen des Team-Index: {error}"
 
+#: tp_lint.py:160
+#, python-brace-format
 msgid "Language '{lang}' not found on Translation Project"
-msgstr "Sprache '{lang}' wurde im Translation Project nicht gefunden"
+msgstr "Sprache '{lang}' nicht auf Translation Project gefunden"
 
+#: tp_lint.py:162 tp_lint.py:165
+#, python-brace-format
 msgid "Error fetching team page: {error}"
 msgstr "Fehler beim Abrufen der Teamseite: {error}"
 
+#: tp_lint.py:184
+#, python-brace-format
 msgid "Error downloading {url}: {error}"
 msgstr "Fehler beim Herunterladen von {url}: {error}"
 
+#: tp_lint.py:220 tp_lint.py:244
 msgid "Error: l10n-lint not found. Please install l10n-lint first."
 msgstr "Fehler: l10n-lint nicht gefunden. Bitte installieren Sie zuerst l10n-lint."
+"Fehler: l10n-lint nicht gefunden. Bitte installieren Sie zuerst l10n-lint."
 
+#: tp_lint.py:259
 msgid "Lint PO files from the Translation Project (translationproject.org)"
-msgstr "PO-Dateien vom Translation Project (translationproject.org) pruefen"
+msgstr "PO-Dateien vom Translation Project (translationproject.org) prüfen"
 
+#: tp_lint.py:260
 msgid "Example: tp-lint sv"
 msgstr "Beispiel: tp-lint sv"
 
+#: tp_lint.py:266
 msgid "Language code to lint (e.g., sv, de, fr)"
-msgstr "Sprachcode zum Pruefen (z.B. sv, de, fr)"
+msgstr "Sprachcode zum Prüfen (z.B. sv, de, fr)"
 
+#: tp_lint.py:272
 msgid "List all available languages"
-msgstr "Alle verfuegbaren Sprachen auflisten"
+msgstr "Alle verfügbaren Sprachen auflisten"
 
+#: tp_lint.py:279
 msgid "Output format (default: text)"
 msgstr "Ausgabeformat (Standard: text)"
 
+#: tp_lint.py:285
 msgid "Treat warnings as errors"
 msgstr "Warnungen als Fehler behandeln"
 
+#: tp_lint.py:291
 msgid "Keep downloaded PO files (don't delete temp directory)"
-msgstr "Heruntergeladene PO-Dateien behalten (temporaeres Verzeichnis nicht loeschen)"
+msgstr "Heruntergeladene PO-Dateien behalten (temp-Verzeichnis nicht löschen)"
+"Heruntergeladene PO-Dateien behalten (temporaeres Verzeichnis nicht loeschen)"
 
+#: tp_lint.py:296
 msgid "Output directory for downloaded PO files (implies --keep)"
-msgstr "Ausgabeverzeichnis fuer heruntergeladene PO-Dateien (impliziert --keep)"
+msgstr "Ausgabeverzeichnis für heruntergeladene PO-Dateien (impliziert --keep)"
+"Ausgabeverzeichnis fuer heruntergeladene PO-Dateien (impliziert --keep)"
 
+#: tp_lint.py:303
 msgid "Only lint specific package(s) (can be repeated)"
-msgstr "Nur bestimmte Pakete pruefen (kann wiederholt werden)"
+msgstr "Nur bestimmte Pakete prüfen (kann wiederholt werden)"
 
+#: tp_lint.py:309
+msgid "Group results by translator"
+msgstr "Ergebnisse nach Übersetzer gruppieren"
+
+#: tp_lint.py:322
 msgid "Fetching languages from Translation Project..."
-msgstr "Sprachen vom Translation Project werden abgerufen..."
+msgstr "Sprachen vom Translation Project abrufen..."
 
+#: tp_lint.py:325
 msgid "Could not fetch language list"
 msgstr "Sprachliste konnte nicht abgerufen werden"
 
+#: tp_lint.py:329
+#, python-brace-format
 msgid "Available languages ({count}):"
-msgstr "Verfuegbare Sprachen ({count}):"
+msgstr "Verfügbare Sprachen ({count}):"
 
+#: tp_lint.py:343
+#, python-brace-format
 msgid "Fetching PO files for '{lang}'..."
-msgstr "PO-Dateien fuer '{lang}' werden abgerufen..."
+msgstr "PO-Dateien für '{lang}' abrufen..."
 
+#: tp_lint.py:347
+#, python-brace-format
 msgid "No PO files found for language '{lang}'"
-msgstr "Keine PO-Dateien fuer Sprache '{lang}' gefunden"
+msgstr "Keine PO-Dateien für Sprache '{lang}' gefunden"
 
+#: tp_lint.py:362
 msgid "No matching packages found"
 msgstr "Keine passenden Pakete gefunden"
 
+#: tp_lint.py:365
+#, python-brace-format
 msgid "Found {count} PO files"
 msgstr "{count} PO-Dateien gefunden"
 
+#: tp_lint.py:384
 msgid "Downloading PO files..."
 msgstr "PO-Dateien werden heruntergeladen..."
 
+#: tp_lint.py:391
+#, python-brace-format
+msgid "  [{current}/{total}] {filename}"
+msgstr "  [{current}/{total}] {filename}"
+
+#: tp_lint.py:403
+#, python-brace-format
 msgid "Downloaded {count} files"
 msgstr "{count} Dateien heruntergeladen"
 
+#: tp_lint.py:406
 msgid "No files to lint"
-msgstr "Keine Dateien zum Pruefen"
+msgstr "Keine Dateien zum Prüfen"
 
+#: tp_lint.py:411
 msgid "Running l10n-lint..."
-msgstr "l10n-lint wird ausgefuehrt..."
+msgstr "l10n-lint wird ausgeführt..."
 
+#: tp_lint.py:422
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: tp_lint.py:438
+msgid "Results by translator:"
+msgstr "Ergebnisse nach Übersetzer:"
+
+#: tp_lint.py:444
+#, python-brace-format
+msgid "   Files: {count}"
+msgstr "   Dateien: {count}"
+
+#: tp_lint.py:445
+#, python-brace-format
+msgid "   Errors: {count}"
+msgstr "   Fehler: {count}"
+
+#: tp_lint.py:446
+#, python-brace-format
+msgid "   Fuzzy: {count}"
+msgstr "   Fuzzy: {count}"
+
+#: tp_lint.py:447
+#, python-brace-format
+msgid "   Warnings: {count}"
+msgstr "   Warnungen: {count}"
+
+#: tp_lint.py:455
+#, python-brace-format
+msgid ""
+"Total: {files} files, {errors} errors, {fuzzy} fuzzy, {warnings} warnings"
+msgstr ""
+
+#: tp_lint.py:480
+#, python-brace-format
 msgid "PO files saved to: {path}"
-msgstr "PO-Dateien gespeichert unter: {path}"
+msgstr "PO-Dateien gespeichert in: {path}"
