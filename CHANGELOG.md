@@ -1,8 +1,17 @@
 # Changelog
 
-## [1.6.0] - 2026-02-04
+## [1.8.0] - 2026-02-05
+
+### Added
+- **Enhanced verbose mode** (`-V/--verbose`):
+  - Download timing per file with speed (KB/s)
+  - Total download size and average speed
+  - Total elapsed time tracking
+  - Network timing for API calls
 
 ### Changed
+- `download_po_file()` now returns size and timing info
+
 ## [1.7.0] - 2026-02-04
 
 ### Added

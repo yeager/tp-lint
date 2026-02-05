@@ -20,11 +20,12 @@ import re
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.7.0"
+__version__ = "1.8.0"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -825,19 +826,27 @@ def get_po_files_and_translators(lang_code):
     return parser.po_files, parser.translators
 
 
-def download_po_file(url, dest_dir):
-    """Download a PO file to the destination directory."""
+def download_po_file(url, dest_dir, verbose=False):
+    """Download a PO file to the destination directory.
+    
+    Returns:
+        tuple: (dest_path, size_bytes, elapsed_seconds) or (None, 0, 0) on error
+    """
+    import time as _time
     filename = url.split("/")[-1]
     dest_path = dest_dir / filename
     
     try:
+        start = _time.time()
         with urllib.request.urlopen(url, timeout=60) as resp:
             content = resp.read()
+        elapsed = _time.time() - start
         dest_path.write_bytes(content)
-        return dest_path
+        return dest_path, len(content), elapsed
     except Exception as e:
-        print(_("Error downloading {url}: {error}").format(url=url, error=e), file=sys.stderr)
-        return None
+        if verbose:
+            print(_("Error downloading {url}: {error}").format(url=url, error=e), file=sys.stderr)
+        return None, 0, 0
 
 
 def get_domain_from_filename(filename):
@@ -1075,9 +1084,16 @@ def main():
     
     # Setup verbose printing
     verbose = args.verbose
+    start_time = time.time()
+    
     def vprint(msg):
         if verbose:
             print(msg, file=sys.stderr)
+    
+    def vprint_elapsed():
+        """Print elapsed time."""
+        elapsed = time.time() - start_time
+        vprint(_("⏱️  Total elapsed time: {elapsed:.2f}s").format(elapsed=elapsed))
     
     vprint(_("🔧 tp-lint {version} starting...").format(version=__version__))
     
@@ -1210,7 +1226,11 @@ def main():
     print(_("Downloading PO files..."))
     vprint(_("   Output directory: {dir}").format(dir=output_dir))
     downloaded = []
+    total_bytes = 0
+    total_download_time = 0
     max_filename_len = 0
+    download_start = time.time()
+    
     for i, url in enumerate(po_urls, 1):
         filename = url.split("/")[-1]
         max_filename_len = max(max_filename_len, len(filename))
@@ -1225,17 +1245,30 @@ def main():
             )
             sys.stdout.write(f"\r\033[K{progress}")
             sys.stdout.flush()
-        path = download_po_file(url, output_dir)
+        path, size, elapsed = download_po_file(url, output_dir, verbose=verbose)
         if path:
             downloaded.append(path)
+            total_bytes += size
+            total_download_time += elapsed
             if verbose:
-                vprint(_("       Size: {size} bytes").format(size=path.stat().st_size))
+                speed = size / elapsed / 1024 if elapsed > 0 else 0
+                vprint(_("       Size: {size} bytes, {elapsed:.2f}s ({speed:.1f} KB/s)").format(
+                    size=size, elapsed=elapsed, speed=speed))
+    
+    download_elapsed = time.time() - download_start
     
     # Clear progress line and print completion
     if not verbose:
         sys.stdout.write("\r\033[K")
         sys.stdout.flush()
     print(_("Downloaded {count} files").format(count=len(downloaded)))
+    
+    # Verbose download summary
+    if verbose and downloaded:
+        avg_speed = total_bytes / total_download_time / 1024 if total_download_time > 0 else 0
+        vprint(_("   Total downloaded: {size:.1f} KB in {elapsed:.2f}s").format(
+            size=total_bytes / 1024, elapsed=download_elapsed))
+        vprint(_("   Average speed: {speed:.1f} KB/s").format(speed=avg_speed))
     
     if not downloaded:
         print(_("No files downloaded"), file=sys.stderr)
@@ -1329,6 +1362,7 @@ def main():
         print()
         print(_("PO files saved to: {path}").format(path=output_dir))
     
+    vprint_elapsed()
     return returncode
 
 
