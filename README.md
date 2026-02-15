@@ -193,6 +193,21 @@ This tool helps translation teams maintain quality by identifying common issues 
 - [l10n-lint](https://github.com/yeager/l10n-lint) – Lint localization files
 - [po-translate](https://github.com/yeager/po-translate) – Batch translate PO/TS files
 
+## 🌍 Contributing Translations
+
+This app is translated via Transifex. Help translate it into your language!
+
+**[→ Translate on Transifex](https://app.transifex.com/danielnylander/tp-lint/)**
+
+Currently supported: Swedish (sv). More languages welcome!
+
+### For Translators
+1. Create a free account at [Transifex](https://www.transifex.com)
+2. Join the [danielnylander](https://app.transifex.com/danielnylander/) organization
+3. Start translating!
+
+Translations are automatically synced via GitHub Actions.
+
 ## License
 
 GPL-3.0-or-later
