@@ -6,3 +6,9 @@ file_filter  = po/<lang>.po
 source_file  = po/tp-lint.pot
 source_lang  = en
 type         = PO
+
+[o:danielnylander:p:tp-lint:r:tp-lint-man]
+file_filter  = po/man/<lang>.po
+source_file  = po/man/tp-lint.1.pot
+source_lang  = en
+type         = PO
