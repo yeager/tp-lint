@@ -1,0 +1,68 @@
+.TH TP-LINT 1 "2026-02-15" "Daniel Nylander" "tp-lint Manual"
+.SH NAME
+tp-lint - Lint PO files from the Translation Project
+.SH SYNOPSIS
+.B tp-lint
+.RI [ OPTIONS ]
+.RI [ LANGUAGE ]
+.SH DESCRIPTION
+\fBtp-lint\fR fetches and lints PO translation files from the Translation Project (translationproject.org). It downloads all translations for a language team, runs quality checks via l10n-lint, provides translation coverage statistics per language and package, and supports multiple output formats.
+.SH OPTIONS
+.TP
+.I LANGUAGE
+Language code to lint (e.g., sv, de, fr).
+.TP
+.BR \-l ", " \-\-list
+List all available languages.
+.TP
+.BR \-s ", " \-\-stats " " \fI[LANG]\fR
+Show translation statistics (default: global).
+.TP
+.BR \-d ", " \-\-domain " " \fIPACKAGE\fR
+Show statistics for a specific package/domain.
+.TP
+.BR \-n ", " \-\-top " " \fIN\fR
+Number of top entries to show (default: 15).
+.TP
+.BR \-r ", " \-\-report " " \fI[LANG]\fR
+Generate a coverage report.
+.TP
+.BR \-\-report\-format " " \fIFORMAT\fR
+Report format: markdown, html (default: markdown).
+.TP
+.BR \-\-report\-output " " \fIFILE\fR
+Save report to file.
+.TP
+.BR \-f ", " \-\-format " " \fIFORMAT\fR
+Output format: text, json, github (default: text).
+.TP
+.B \-\-strict
+Treat warnings as errors.
+.TP
+.BR \-k ", " \-\-keep
+Keep downloaded PO files.
+.TP
+.BR \-o ", " \-\-output " " \fIDIR\fR
+Output directory for downloaded PO files (implies \-\-keep).
+.SH EXAMPLES
+.nf
+tp-lint sv
+tp-lint --list
+tp-lint --stats sv
+tp-lint --stats global --top 20
+tp-lint -d coreutils sv
+tp-lint --report sv --report-format html --report-output report.html
+.fi
+.SH FILES
+.TP
+.I ~/.config/tp-lint/
+Configuration files.
+.TP
+.I ~/.cache/tp-lint/
+Cached data.
+.SH BUGS
+Report bugs at https://github.com/yeager/tp-lint/issues
+.SH AUTHOR
+Daniel Nylander <daniel@danielnylander.se>
+.SH SEE ALSO
+Project homepage: https://github.com/yeager/tp-lint
