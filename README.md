@@ -178,6 +178,10 @@ tp-lint sv --format github --strict
 - Python 3.8+
 - [l10n-lint](https://github.com/yeager/l10n-lint) (required)
 
+## Translations
+
+Help translate tp-lint on [Transifex](https://app.transifex.com/danielnylander/tp-lint/).
+
 ## Translation Project
 
 The [Translation Project](https://translationproject.org) is a coordination hub for free software translation teams. It hosts PO files for hundreds of packages in 80+ languages.
