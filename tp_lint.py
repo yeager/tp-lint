@@ -25,7 +25,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-__version__ = "1.8.1"
+__version__ = "1.8.2"
 
 # Translation setup
 DOMAIN = "tp-lint"
@@ -1020,6 +1020,18 @@ def main():
     )
     
     parser.add_argument(
+        "-j", "--json",
+        action="store_true",
+        help=_("JSON output (shorthand for --format json)")
+    )
+    
+    parser.add_argument(
+        "-q", "--quiet",
+        action="store_true",
+        help=_("Suppress non-essential output (only errors)")
+    )
+    
+    parser.add_argument(
         "-f", "--format",
         choices=["text", "json", "github"],
         default="text",
@@ -1082,6 +1094,10 @@ def main():
     )
     
     args = parser.parse_args()
+    
+    # --json shorthand
+    if args.json:
+        args.format = "json"
     
     # Setup verbose printing
     verbose = args.verbose
@@ -1334,7 +1350,7 @@ def main():
             files=len(downloaded), errors=total_errors, fuzzy=total_fuzzy, warnings=total_warnings
         ))
         
-        returncode = 1 if total_errors > 0 or (args.strict and total_warnings > 0) else 0
+        returncode = 2 if total_errors > 0 else (1 if total_warnings > 0 or (args.strict and total_fuzzy > 0) else 0)
     elif not args.no_lint:
         # Standard mode - run on whole directory
         stdout, stderr, returncode = run_l10n_lint(
