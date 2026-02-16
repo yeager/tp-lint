@@ -1,15 +1,20 @@
-# Swedish translations for PACKAGE package
-# Copyright (C) 2026 Free Software Foundation, Inc.
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
 # This file is distributed under the same license as the PACKAGE package.
-# Automatically generated, 2026.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# Translators:
+# Daniel Nylander <po@danielnylander.se>, 2026
+#
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2026-02-15 15:39+0100\n"
-"PO-Revision-Date: 2026-02-15 15:39+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-02-15 14:39+0000\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>, 2026\n"
+"Language-Team: Swedish (https://app.transifex.com/danielnylander/"
+"teams/304710/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,13 +31,13 @@ msgstr ""
 #: data/man/tp-lint.1:1
 #, no-wrap
 msgid "2026-02-15"
-msgstr ""
+msgstr "2026-02-15"
 
 #. type: TH
 #: data/man/tp-lint.1:1
 #, no-wrap
 msgid "Daniel Nylander"
-msgstr ""
+msgstr "Daniel Nylander"
 
 #. type: TH
 #: data/man/tp-lint.1:1
@@ -44,7 +49,7 @@ msgstr ""
 #: data/man/tp-lint.1:2
 #, no-wrap
 msgid "NAME"
-msgstr ""
+msgstr "NAMN"
 
 #. type: Plain text
 #: data/man/tp-lint.1:4
@@ -55,7 +60,7 @@ msgstr ""
 #: data/man/tp-lint.1:4
 #, no-wrap
 msgid "SYNOPSIS"
-msgstr ""
+msgstr "SYNOPSIS"
 
 #. type: Plain text
 #: data/man/tp-lint.1:8
@@ -66,7 +71,7 @@ msgstr ""
 #: data/man/tp-lint.1:8
 #, no-wrap
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "BESKRIVNING"
 
 #. type: Plain text
 #: data/man/tp-lint.1:10
@@ -82,7 +87,7 @@ msgstr ""
 #: data/man/tp-lint.1:10
 #, no-wrap
 msgid "OPTIONS"
-msgstr ""
+msgstr "FLAGGOR"
 
 #. type: TP
 #: data/man/tp-lint.1:11
@@ -170,13 +175,13 @@ msgstr ""
 #. type: Plain text
 #: data/man/tp-lint.1:35
 msgid "Save report to file."
-msgstr ""
+msgstr "Spara rapport till fil."
 
 #. type: TP
 #: data/man/tp-lint.1:35
 #, no-wrap
 msgid "B<-f>, B<--format> I<FORMAT>"
-msgstr ""
+msgstr "B<-f>, B<--format> I<FORMAT>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:38
@@ -187,12 +192,12 @@ msgstr ""
 #: data/man/tp-lint.1:38
 #, no-wrap
 msgid "B<--strict>"
-msgstr ""
+msgstr "B<--strict>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:41
 msgid "Treat warnings as errors."
-msgstr ""
+msgstr "Behandla varningar som fel."
 
 #. type: TP
 #: data/man/tp-lint.1:41
@@ -220,7 +225,7 @@ msgstr ""
 #: data/man/tp-lint.1:47
 #, no-wrap
 msgid "EXAMPLES"
-msgstr ""
+msgstr "EXEMPEL"
 
 #. type: Plain text
 #: data/man/tp-lint.1:55
@@ -238,7 +243,7 @@ msgstr ""
 #: data/man/tp-lint.1:56
 #, no-wrap
 msgid "FILES"
-msgstr ""
+msgstr "FILER"
 
 #. type: TP
 #: data/man/tp-lint.1:57
@@ -249,7 +254,7 @@ msgstr ""
 #. type: Plain text
 #: data/man/tp-lint.1:60
 msgid "Configuration files."
-msgstr ""
+msgstr "Konfigurationsfiler."
 
 #. type: TP
 #: data/man/tp-lint.1:60
@@ -260,13 +265,13 @@ msgstr ""
 #. type: Plain text
 #: data/man/tp-lint.1:63
 msgid "Cached data."
-msgstr ""
+msgstr "Cachat data."
 
 #. type: SH
 #: data/man/tp-lint.1:63
 #, no-wrap
 msgid "BUGS"
-msgstr ""
+msgstr "BUGGAR"
 
 #. type: Plain text
 #: data/man/tp-lint.1:65
@@ -277,18 +282,18 @@ msgstr ""
 #: data/man/tp-lint.1:65
 #, no-wrap
 msgid "AUTHOR"
-msgstr ""
+msgstr "UPPHOVSPERSON"
 
 #. type: Plain text
 #: data/man/tp-lint.1:67
 msgid "Daniel Nylander E<lt>daniel@danielnylander.seE<gt>"
-msgstr ""
+msgstr "Daniel Nylander E<lt>daniel@danielnylander.seE<gt>"
 
 #. type: SH
 #: data/man/tp-lint.1:67
 #, no-wrap
 msgid "SEE ALSO"
-msgstr ""
+msgstr "SE ÄVEN"
 
 #. type: Plain text
 #: data/man/tp-lint.1:68
