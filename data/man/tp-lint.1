@@ -1,68 +1,172 @@
-.TH TP-LINT 1 "2026-02-15" "Daniel Nylander" "tp-lint Manual"
+.TH TP-LINT 1 "February 2026" "tp-lint 1.8.3" "User Commands"
 .SH NAME
-tp-lint - Lint PO files from the Translation Project
+tp\-lint \- lint translations from the Translation Project (TP)
 .SH SYNOPSIS
-.B tp-lint
-.RI [ OPTIONS ]
-.RI [ LANGUAGE ]
+.B tp\-lint
+[\fILANGUAGE\fR] [\fIOPTIONS\fR]
 .SH DESCRIPTION
-\fBtp-lint\fR fetches and lints PO translation files from the Translation Project (translationproject.org). It downloads all translations for a language team, runs quality checks via l10n-lint, provides translation coverage statistics per language and package, and supports multiple output formats.
-.SH OPTIONS
+\fBtp\-lint\fR downloads and lints PO files from the GNU Translation
+Project (translationproject.org). It fetches translation files for a
+given language, runs l10n\-lint quality checks, and provides statistics
+and reports.
+.PP
+The tool downloads PO files to a temporary directory (or a specified
+output directory), then analyzes them using l10n\-lint's checking engine.
+Results can be grouped by package or by translator.
+.PP
+Exit codes: 0 = no errors, 1 = errors found, 2 = usage error.
+.SH POSITIONAL ARGUMENTS
 .TP
 .I LANGUAGE
-Language code to lint (e.g., sv, de, fr).
+Language code to lint (e.g., \fBsv\fR, \fBde\fR, \fBfr\fR). If omitted,
+some options like \fB\-\-list\fR and \fB\-\-stats\fR work without it.
+.SH OPTIONS
 .TP
-.BR \-l ", " \-\-list
-List all available languages.
+\fB\-l\fR, \fB\-\-list\fR
+List all available languages on the Translation Project. Displays
+language codes and names.
 .TP
-.BR \-s ", " \-\-stats " " \fI[LANG]\fR
-Show translation statistics (default: global).
+\fB\-s\fR, \fB\-\-stats\fR [\fILANG\fR]
+Show translation statistics. Without a language argument, shows global
+statistics across all languages. With a language code, shows detailed
+statistics for that language including number of translated packages,
+completion percentages, and top translators.
 .TP
-.BR \-d ", " \-\-domain " " \fIPACKAGE\fR
-Show statistics for a specific package/domain.
+\fB\-d\fR, \fB\-\-domain\fR \fIPACKAGE\fR
+Show statistics for a specific package/domain across all languages.
+Example: \fB\-\-domain coreutils\fR shows translation status for GNU
+coreutils in all languages.
 .TP
-.BR \-n ", " \-\-top " " \fIN\fR
-Number of top entries to show (default: 15).
+\fB\-n\fR, \fB\-\-top\fR \fIN\fR
+Number of items to show in top lists (most translated packages, top
+translators, etc.). Default: 15.
 .TP
-.BR \-r ", " \-\-report " " \fI[LANG]\fR
-Generate a coverage report.
+\fB\-r\fR, \fB\-\-report\fR [\fILANG\fR]
+Generate a detailed report. Without a language argument, generates a
+global report. With a language code, generates a language\-specific
+report with per\-package quality scores.
 .TP
-.BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown, html (default: markdown).
+\fB\-\-report\-format\fR \fIFORMAT\fR
+Report output format. Choices: \fBmarkdown\fR (default), \fBhtml\fR.
 .TP
-.BR \-\-report\-output " " \fIFILE\fR
-Save report to file.
+\fB\-\-report\-output\fR \fIFILE\fR
+Save report to a file instead of printing to stdout.
 .TP
-.BR \-f ", " \-\-format " " \fIFORMAT\fR
-Output format: text, json, github (default: text).
+\fB\-j\fR, \fB\-\-json\fR
+Output results as JSON. Shorthand for \fB\-\-format json\fR.
 .TP
-.B \-\-strict
-Treat warnings as errors.
+\fB\-q\fR, \fB\-\-quiet\fR
+Suppress non\-essential output. Only errors are shown.
 .TP
-.BR \-k ", " \-\-keep
-Keep downloaded PO files.
+\fB\-f\fR, \fB\-\-format\fR \fIFORMAT\fR
+Output format. Choices: \fBtext\fR (default, human\-readable),
+\fBjson\fR (structured output), \fBgithub\fR (GitHub Actions annotations).
 .TP
-.BR \-o ", " \-\-output " " \fIDIR\fR
-Output directory for downloaded PO files (implies \-\-keep).
+\fB\-\-strict\fR
+Treat warnings as errors. Useful for CI pipelines.
+.TP
+\fB\-k\fR, \fB\-\-keep\fR
+Keep downloaded PO files after linting. By default, the temporary
+directory is deleted when done.
+.TP
+\fB\-o\fR, \fB\-\-output\fR \fIDIR\fR
+Output directory for downloaded PO files. Implies \fB\-\-keep\fR.
+Useful for archiving or further manual review.
+.TP
+\fB\-p\fR, \fB\-\-package\fR \fIPACKAGE\fR
+Only lint specific package(s). Can be specified multiple times:
+\fB\-p coreutils \-p bash\fR. Other packages are skipped.
+.TP
+\fB\-\-no\-lint\fR
+Download PO files only, do not run lint checks. Useful with \fB\-o\fR
+to just fetch files for manual review.
+.TP
+\fB\-t\fR, \fB\-\-by\-translator\fR
+Group lint results by translator (from the PO file Last\-Translator
+header) instead of by package. Useful for identifying translators
+who may need guidance.
+.TP
+\fB\-V\fR, \fB\-\-verbose\fR
+Show detailed progress including each file being downloaded and checked.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Show help message and exit.
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+Show version number and exit.
+.SH EXIT STATUS
+.TP
+.B 0
+No lint errors found.
+.TP
+.B 1
+Lint errors found (or warnings with \fB\-\-strict\fR).
+.TP
+.B 2
+Usage error or download failure.
 .SH EXAMPLES
+Lint all Swedish translations from the Translation Project:
+.PP
+.RS
 .nf
-tp-lint sv
-tp-lint --list
-tp-lint --stats sv
-tp-lint --stats global --top 20
-tp-lint -d coreutils sv
-tp-lint --report sv --report-format html --report-output report.html
+tp\-lint sv
 .fi
-.SH FILES
-.TP
-.I ~/.config/tp-lint/
-Configuration files.
-.TP
-.I ~/.cache/tp-lint/
-Cached data.
-.SH BUGS
-Report bugs at https://github.com/yeager/tp-lint/issues
+.RE
+.PP
+List all available languages:
+.PP
+.RS
+.nf
+tp\-lint \-\-list
+.fi
+.RE
+.PP
+Show Swedish translation statistics:
+.PP
+.RS
+.nf
+tp\-lint \-\-stats sv
+.fi
+.RE
+.PP
+Lint only coreutils and bash, keep the files:
+.PP
+.RS
+.nf
+tp\-lint sv \-p coreutils \-p bash \-\-keep
+.fi
+.RE
+.PP
+Generate an HTML report:
+.PP
+.RS
+.nf
+tp\-lint sv \-\-report \-\-report\-format html \-\-report\-output report.html
+.fi
+.RE
+.PP
+Group results by translator:
+.PP
+.RS
+.nf
+tp\-lint sv \-\-by\-translator
+.fi
+.RE
+.PP
+Download files without linting:
+.PP
+.RS
+.nf
+tp\-lint sv \-\-no\-lint \-o /tmp/tp\-sv/
+.fi
+.RE
+.SH SEE ALSO
+.BR l10n\-lint (1),
+.BR po\-translate (1),
+.BR po\-diff (1)
 .SH AUTHOR
 Daniel Nylander <daniel@danielnylander.se>
-.SH SEE ALSO
-Project homepage: https://github.com/yeager/tp-lint
+.SH BUGS
+Report bugs at: https://github.com/yeager/tp\-lint/issues
+.SH COPYRIGHT
+Copyright \(co 2026 Daniel Nylander. License: GPL\-3.0\-or\-later.
