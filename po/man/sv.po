@@ -25,7 +25,7 @@ msgstr ""
 #: data/man/tp-lint.1:1
 #, no-wrap
 msgid "TP-LINT"
-msgstr ""
+msgstr "TP-LINT"
 
 #. type: TH
 #: data/man/tp-lint.1:1
@@ -43,7 +43,7 @@ msgstr "Daniel Nylander"
 #: data/man/tp-lint.1:1
 #, no-wrap
 msgid "tp-lint Manual"
-msgstr ""
+msgstr "Manual för tp-lint"
 
 #. type: SH
 #: data/man/tp-lint.1:2
@@ -54,7 +54,7 @@ msgstr "NAMN"
 #. type: Plain text
 #: data/man/tp-lint.1:4
 msgid "tp-lint - Lint PO files from the Translation Project"
-msgstr ""
+msgstr "tp-lint - Linta PO-filer från Translation Project"
 
 #. type: SH
 #: data/man/tp-lint.1:4
@@ -65,7 +65,7 @@ msgstr "SYNOPSIS"
 #. type: Plain text
 #: data/man/tp-lint.1:8
 msgid "B<tp-lint> [I<OPTIONS>] [I<LANGUAGE>]"
-msgstr ""
+msgstr "B<tp-lint> [I<OPTIONS>] [I<LANGUAGE>]"
 
 #. type: SH
 #: data/man/tp-lint.1:8
@@ -82,6 +82,11 @@ msgid ""
 "coverage statistics per language and package, and supports multiple output "
 "formats."
 msgstr ""
+"B<tp-lint> hämtar och lintar PO-översättningsfiler från Translation Project "
+"(translationproject.org). Det hämtar ner alla översättningar för ett "
+"språkteam, kör kvalitetskontroller via l10n-lint, tillhandahåller statistik "
+"över översättningars täckning per språk och paket, och stöder flera "
+"utdataformat."
 
 #. type: SH
 #: data/man/tp-lint.1:10
@@ -93,84 +98,84 @@ msgstr "FLAGGOR"
 #: data/man/tp-lint.1:11
 #, no-wrap
 msgid "I<LANGUAGE>"
-msgstr ""
+msgstr "I<LANGUAGE>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:14
 msgid "Language code to lint (e.g., sv, de, fr)."
-msgstr ""
+msgstr "Språkkod för lint (t.ex., sv, de, fr)."
 
 #. type: TP
 #: data/man/tp-lint.1:14
 #, no-wrap
 msgid "B<-l>, B<--list>"
-msgstr ""
+msgstr "B<-l>, B<--list>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:17
 msgid "List all available languages."
-msgstr ""
+msgstr "Lista alla tillgängliga språk."
 
 #. type: TP
 #: data/man/tp-lint.1:17
 #, no-wrap
 msgid "B<-s>, B<--stats> I<[LANG]>"
-msgstr ""
+msgstr "B<-s>, B<--stats> I<[LANG]>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:20
 msgid "Show translation statistics (default: global)."
-msgstr ""
+msgstr "Visa översättningsstatistik (standard: global)."
 
 #. type: TP
 #: data/man/tp-lint.1:20
 #, no-wrap
 msgid "B<-d>, B<--domain> I<PACKAGE>"
-msgstr ""
+msgstr "B<-d>, B<--domain> I<PACKAGE>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:23
 msgid "Show statistics for a specific package/domain."
-msgstr ""
+msgstr "Visa statistik för en specifikt paket eller domän."
 
 #. type: TP
 #: data/man/tp-lint.1:23
 #, no-wrap
 msgid "B<-n>, B<--top> I<N>"
-msgstr ""
+msgstr "B<-n>, B<--top> I<N>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:26
 msgid "Number of top entries to show (default: 15)."
-msgstr ""
+msgstr "Antal toppresultat som ska visas (standard: 15)."
 
 #. type: TP
 #: data/man/tp-lint.1:26
 #, no-wrap
 msgid "B<-r>, B<--report> I<[LANG]>"
-msgstr ""
+msgstr "B<-r>, B<--report> I<[LANG]>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:29
 msgid "Generate a coverage report."
-msgstr ""
+msgstr "Generera en täckningsrapport."
 
 #. type: TP
 #: data/man/tp-lint.1:29
 #, no-wrap
 msgid "B<--report-format> I<FORMAT>"
-msgstr ""
+msgstr "B<--report-format> I<FORMAT>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:32
 msgid "Report format: markdown, html (default: markdown)."
-msgstr ""
+msgstr "Rapportformat: markdown, html (standard: markdown)."
 
 #. type: TP
 #: data/man/tp-lint.1:32
 #, no-wrap
 msgid "B<--report-output> I<FILE>"
-msgstr ""
+msgstr "B<--report-output> I<FILE>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:35
@@ -186,7 +191,7 @@ msgstr "B<-f>, B<--format> I<FORMAT>"
 #. type: Plain text
 #: data/man/tp-lint.1:38
 msgid "Output format: text, json, github (default: text)."
-msgstr ""
+msgstr "Utdataformat: text, json, github (standard: text)."
 
 #. type: TP
 #: data/man/tp-lint.1:38
@@ -203,23 +208,23 @@ msgstr "Behandla varningar som fel."
 #: data/man/tp-lint.1:41
 #, no-wrap
 msgid "B<-k>, B<--keep>"
-msgstr ""
+msgstr "B<-k>, B<--keep>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:44
 msgid "Keep downloaded PO files."
-msgstr ""
+msgstr "Behåll hämtade PO-filer."
 
 #. type: TP
 #: data/man/tp-lint.1:44
 #, no-wrap
 msgid "B<-o>, B<--output> I<DIR>"
-msgstr ""
+msgstr "B<-o>, B<--output> I<DIR>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:47
 msgid "Output directory for downloaded PO files (implies --keep)."
-msgstr ""
+msgstr "Utdatakatalog för hämtade PO-filer (medför --keep)."
 
 #. type: SH
 #: data/man/tp-lint.1:47
@@ -238,6 +243,12 @@ msgid ""
 "tp-lint -d coreutils sv\n"
 "tp-lint --report sv --report-format html --report-output report.html\n"
 msgstr ""
+"tp-lint sv\n"
+"tp-lint --list\n"
+"tp-lint --stats sv\n"
+"tp-lint --stats global --top 20\n"
+"tp-lint -d coreutils sv\n"
+"tp-lint --report sv --report-format html --report-output rapport.html\n"
 
 #. type: SH
 #: data/man/tp-lint.1:56
@@ -249,7 +260,7 @@ msgstr "FILER"
 #: data/man/tp-lint.1:57
 #, no-wrap
 msgid "I<~/.config/tp-lint/>"
-msgstr ""
+msgstr "I<~/.config/tp-lint/>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:60
@@ -260,7 +271,7 @@ msgstr "Konfigurationsfiler."
 #: data/man/tp-lint.1:60
 #, no-wrap
 msgid "I<~/.cache/tp-lint/>"
-msgstr ""
+msgstr "I<~/.cache/tp-lint/>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:63
@@ -276,7 +287,7 @@ msgstr "BUGGAR"
 #. type: Plain text
 #: data/man/tp-lint.1:65
 msgid "Report bugs at https://github.com/yeager/tp-lint/issues"
-msgstr ""
+msgstr "Rapportera buggar på https://github.com/yeager/tp-lint/issues"
 
 #. type: SH
 #: data/man/tp-lint.1:65
@@ -298,4 +309,4 @@ msgstr "SE ÄVEN"
 #. type: Plain text
 #: data/man/tp-lint.1:68
 msgid "Project homepage: https://github.com/yeager/tp-lint"
-msgstr ""
+msgstr "Projektets webbsida: https://github.com/yeager/tp-lint"
