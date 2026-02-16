@@ -19,97 +19,101 @@ jobs:
 
       - name: Get version
         id: version
-        run: echo "version=$(grep -oP '__version__ = \"\K[^\"]+' tp_lint.py)" >> $GITHUB_OUTPUT
-
-      - name: Setup RPM build
-        run: |
-          mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
-          VERSION=${{ steps.version.outputs.version }}
-          PKG=tp-lint-$VERSION
-          mkdir -p $PKG/data/man
-          mkdir -p $PKG/man
-          cp tp_lint.py $PKG/
-          cp data/man/tp-lint.1 $PKG/data/man/
-          # Copy translated man pages
-          for lang_dir in man/*/; do
-            lang=$(basename "$lang_dir")
-            mkdir -p "$PKG/man/$lang"
-            cp "$lang_dir/tp-lint.1" "$PKG/man/$lang/" 2>/dev/null || true
-          done
-          cp LICENSE $PKG/
-          if [ -d locale ]; then
-            cp -r locale $PKG/
-          fi
-          tar czf ~/rpmbuild/SOURCES/tp-lint-$VERSION.tar.gz $PKG
-
-      - name: Create spec file
-        run: |
-          VERSION=${{ steps.version.outputs.version }}
-
-          # Build translated man page install commands and file list
-          MAN_INSTALL=""
-          MAN_FILES=""
-          for lang_dir in man/*/; do
-            lang=$(basename "$lang_dir")
-            [ -f "$lang_dir/tp-lint.1" ] || continue
-            MAN_INSTALL="${MAN_INSTALL}
-          install -Dm644 man/$lang/tp-lint.1 %{buildroot}%{_mandir}/$lang/man1/tp-lint.1"
-            MAN_FILES="${MAN_FILES}
-          %{_mandir}/$lang/man1/tp-lint.1*"
-          done
-
-          cat > ~/rpmbuild/SPECS/tp-lint.spec << SPEC
-Name:           tp-lint
-Version:        $VERSION
-Release:        1
-Summary:        Lint PO files from the Translation Project
-License:        GPL-3.0-or-later
-URL:            https://github.com/yeager/tp-lint
-Source0:        %{name}-%{version}.tar.gz
-BuildArch:      noarch
-Requires:       python3 >= 3.9
-
-%description
-tp-lint fetches and lints PO files from the Translation Project (translationproject.org),
-checking for common translation issues.
-
-%prep
-%setup -q
-
-%install
-mkdir -p %{buildroot}%{_datadir}/tp-lint
-cp tp_lint.py %{buildroot}%{_datadir}/tp-lint/
-mkdir -p %{buildroot}%{_bindir}
-cat > %{buildroot}%{_bindir}/tp-lint << 'WRAPPER'
-#!/bin/bash
-exec python3 %{_datadir}/tp-lint/tp_lint.py "\$@"
-WRAPPER
-chmod 755 %{buildroot}%{_bindir}/tp-lint
-install -Dm644 data/man/tp-lint.1 %{buildroot}%{_mandir}/man1/tp-lint.1
-${MAN_INSTALL}
-
-if [ -d locale ]; then
-  for mo in locale/*/LC_MESSAGES/*.mo; do
-    [ -f "\$mo" ] || continue
-    lang=\$(echo "\$mo" | cut -d/ -f2)
-    install -Dm644 "\$mo" "%{buildroot}%{_datadir}/locale/\$lang/LC_MESSAGES/tp-lint.mo"
-  done
-fi
-
-%files
-%license LICENSE
-%{_bindir}/tp-lint
-%{_datadir}/tp-lint/
-%{_mandir}/man1/tp-lint.1*
-${MAN_FILES}
-
-%changelog
-* Mon Feb 16 2026 Daniel Nylander <daniel@danielnylander.se> - $VERSION-1
-- RPM package
-SPEC
+        run: echo "version=$(grep -oP '__version__ = "\K[^"]+' tp_lint.py)" >> $GITHUB_OUTPUT
 
       - name: Build RPM
-        run: rpmbuild -ba ~/rpmbuild/SPECS/tp-lint.spec
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        shell: python3 {0}
+        run: |
+          import os, subprocess, textwrap, datetime, glob
+          version = os.environ["VERSION"]
+          pkg = f"tp-lint-{version}"
+          home = os.path.expanduser("~")
+
+          for d in ["BUILD","RPMS","SOURCES","SPECS","SRPMS"]:
+              os.makedirs(f"{home}/rpmbuild/{d}", exist_ok=True)
+
+          os.makedirs(f"{pkg}/data/man", exist_ok=True)
+          subprocess.run(f"cp tp_lint.py {pkg}/", shell=True, check=True)
+          subprocess.run(f"cp data/man/tp-lint.1 {pkg}/data/man/", shell=True, check=True)
+          subprocess.run(f"cp LICENSE {pkg}/", shell=True, check=True)
+          subprocess.run(f"test -d locale && cp -r locale {pkg}/ || true", shell=True, check=True)
+
+          # Copy translated man pages
+          for lang_dir in sorted(glob.glob("man/*/")):
+              lang = os.path.basename(lang_dir.rstrip("/"))
+              man_file = os.path.join(lang_dir, "tp-lint.1")
+              if os.path.isfile(man_file):
+                  dest = f"{pkg}/man/{lang}"
+                  os.makedirs(dest, exist_ok=True)
+                  subprocess.run(f"cp {man_file} {dest}/", shell=True, check=True)
+
+          subprocess.run(f"tar czf {home}/rpmbuild/SOURCES/tp-lint-{version}.tar.gz {pkg}", shell=True, check=True)
+
+          # Build man page install/files lines
+          man_install_lines = ""
+          man_files_lines = ""
+          for lang_dir in sorted(glob.glob("man/*/")):
+              lang = os.path.basename(lang_dir.rstrip("/"))
+              if os.path.isfile(os.path.join(lang_dir, "tp-lint.1")):
+                  man_install_lines += f"\ninstall -Dm644 man/{lang}/tp-lint.1 %{{buildroot}}%{{_mandir}}/{lang}/man1/tp-lint.1"
+                  man_files_lines += f"\n%{{_mandir}}/{lang}/man1/tp-lint.1*"
+
+          today = datetime.datetime.now().strftime("%a %b %d %Y")
+          spec = textwrap.dedent(f"""\
+          Name:           tp-lint
+          Version:        {version}
+          Release:        1
+          Summary:        Lint PO files from the Translation Project
+          License:        GPL-3.0-or-later
+          URL:            https://github.com/yeager/tp-lint
+          Source0:        %{{name}}-%{{version}}.tar.gz
+          BuildArch:      noarch
+          Requires:       python3 >= 3.9
+
+          %description
+          tp-lint fetches and lints PO files from the Translation Project (translationproject.org),
+          checking for common translation issues.
+
+          %prep
+          %setup -q
+
+          %install
+          mkdir -p %{{buildroot}}%{{_datadir}}/tp-lint
+          cp tp_lint.py %{{buildroot}}%{{_datadir}}/tp-lint/
+          mkdir -p %{{buildroot}}%{{_bindir}}
+          cat > %{{buildroot}}%{{_bindir}}/tp-lint << 'WRAPPER'
+          #!/bin/bash
+          exec python3 %{{_datadir}}/tp-lint/tp_lint.py "$@"
+          WRAPPER
+          chmod 755 %{{buildroot}}%{{_bindir}}/tp-lint
+          install -Dm644 data/man/tp-lint.1 %{{buildroot}}%{{_mandir}}/man1/tp-lint.1
+          {man_install_lines}
+
+          if [ -d locale ]; then
+            for mo in locale/*/LC_MESSAGES/*.mo; do
+              [ -f "$mo" ] || continue
+              lang=$(echo "$mo" | cut -d/ -f2)
+              install -Dm644 "$mo" "%{{buildroot}}%{{_datadir}}/locale/$lang/LC_MESSAGES/tp-lint.mo"
+            done
+          fi
+
+          %files
+          %license LICENSE
+          %{{_bindir}}/tp-lint
+          %{{_datadir}}/tp-lint/
+          %{{_mandir}}/man1/tp-lint.1*
+          {man_files_lines}
+
+          %changelog
+          * {today} Daniel Nylander <daniel@danielnylander.se> - {version}-1
+          - RPM package
+          """)
+          with open(f"{home}/rpmbuild/SPECS/tp-lint.spec", "w") as f:
+              f.write(spec)
+
+          subprocess.run(["rpmbuild", "-ba", f"{home}/rpmbuild/SPECS/tp-lint.spec"], check=True)
 
       - name: Upload RPM to release
         if: github.event_name == 'release'
