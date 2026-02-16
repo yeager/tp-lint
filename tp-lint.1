@@ -16,29 +16,57 @@ Show help message and exit.
 .BR \-v ", " \-\-version
 Show version number and exit.
 .TP
-.BR \-\-stats " " [\fILANG\fR]
-Show translation statistics. Without LANG shows global stats.
+.BR \-l ", " \-\-list
+List all available languages in the Translation Project matrix.
 .TP
-.BR \-\-domain " " \fIPKG\fR
-Show statistics for specific package/domain.
+.BR \-s ", " \-\-stats
+Show comprehensive translation statistics for the specified language
+or global statistics if no language is provided.
 .TP
-.BR \-\-top " " \fIN\fR
-Number of items in top/bottom lists (default: 10).
+.BR \-d " " \fIDOMAIN\fR ", " \-\-domain " " \fIDOMAIN\fR
+Filter results to show statistics for a specific package/domain only.
 .TP
-.BR \-\-report " " [\fILANG\fR]
-Generate translation status report.
+.BR \-n " " \fIN\fR ", " \-\-top " " \fIN\fR
+Number of items to show in top/bottom ranking lists (default: 10).
+.TP
+.BR \-r ", " \-\-report
+Generate a comprehensive translation status report.
 .TP
 .BR \-\-report\-format " " \fIFORMAT\fR
-Report format: markdown (default), html
+Report output format: markdown (default), html, text.
 .TP
 .BR \-\-report\-output " " \fIFILE\fR
-Save report to file instead of stdout.
+Save generated report to the specified file instead of stdout.
 .TP
-.BR \-\-format " " \fIFORMAT\fR
-Output format: text (default), json
+.BR \-j ", " \-\-json
+Output all results in JSON format for programmatic consumption.
 .TP
-.BR \-\-refresh
-Force refresh of cached TP matrix data.
+.BR \-q ", " \-\-quiet
+Suppress non-essential output, showing only key results and errors.
+.TP
+.BR \-f " " \fIFORMAT\fR ", " \-\-format " " \fIFORMAT\fR
+Output format: text (default), json, csv, tsv.
+.TP
+.BR \-\-strict
+Treat warnings as errors and exit with non-zero status code.
+.TP
+.BR \-k ", " \-\-keep
+Keep temporary files and cached data after processing.
+.TP
+.BR \-o " " \fIFILE\fR ", " \-\-output " " \fIFILE\fR
+Save all output to the specified file instead of stdout.
+.TP
+.BR \-p " " \fIPACKAGE\fR ", " \-\-package " " \fIPACKAGE\fR
+Focus analysis on a specific package or set of packages.
+.TP
+.BR \-\-no\-lint
+Skip linting checks and show only statistical information.
+.TP
+.BR \-t ", " \-\-by\-translator
+Group and sort results by translator instead of by package.
+.TP
+.BR \-V ", " \-\-verbose
+Show detailed progress information, timing, and debug output.
 .SH EXIT STATUS
 .TP
 .B 0
