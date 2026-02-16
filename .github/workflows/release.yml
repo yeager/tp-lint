@@ -1,0 +1,91 @@
+name: Build .deb
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get version
+        id: version
+        run: echo "version=$(grep -oP '__version__ = "\K[^"]+' tp_lint.py)" >> $GITHUB_OUTPUT
+
+      - name: Build .deb
+        run: |
+          PKG=tp-lint
+          VER=${{ steps.version.outputs.version }}
+          ROOT=pkg-deb/${PKG}_${VER}-1_all
+          mkdir -p ${ROOT}/DEBIAN
+          mkdir -p ${ROOT}/usr/bin
+          mkdir -p ${ROOT}/usr/share/${PKG}
+          mkdir -p ${ROOT}/usr/share/man/man1
+
+          cp tp_lint.py ${ROOT}/usr/share/${PKG}/
+          cat > ${ROOT}/usr/bin/${PKG} << 'WRAPPER'
+          #!/bin/bash
+          exec python3 /usr/share/tp-lint/tp_lint.py "$@"
+          WRAPPER
+          chmod 755 ${ROOT}/usr/bin/${PKG}
+
+          # English man page
+          if [ -f data/man/${PKG}.1 ]; then
+            gzip -9cn data/man/${PKG}.1 > ${ROOT}/usr/share/man/man1/${PKG}.1.gz
+          elif [ -f man/en/${PKG}.1 ]; then
+            gzip -9cn man/en/${PKG}.1 > ${ROOT}/usr/share/man/man1/${PKG}.1.gz
+          fi
+
+          # Translated man pages
+          for langdir in man/*/; do
+            lang=$(basename "$langdir")
+            [ "$lang" = "en" ] && continue
+            for manfile in "$langdir"*.1; do
+              [ -f "$manfile" ] || continue
+              name=$(basename "$manfile")
+              mkdir -p ${ROOT}/usr/share/man/${lang}/man1
+              gzip -9cn "$manfile" > ${ROOT}/usr/share/man/${lang}/man1/${name}.gz
+            done
+          done
+
+          # Locale
+          if [ -d locale ]; then
+            for mo in locale/*/LC_MESSAGES/*.mo; do
+              [ -f "$mo" ] || continue
+              lang=$(echo "$mo" | cut -d/ -f2)
+              mkdir -p ${ROOT}/usr/share/locale/${lang}/LC_MESSAGES
+              cp "$mo" ${ROOT}/usr/share/locale/${lang}/LC_MESSAGES/
+            done
+          fi
+
+          cat > ${ROOT}/DEBIAN/control << EOF
+          Package: ${PKG}
+          Version: ${VER}-1
+          Architecture: all
+          Maintainer: Daniel Nylander <daniel@danielnylander.se>
+          Depends: python3 (>= 3.9)
+          Section: devel
+          Priority: optional
+          Homepage: https://github.com/yeager/${PKG}
+          Description: Lint PO files from the Translation Project
+           tp-lint fetches and lints PO files from the Translation Project
+           (translationproject.org), checking for common translation issues.
+          EOF
+          sed -i 's/^          //' ${ROOT}/DEBIAN/control
+
+          dpkg-deb --build --root-owner-group ${ROOT}
+          mv pkg-deb/*.deb .
+
+      - name: Upload .deb to release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VER=${{ steps.version.outputs.version }}
+          gh release upload "v${VER}" ${PKG:-tp-lint}_${VER}-1_all.deb --clobber 2>/dev/null || \
+          gh release upload "${GITHUB_REF_NAME}" tp-lint_${VER}-1_all.deb --clobber
