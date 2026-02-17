@@ -53,10 +53,8 @@ msgstr "NAMN"
 
 #. type: Plain text
 #: data/man/tp-lint.1:4
-#, fuzzy
-#| msgid "tp-lint - Lint PO files from the Translation Project"
 msgid "tp-lint - lint translations from the Translation Project (TP)"
-msgstr "tp-lint - Linta PO-filer från Translation Project"
+msgstr ""
 
 #. type: SH
 #: data/man/tp-lint.1:4
@@ -66,10 +64,8 @@ msgstr "SYNOPSIS"
 
 #. type: Plain text
 #: data/man/tp-lint.1:7
-#, fuzzy
-#| msgid "B<tp-lint> [I<OPTIONS>] [I<LANGUAGE>]"
 msgid "B<tp-lint> [I<LANGUAGE>] [I<OPTIONS>]"
-msgstr "B<tp-lint> [I<OPTIONS>] [I<LANGUAGE>]"
+msgstr ""
 
 #. type: SH
 #: data/man/tp-lint.1:7
@@ -79,23 +75,11 @@ msgstr "BESKRIVNING"
 
 #. type: Plain text
 #: data/man/tp-lint.1:12
-#, fuzzy
-#| msgid ""
-#| "B<tp-lint> fetches and lints PO translation files from the Translation "
-#| "Project (translationproject.org). It downloads all translations for a "
-#| "language team, runs quality checks via l10n-lint, provides translation "
-#| "coverage statistics per language and package, and supports multiple "
-#| "output formats."
 msgid ""
 "B<tp-lint> downloads and lints PO files from the GNU Translation Project "
 "(translationproject.org). It fetches translation files for a given language, "
 "runs l10n-lint quality checks, and provides statistics and reports."
 msgstr ""
-"B<tp-lint> hämtar och lintar PO-översättningsfiler från Translation Project "
-"(translationproject.org). Det hämtar ner alla översättningar för ett "
-"språkteam, kör kvalitetskontroller via l10n-lint, tillhandahåller statistik "
-"över översättningars täckning per språk och paket, och stöder flera "
-"utdataformat."
 
 #. type: Plain text
 #: data/man/tp-lint.1:16
@@ -150,10 +134,9 @@ msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:28
-#, fuzzy, no-wrap
-#| msgid "B<-s>, B<--stats> I<[LANG]>"
+#, no-wrap
 msgid "B<-s>, B<--stats> [I<LANG>]"
-msgstr "B<-s>, B<--stats> I<[LANG]>"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:34
@@ -193,10 +176,9 @@ msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:43
-#, fuzzy, no-wrap
-#| msgid "B<-r>, B<--report> I<[LANG]>"
+#, no-wrap
 msgid "B<-r>, B<--report> [I<LANG>]"
-msgstr "B<-r>, B<--report> I<[LANG]>"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:48
@@ -214,10 +196,8 @@ msgstr "B<--report-format> I<FORMAT>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:51
-#, fuzzy
-#| msgid "Report format: markdown, html (default: markdown)."
 msgid "Report output format. Choices: B<markdown> (default), B<html>."
-msgstr "Rapportformat: markdown, html (standard: markdown)."
+msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:51
@@ -232,10 +212,9 @@ msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:54
-#, fuzzy, no-wrap
-#| msgid "B<-l>, B<--list>"
+#, no-wrap
 msgid "B<-j>, B<--json>"
-msgstr "B<-l>, B<--list>"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:57
@@ -244,10 +223,9 @@ msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:57
-#, fuzzy, no-wrap
-#| msgid "B<-l>, B<--list>"
+#, no-wrap
 msgid "B<-q>, B<--quiet>"
-msgstr "B<-l>, B<--list>"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:60
@@ -275,10 +253,8 @@ msgstr "B<--strict>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:67
-#, fuzzy
-#| msgid "Treat warnings as errors."
 msgid "Treat warnings as errors. Useful for CI pipelines."
-msgstr "Behandla varningar som fel."
+msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:67
@@ -301,19 +277,16 @@ msgstr "B<-o>, B<--output> I<DIR>"
 
 #. type: Plain text
 #: data/man/tp-lint.1:75
-#, fuzzy
-#| msgid "Output directory for downloaded PO files (implies --keep)."
 msgid ""
 "Output directory for downloaded PO files. Implies B<--keep>.  Useful for "
 "archiving or further manual review."
-msgstr "Utdatakatalog för hämtade PO-filer (medför --keep)."
+msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:75
-#, fuzzy, no-wrap
-#| msgid "B<-d>, B<--domain> I<PACKAGE>"
+#, no-wrap
 msgid "B<-p>, B<--package> I<PACKAGE>"
-msgstr "B<-d>, B<--domain> I<PACKAGE>"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:79
@@ -324,10 +297,9 @@ msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:79
-#, fuzzy, no-wrap
-#| msgid "B<-l>, B<--list>"
+#, no-wrap
 msgid "B<--no-lint>"
-msgstr "B<-l>, B<--list>"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:83
@@ -338,10 +310,9 @@ msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:83
-#, fuzzy, no-wrap
-#| msgid "B<-l>, B<--list>"
+#, no-wrap
 msgid "B<-t>, B<--by-translator>"
-msgstr "B<-l>, B<--list>"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:88
@@ -353,10 +324,9 @@ msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:88
-#, fuzzy, no-wrap
-#| msgid "B<-k>, B<--keep>"
+#, no-wrap
 msgid "B<-V>, B<--verbose>"
-msgstr "B<-k>, B<--keep>"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:91
@@ -366,10 +336,9 @@ msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:91
-#, fuzzy, no-wrap
-#| msgid "B<-k>, B<--keep>"
+#, no-wrap
 msgid "B<-h>, B<--help>"
-msgstr "B<-k>, B<--keep>"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:94
@@ -378,10 +347,9 @@ msgstr ""
 
 #. type: TP
 #: data/man/tp-lint.1:94
-#, fuzzy, no-wrap
-#| msgid "B<-l>, B<--list>"
+#, no-wrap
 msgid "B<-v>, B<--version>"
-msgstr "B<-l>, B<--list>"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:97
@@ -435,38 +403,30 @@ msgstr "EXEMPEL"
 
 #. type: Plain text
 #: data/man/tp-lint.1:109
-#, fuzzy
-#| msgid "tp-lint - Lint PO files from the Translation Project"
 msgid "Lint all Swedish translations from the Translation Project:"
-msgstr "tp-lint - Linta PO-filer från Translation Project"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:113
-#, fuzzy, no-wrap
-#| msgid "tp-lint Manual"
+#, no-wrap
 msgid "tp-lint sv\n"
-msgstr "Manual för tp-lint"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:117
-#, fuzzy
-#| msgid "List all available languages."
 msgid "List all available languages:"
-msgstr "Lista alla tillgängliga språk."
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:121
-#, fuzzy, no-wrap
-#| msgid "tp-lint Manual"
+#, no-wrap
 msgid "tp-lint --list\n"
-msgstr "Manual för tp-lint"
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:125
-#, fuzzy
-#| msgid "Show translation statistics (default: global)."
 msgid "Show Swedish translation statistics:"
-msgstr "Visa översättningsstatistik (standard: global)."
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:129
@@ -487,10 +447,8 @@ msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:141
-#, fuzzy
-#| msgid "Generate a coverage report."
 msgid "Generate an HTML report:"
-msgstr "Generera en täckningsrapport."
+msgstr ""
 
 #. type: Plain text
 #: data/man/tp-lint.1:145
@@ -550,10 +508,8 @@ msgstr "BUGGAR"
 
 #. type: Plain text
 #: data/man/tp-lint.1:171
-#, fuzzy
-#| msgid "Report bugs at https://github.com/yeager/tp-lint/issues"
 msgid "Report bugs at: https://github.com/yeager/tp-lint/issues"
-msgstr "Rapportera buggar på https://github.com/yeager/tp-lint/issues"
+msgstr ""
 
 #. type: SH
 #: data/man/tp-lint.1:171
