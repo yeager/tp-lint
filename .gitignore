@@ -3,3 +3,6 @@ __pycache__/
 *.egg-info/
 tp-lint-*/
 *.mo
+*.deb
+*.rpm
+dist/
