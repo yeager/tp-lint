@@ -269,11 +269,11 @@ msgstr "Spara rapporten i en fil"
 
 #: tp_lint.py:1025
 msgid "JSON output (shorthand for --format json)"
-msgstr ""
+msgstr "JSON-utdata (förkortning för --format json)"
 
 #: tp_lint.py:1031
 msgid "Suppress non-essential output (only errors)"
-msgstr ""
+msgstr "Undertryck icke-väsentlig utdata (endast fel)"
 
 #: tp_lint.py:1038
 msgid "Output format (default: text)"
