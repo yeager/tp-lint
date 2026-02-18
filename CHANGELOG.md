@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.4] - 2026-02-18
+
+### Fixed
+- Remove 15 build artifact files from git (dist/)
+- Add .gitignore for build artifacts
+- Sync translations from Transifex
+
 ## [1.8.0] - 2026-02-05
 
 ### Added
