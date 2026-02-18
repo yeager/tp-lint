@@ -1,5 +1,7 @@
 # tp-lint
 
+[![Version](https://img.shields.io/badge/version-1.8.4-blue)](https://github.com/yeager/tp-lint/releases)
+
 🔍 Lint PO files from the [Translation Project](https://translationproject.org)
 
 Fetch and lint translation files for any language team on the Translation Project using [l10n-lint](https://github.com/yeager/l10n-lint).
@@ -18,22 +20,22 @@ Fetch and lint translation files for any language team on the Translation Projec
 ### Debian/Ubuntu
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.5.5/tp-lint_1.5.5_all.deb
-sudo dpkg -i tp-lint_1.5.5_all.deb
+wget https://github.com/yeager/tp-lint/releases/download/v1.8.4/tp-lint_1.8.4_all.deb
+sudo dpkg -i tp-lint_1.8.4_all.deb
 ```
 
 ### Fedora/RHEL/openSUSE
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.5.5/tp-lint-1.5.5-1.noarch.rpm
-sudo rpm -i tp-lint-1.5.5-1.noarch.rpm
+wget https://github.com/yeager/tp-lint/releases/download/v1.8.4/tp-lint-1.8.4-1.noarch.rpm
+sudo rpm -i tp-lint-1.8.4-1.noarch.rpm
 ```
 
 ### Arch Linux
 
 ```bash
-wget https://github.com/yeager/tp-lint/releases/download/v1.5.5/tp-lint-1.5.5.pkg.tar.zst
-sudo pacman -U tp-lint-1.5.5.pkg.tar.zst
+wget https://github.com/yeager/tp-lint/releases/download/v1.8.4/tp-lint-1.8.4.pkg.tar.zst
+sudo pacman -U tp-lint-1.8.4.pkg.tar.zst
 ```
 
 ### From source
