@@ -32,7 +32,8 @@ DOMAIN = "tp-lint"
 
 # Look for locale in multiple places
 _possible_locale_dirs = [
-    Path("/usr/share/tp-lint/locale"),  # System install (Debian)
+    Path("/usr/share/locale"),  # System standard
+    Path("/usr/share/tp-lint/locale"),  # Legacy
     Path(__file__).parent / "locale",  # Development
 ]
 LOCALE_DIR = None
