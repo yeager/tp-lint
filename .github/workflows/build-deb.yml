@@ -1,0 +1,64 @@
+name: Build .deb
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build deps
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq gettext
+      - name: Build .deb
+        run: |
+          VER=$(python3 -c "import re; print(re.search(r'__version__.*?\"(.+?)\"', open('tp_lint.py').read()).group(1))")
+          PKG=tp-lint
+          ROOT=pkg
+          mkdir -p ${ROOT}/DEBIAN ${ROOT}/usr/lib/python3/dist-packages ${ROOT}/usr/bin
+
+          # Python module
+          cp tp_lint.py ${ROOT}/usr/lib/python3/dist-packages/
+
+          # Launcher
+          printf '#!/usr/bin/python3\nimport sys\nfrom tp_lint import main\nsys.exit(main())\n' > ${ROOT}/usr/bin/${PKG}
+          chmod +x ${ROOT}/usr/bin/${PKG}
+
+          # Translations
+          if [ -d po ]; then
+            for po in po/*.po; do
+              [ -f "$po" ] || continue
+              lang=$(basename "$po" .po)
+              mkdir -p ${ROOT}/usr/share/locale/${lang}/LC_MESSAGES
+              msgfmt -o ${ROOT}/usr/share/locale/${lang}/LC_MESSAGES/${PKG}.mo "$po"
+            done
+          fi
+
+          # Man page
+          if [ -f man/tp-lint.1 ]; then
+            mkdir -p ${ROOT}/usr/share/man/man1
+            cp man/tp-lint.1 ${ROOT}/usr/share/man/man1/
+          elif [ -f tp-lint.1 ]; then
+            mkdir -p ${ROOT}/usr/share/man/man1
+            cp tp-lint.1 ${ROOT}/usr/share/man/man1/
+          fi
+
+          # DEBIAN/control
+          cat > ${ROOT}/DEBIAN/control <<CTRL
+          Package: ${PKG}
+          Version: ${VER}-1
+          Architecture: all
+          Maintainer: Daniel Nylander <daniel@danielnylander.se>
+          Depends: python3, python3-requests
+          Section: utils
+          Priority: optional
+          Homepage: https://github.com/yeager/${PKG}
+          Description: Translation Project lint tool
+          CTRL
+          sed -i 's/^          //' ${ROOT}/DEBIAN/control
+
+          dpkg-deb --build ${ROOT} ${PKG}_${VER}-1_all.deb
+      - uses: actions/upload-artifact@v4
+        with:
+          name: deb-package
+          path: '*.deb'
