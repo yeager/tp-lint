@@ -80,10 +80,10 @@ msgid ""
 "(translationproject.org). It fetches translation files for a given language, "
 "runs l10n-lint quality checks, and provides statistics and reports."
 msgstr ""
-"B-<tp-lint> hämtar och lintar (verifierar) PO-filer från GNU Translation "
-"Project (translationproject.org). Det hämtar översättningsfiler för ett "
-"visst språk, kör kvalitetskontroller med l10n-lint och tillhandahåller "
-"statistik och rapporter."
+"B-<tp-lint> hämtar ner och lintar PO-filer från GNU Translation Project "
+"(translationproject.org). Det hämtar översättningsfiler för ett angivet "
+"språk, kör kvalitetskontroller med l10n-lint och tillhandahåller statistik "
+"och rapporter."
 
 #. type: Plain text
 #: data/man/tp-lint.1:16
@@ -94,7 +94,7 @@ msgid ""
 msgstr ""
 "Verktyget hämtar ner PO-filer till en tillfällig katalog (eller en angiven "
 "utdatakatalog) och analyserar dem sedan med hjälp av l10n-lints "
-"kontrollmotor.  Resultaten kan grupperas efter paket eller översättare."
+"kontrollmotor. Resultaten kan grupperas efter paket eller översättare."
 
 #. type: Plain text
 #: data/man/tp-lint.1:18
@@ -140,7 +140,7 @@ msgid ""
 "List all available languages on the Translation Project. Displays language "
 "codes and names."
 msgstr ""
-"Lista alla tillgängliga språk i Translation Project. Visar språkkoder och "
+"Lista alla tillgängliga språk i översättningsprojektet. Visar språkkoder och "
 "namn."
 
 #. type: TP
@@ -159,7 +159,7 @@ msgid ""
 msgstr ""
 "Visa översättningsstatistik. Utan ett språkargument visas global statistik "
 "för alla språk. Med en språkkod visas detaljerad statistik för det språket, "
-"inklusive antal översatta paket, färdigställandegrad och de största "
+"inklusive antal översatta paket, färdigställandegrad och de bästa "
 "översättarna."
 
 #. type: TP
@@ -252,7 +252,7 @@ msgstr "B<-q>, B<--quiet>"
 #. type: Plain text
 #: data/man/tp-lint.1:60
 msgid "Suppress non-essential output. Only errors are shown."
-msgstr "Undertryck onödig utdata. Endast fel visas."
+msgstr "Undvik onödig utdata. Endast fel visas."
 
 #. type: TP
 #: data/man/tp-lint.1:60
@@ -379,7 +379,7 @@ msgstr "B<-h>, B<--help>"
 #. type: Plain text
 #: data/man/tp-lint.1:94
 msgid "Show help message and exit."
-msgstr "Visa hjälpmeddelande och avsluta."
+msgstr "Visa hjälpinformation och avsluta."
 
 #. type: TP
 #: data/man/tp-lint.1:94
@@ -407,7 +407,7 @@ msgstr "B<0>"
 #. type: Plain text
 #: data/man/tp-lint.1:101
 msgid "No lint errors found."
-msgstr "Inga lintningsfel hittades."
+msgstr "Inga lint-fel hittades."
 
 #. type: TP
 #: data/man/tp-lint.1:101
@@ -440,7 +440,7 @@ msgstr "EXEMPEL"
 #. type: Plain text
 #: data/man/tp-lint.1:109
 msgid "Lint all Swedish translations from the Translation Project:"
-msgstr "Lint alla svenska översättningar från Translation Project:"
+msgstr "Linta alla svenska översättningar från Translation Project:"
 
 #. type: Plain text
 #: data/man/tp-lint.1:113
@@ -506,7 +506,7 @@ msgstr "tp-lint sv --by-translator\n"
 #. type: Plain text
 #: data/man/tp-lint.1:157
 msgid "Download files without linting:"
-msgstr "Hämta ner filer utan linting:"
+msgstr "Hämta ner filer utan lintning:"
 
 #. type: Plain text
 #: data/man/tp-lint.1:161
