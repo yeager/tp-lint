@@ -2,10 +2,10 @@
 # Copyright (C) YEAR Free Software Foundation, Inc.
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
 # Daniel Nylander <po@danielnylander.se>, 2026
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -13,11 +13,12 @@ msgstr ""
 "POT-Creation-Date: 2026-02-16 11:42+0000\n"
 "PO-Revision-Date: 2026-02-15 14:39+0000\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>, 2026\n"
-"Language-Team: Swedish (https://app.transifex.com/danielnylander/teams/304710/sv/)\n"
+"Language-Team: Swedish (https://app.transifex.com/danielnylander/"
+"teams/304710/sv/)\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. type: TH
@@ -76,8 +77,8 @@ msgstr "BESKRIVNING"
 #: data/man/tp-lint.1:12
 msgid ""
 "B<tp-lint> downloads and lints PO files from the GNU Translation Project "
-"(translationproject.org). It fetches translation files for a given language,"
-" runs l10n-lint quality checks, and provides statistics and reports."
+"(translationproject.org). It fetches translation files for a given language, "
+"runs l10n-lint quality checks, and provides statistics and reports."
 msgstr ""
 "B-<tp-lint> hämtar ner och lintar PO-filer från GNU Translation Project "
 "(translationproject.org). Det hämtar översättningsfiler för ett angivet "
@@ -98,8 +99,7 @@ msgstr ""
 #. type: Plain text
 #: data/man/tp-lint.1:18
 msgid "Exit codes: 0 = no errors, 1 = errors found, 2 = usage error."
-msgstr ""
-"Avslutningskoder: 0 = inga fel, 1 = fel upptäckta, 2 = användningsfel."
+msgstr "Avslutningskoder: 0 = inga fel, 1 = fel upptäckta, 2 = användningsfel."
 
 #. type: SH
 #: data/man/tp-lint.1:18
@@ -140,8 +140,8 @@ msgid ""
 "List all available languages on the Translation Project. Displays language "
 "codes and names."
 msgstr ""
-"Lista alla tillgängliga språk i översättningsprojektet. Visar språkkoder och"
-" namn."
+"Lista alla tillgängliga språk i översättningsprojektet. Visar språkkoder och "
+"namn."
 
 #. type: TP
 #: data/man/tp-lint.1:28
@@ -172,12 +172,11 @@ msgstr "B<-d>, B<--domain> I<PAKET>"
 #: data/man/tp-lint.1:39
 msgid ""
 "Show statistics for a specific package/domain across all languages.  "
-"Example: B<--domain coreutils> shows translation status for GNU coreutils in"
-" all languages."
+"Example: B<--domain coreutils> shows translation status for GNU coreutils in "
+"all languages."
 msgstr ""
-"Visa statistik för ett specifikt paket/domän för alla språk.  Exempel: "
-"B<--domain coreutils> visar översättningsstatus för GNU coreutils på alla "
-"språk."
+"Visa statistik för ett specifikt paket/domän för alla språk.  Exempel: B<--"
+"domain coreutils> visar översättningsstatus för GNU coreutils på alla språk."
 
 #. type: TP
 #: data/man/tp-lint.1:39
@@ -220,8 +219,7 @@ msgstr "B<--report-format> I<FORMAT>"
 #. type: Plain text
 #: data/man/tp-lint.1:51
 msgid "Report output format. Choices: B<markdown> (default), B<html>."
-msgstr ""
-"Utdataformat för rapport. Alternativ: B<markdown> (standard), B<html>."
+msgstr "Utdataformat för rapport. Alternativ: B<markdown> (standard), B<html>."
 
 #. type: TP
 #: data/man/tp-lint.1:51
@@ -268,8 +266,8 @@ msgid ""
 "Output format. Choices: B<text> (default, human-readable), B<json> "
 "(structured output), B<github> (GitHub Actions annotations)."
 msgstr ""
-"Utdataformat. Alternativ: B<text> (standard, läsbart för människor), B<json>"
-" (strukturerad utdata), B<github> (GitHub Actions-anteckningar)."
+"Utdataformat. Alternativ: B<text> (standard, läsbart för människor), B<json> "
+"(strukturerad utdata), B<github> (GitHub Actions-anteckningar)."
 
 #. type: TP
 #: data/man/tp-lint.1:64
@@ -294,8 +292,8 @@ msgid ""
 "Keep downloaded PO files after linting. By default, the temporary directory "
 "is deleted when done."
 msgstr ""
-"Behåll hämtade PO-filer efter lintning. Som standard raderas den tillfälliga"
-" katalogen när processen är klar."
+"Behåll hämtade PO-filer efter lintning. Som standard raderas den tillfälliga "
+"katalogen när processen är klar."
 
 #. type: TP
 #: data/man/tp-lint.1:71
@@ -356,8 +354,8 @@ msgid ""
 "guidance."
 msgstr ""
 "Gruppera lint-resultat efter översättare (från PO-filens Last-Translator-"
-"rubrik) istället för efter paket. Användbart för att identifiera översättare"
-" som kan behöva vägledning."
+"rubrik) istället för efter paket. Användbart för att identifiera översättare "
+"som kan behöva vägledning."
 
 #. type: TP
 #: data/man/tp-lint.1:88
