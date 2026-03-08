@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="tp-lint 1.8.4">
-    <meta name="description" content="Translation status report from the GNU Translation Project">
-    <title>Translation Project Report – SV</title>
+    <meta name="generator" content="tp-lint enhanced with translator data">
+    <meta name="description" content="Translation Project Swedish lint report with translator information">
+    <title>TP Svenska Översättningar - Kvalitetsrapport</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -21,7 +21,7 @@
         * { box-sizing: border-box; }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1rem;
             background: var(--bg);
@@ -45,13 +45,10 @@
         }
         h2 { color: var(--text); margin: 0 0 1rem; font-size: 1.25rem; }
         h3 { margin: 1rem 0 0.5rem; font-size: 1rem; }
-        h3.complete { color: var(--success); }
-        h3.partial { color: var(--warning); }
-        h3.missing { color: var(--danger); }
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         th, td {
             padding: 0.75rem;
@@ -71,21 +68,26 @@
             background: var(--bg);
             border-radius: 6px;
         }
-        .stat-value { font-size: 1.75rem; font-weight: bold; color: var(--primary); }
+        .stat-value { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
         .stat-label { font-size: 0.85rem; color: var(--text-muted); }
-        ul { padding-left: 1.5rem; }
-        li { margin: 0.25rem 0; }
-        .progress {
-            height: 8px;
-            background: var(--border);
+        .filter-section {
+            margin-bottom: 1rem;
+        }
+        select, input {
+            padding: 0.5rem;
+            border: 1px solid var(--border);
             border-radius: 4px;
-            overflow: hidden;
+            margin-right: 0.5rem;
         }
-        .progress-bar {
-            height: 100%;
-            background: var(--success);
-            transition: width 0.3s;
+        button {
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
+        button:hover { opacity: 0.8; }
         footer {
             margin-top: 3rem;
             padding-top: 1.5rem;
@@ -96,204 +98,1382 @@
         }
         footer a { color: var(--primary); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
-        @media (max-width: 600px) {
-            body { padding: 1rem 0.5rem; }
-            .card { padding: 1rem; }
-        }
     </style>
 </head>
 <body>
 <header>
-    <h1>📊 Translation Project Report – SV</h1>
-    <p class="meta">Generated: 2026-03-07 07:51 · Data source: <a href="https://translationproject.org/extra/matrix.html">Translation Project</a></p>
+    <h1>📊 TP Svenska Översättningar - Kvalitetsrapport</h1>
+    <p class="meta">Genererad: 2026-03-08 10:31 · Data från <a href="https://translationproject.org">Translation Project</a></p>
 </header>
+
 <div class="card">
-<h2>📈 Overview</h2>
+<h2>📈 Översikt</h2>
 <div class="overview-grid">
-    <div class="stat"><div class="stat-value">84</div><div class="stat-label">Languages</div></div>
-    <div class="stat"><div class="stat-value">145</div><div class="stat-label">Packages</div></div>
-    <div class="stat"><div class="stat-value">3,577</div><div class="stat-label">Translations</div></div>
-    <div class="stat"><div class="stat-value">29.4%</div><div class="stat-label">Coverage</div></div>
+    <div class="stat"><div class="stat-value">145</div><div class="stat-label">PO-filer</div></div>
+    <div class="stat"><div class="stat-value">12</div><div class="stat-label">Översättare</div></div>
+    <div class="stat"><div class="stat-value">125,000</div><div class="stat-label">Totalt strängar</div></div>
+    <div class="stat"><div class="stat-value">0</div><div class="stat-label">Totalt fel</div></div>
 </div>
 </div>
+
 <div class="card">
-<h2>🌐 Language: SV</h2>
-<div style="margin-bottom:1rem">
-    <div style="display:flex;justify-content:space-between;margin-bottom:0.25rem">
-        <span>Coverage</span><span><strong>90%</strong></span>
-    </div>
-    <div class="progress"><div class="progress-bar" style="width:90%"></div></div>
+<h2>👥 Översättarstatistik</h2>
+<p>Statistik per översättare baserad på 145 PO-filer från Translation Project.</p>
+<table>
+<thead>
+<tr>
+    <th>Översättare</th>
+    <th>Filer</th>
+    <th>Strängar</th>
+    <th>Fel/1000</th>
+    <th>Kvalitet</th>
+    <th>Fördelning</th>
+</tr>
+</thead>
+<tbody>
+
+        <tr>
+            <td>Göran Uddeborg\n</td>
+            <td>33</td>
+            <td>44,945</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Sebastian Rasmussen\n</td>
+            <td>31</td>
+            <td>10,556</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Anders Jonsson\n</td>
+            <td>23</td>
+            <td>8,292</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Daniel Nylander\n</td>
+            <td>18</td>
+            <td>40,437</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Josef Andersson\n</td>
+            <td>15</td>
+            <td>10,543</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Luna Jernberg\n</td>
+            <td>14</td>
+            <td>3,385</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Kristian Nordin\n</td>
+            <td>5</td>
+            <td>2,385</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Peter Krefting\n</td>
+            <td>2</td>
+            <td>1,443</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Jan Djärv\n</td>
+            <td>1</td>
+            <td>120</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Josef Andersson\n</td>
+            <td>1</td>
+            <td>59</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Mattias Hansson\n</td>
+            <td>1</td>
+            <td>64</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+        <tr>
+            <td>Arve Eriksson\n</td>
+            <td>1</td>
+            <td>2,771</td>
+            <td>0.0</td>
+            <td><span style="color: var(--danger)">Red</span></td>
+            <td>🟢0 🟡0 🔴0</td>
+        </tr>
+        
+</tbody>
+</table>
 </div>
-<div class="overview-grid">
-    <div class="stat"><div class="stat-value" style="color:var(--success)">134</div><div class="stat-label">Complete (100%)</div></div>
-    <div class="stat"><div class="stat-value" style="color:var(--warning)">9</div><div class="stat-label">Partial</div></div>
-    <div class="stat"><div class="stat-value" style="color:var(--danger)">2</div><div class="stat-label">Missing</div></div>
+
+<div class="card">
+<h2>📁 Alla filer</h2>
+<div class="filter-section">
+    <select id="translatorFilter">
+        <option value="">Alla översättare</option>
+        <option value="Göran Uddeborg\n">Göran Uddeborg\n</option><option value="Sebastian Rasmussen\n">Sebastian Rasmussen\n</option><option value="Anders Jonsson\n">Anders Jonsson\n</option><option value="Daniel Nylander\n">Daniel Nylander\n</option><option value="Josef Andersson\n">Josef Andersson\n</option><option value="Luna Jernberg\n">Luna Jernberg\n</option><option value="Kristian Nordin\n">Kristian Nordin\n</option><option value="Peter Krefting\n">Peter Krefting\n</option><option value="Jan Djärv\n">Jan Djärv\n</option><option value="Josef Andersson\n">Josef Andersson\n</option><option value="Mattias Hansson\n">Mattias Hansson\n</option><option value="Arve Eriksson\n">Arve Eriksson\n</option>
+    </select>
+    <select id="qualityFilter">
+        <option value="">Alla kvaliteter</option>
+        <option value="green">Grön (inga fel)</option>
+        <option value="yellow">Gul (få fel)</option>
+        <option value="red">Röd (många fel)</option>
+    </select>
+    <button onclick="filterTable()">Filtrera</button>
+    <button onclick="clearFilters()">Rensa</button>
 </div>
+<table id="filesTable">
+<thead>
+<tr>
+    <th>Paket</th>
+    <th>Översättare</th>
+    <th>Kvalitet</th>
+    <th>Fel</th>
+    <th>Strängar</th>
+</tr>
+</thead>
+<tbody>
+
+        <tr>
+            <td><a href='https://translationproject.org/domain/pyspread.html'>pyspread</a></td>
+            <td>Kristian Nordin\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>604</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gsasl.html'>gsasl</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>104</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/dos2unix.html'>dos2unix</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>130</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/cryptsetup.html'>cryptsetup</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>921</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/radius.html'>radius</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>627</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/ccd2cue.html'>ccd2cue</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>47</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/sarg.html'>sarg</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>530</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gcc.html'>gcc</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>17879</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/denemo.html'>denemo</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>6302</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gst.html'>gst</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>11</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/libgphoto2_port.html'>libgphoto2_port</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>79</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/mpop.html'>mpop</a></td>
+            <td>Kristian Nordin\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>347</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/wyslij.html'>wyslij</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>107</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/libc.html'>libc</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1458</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gtkam.html'>gtkam</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>201</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/wcd.html'>wcd</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>417</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/mailutils.html'>mailutils</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>2372</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/wget2.html'>wget2</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>501</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/ccide.html'>ccide</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>26</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/util.html'>util</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>6965</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/ld.html'>ld</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1214</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/fetchmail.html'>fetchmail</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>770</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/clisp.html'>clisp</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1552</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/dink.html'>dink</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>2222</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/diffutils.html'>diffutils</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>266</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/parted.html'>parted</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>571</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/freedink.html'>freedink</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>44</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/xz.html'>xz</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>709</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gnutls.html'>gnutls</a></td>
+            <td>Kristian Nordin\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>386</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/shepherd.html'>shepherd</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>280</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/wcd.html'>wcd</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>245</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/midi.html'>midi</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>193</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/libextractor.html'>libextractor</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>491</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/texinfo.html'>texinfo</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>871</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/recode.html'>recode</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>78</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/xz.html'>xz</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>261</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/wdiff.html'>wdiff</a></td>
+            <td>Jan Djärv\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>120</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/i18nparse.html'>i18nparse</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>43</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/libexif.html'>libexif</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1324</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/a2ps.html'>a2ps</a></td>
+            <td>Peter Krefting\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>158</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/trader.html'>trader</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>240</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gnulib.html'>gnulib</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>335</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/wastesedge.html'>wastesedge</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1212</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/bash.html'>bash</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>613</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/nano.html'>nano</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>649</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gettext.html'>gettext</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>25</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/procps.html'>procps</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>951</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/skribilo.html'>skribilo</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>75</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/tar.html'>tar</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>601</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/idutils.html'>idutils</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>133</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/sysstat.html'>sysstat</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>89</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gdbm.html'>gdbm</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>308</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/dico.html'>dico</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>645</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/aspell.html'>aspell</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>304</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/texinfo_document.html'>texinfo_document</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>245</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/tin.html'>tin</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>2063</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/sharutils.html'>sharutils</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>305</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/flex.html'>flex</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>170</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/xboard.html'>xboard</a></td>
+            <td>Kristian Nordin\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>719</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/cflow.html'>cflow</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>166</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/exif.html'>exif</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>72</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/tigervnc.html'>tigervnc</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>226</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gst.html'>gst</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>238</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gstreamer.html'>gstreamer</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>398</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/tin.html'>tin</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1777</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/enscript.html'>enscript</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>209</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/grep.html'>grep</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>116</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/lynx.html'>lynx</a></td>
+            <td>Peter Krefting\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1285</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gawk.html'>gawk</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>818</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/psmisc.html'>psmisc</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>95</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/direvent.html'>direvent</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>246</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/libiconv.html'>libiconv</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>47</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gettext.html'>gettext</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>812</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gst.html'>gst</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>105</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/sudo.html'>sudo</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>243</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/dos2unix.html'>dos2unix</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>309</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gnuchess.html'>gnuchess</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>150</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/kbd.html'>kbd</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>357</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/doodle.html'>doodle</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>115</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/dialog.html'>dialog</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>46</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/minicom.html'>minicom</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>419</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/help2man.html'>help2man</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>172</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gphoto2.html'>gphoto2</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>351</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/beebase.html'>beebase</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>892</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gst.html'>gst</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>30</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gprof.html'>gprof</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>98</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/vorbis.html'>vorbis</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>441</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/recutils.html'>recutils</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>306</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gutenprint.html'>gutenprint</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>4891</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/bison.html'>bison</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>254</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/xkeyboard.html'>xkeyboard</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1300</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gettext.html'>gettext</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>72</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/grip.html'>grip</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>280</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/findutils.html'>findutils</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>248</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/wget.html'>wget</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>600</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/psmisc.html'>psmisc</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>243</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/msmtp.html'>msmtp</a></td>
+            <td>Kristian Nordin\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>329</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/help2man.html'>help2man</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>50</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/shishi.html'>shishi</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>208</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/libidn.html'>libidn</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>59</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/procps.html'>procps</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>2466</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/buzztrax.html'>buzztrax</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>363</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/mailfromd.html'>mailfromd</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>916</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gnubik.html'>gnubik</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>84</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/binutils.html'>binutils</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>2740</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/sudoers.html'>sudoers</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>713</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/lordsawar.html'>lordsawar</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>2185</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/lilypond.html'>lilypond</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1023</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/coreutils.html'>coreutils</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>2293</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gss.html'>gss</a></td>
+            <td>Mattias Hansson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>64</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/m4.html'>m4</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>200</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/man.html'>man</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>205</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/wincoll.html'>wincoll</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>3</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/datamash.html'>datamash</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>134</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/klavaro.html'>klavaro</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>232</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/xdg.html'>xdg</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>29</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/cpio.html'>cpio</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>318</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/man.html'>man</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>398</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/cpplib.html'>cpplib</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>320</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/libidn2.html'>libidn2</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>42</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/bfd.html'>bfd</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>2038</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/vmm.html'>vmm</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>274</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/pies.html'>pies</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>613</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gnucobol.html'>gnucobol</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1539</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/sed.html'>sed</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>147</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/hello.html'>hello</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>47</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/meritous.html'>meritous</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>165</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/rush.html'>rush</a></td>
+            <td>Josef Andersson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>249</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/grub.html'>grub</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1737</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/pspp.html'>pspp</a></td>
+            <td>Arve Eriksson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>2771</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/e2fsprogs.html'>e2fsprogs</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1675</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/util.html'>util</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>5514</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gtkspell.html'>gtkspell</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>8</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gtick.html'>gtick</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>97</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/chambercourt.html'>chambercourt</a></td>
+            <td>Anders Jonsson\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>12</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/dfarc.html'>dfarc</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>138</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/anubis.html'>anubis</a></td>
+            <td>Luna Jernberg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>308</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gcal.html'>gcal</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>1449</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/gas.html'>gas</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>4953</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/bison.html'>bison</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>10</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/libgphoto2.html'>libgphoto2</a></td>
+            <td>Sebastian Rasmussen\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>3178</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/savane.html'>savane</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>2147</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/make.html'>make</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>478</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/opcodes.html'>opcodes</a></td>
+            <td>Daniel Nylander\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>482</td>
+        </tr>
+        
+        <tr>
+            <td><a href='https://translationproject.org/domain/cppi.html'>cppi</a></td>
+            <td>Göran Uddeborg\n</td>
+            <td><span style="color: var(--success)">✅</span></td>
+            <td>0</td>
+            <td>62</td>
+        </tr>
+        
+</tbody>
+</table>
 </div>
-<div class="card">
-<h3 class="complete">✅ Complete (100%) – 134 packages</h3>
-<ul>
-<li><a href='https://translationproject.org/domain/a2ps.html'>a2ps</a></li>
-<li><a href='https://translationproject.org/domain/anubis.html'>anubis</a></li>
-<li><a href='https://translationproject.org/domain/aspell.html'>aspell</a></li>
-<li><a href='https://translationproject.org/domain/bash.html'>bash</a></li>
-<li><a href='https://translationproject.org/domain/beebase.html'>beebase</a></li>
-<li><a href='https://translationproject.org/domain/bfd.html'>bfd</a></li>
-<li><a href='https://translationproject.org/domain/bison.html'>bison</a></li>
-<li><a href='https://translationproject.org/domain/bison-runtime.html'>bison-runtime</a></li>
-<li><a href='https://translationproject.org/domain/buzztrax.html'>buzztrax</a></li>
-<li><a href='https://translationproject.org/domain/ccd2cue.html'>ccd2cue</a></li>
-<li><a href='https://translationproject.org/domain/ccide.html'>ccide</a></li>
-<li><a href='https://translationproject.org/domain/cflow.html'>cflow</a></li>
-<li><a href='https://translationproject.org/domain/chambercourt.html'>chambercourt</a></li>
-<li><a href='https://translationproject.org/domain/clisp.html'>clisp</a></li>
-<li><a href='https://translationproject.org/domain/coreutils.html'>coreutils</a></li>
-<li><a href='https://translationproject.org/domain/cpio.html'>cpio</a></li>
-<li><a href='https://translationproject.org/domain/cppi.html'>cppi</a></li>
-<li><a href='https://translationproject.org/domain/cpplib.html'>cpplib</a></li>
-<li><a href='https://translationproject.org/domain/cryptsetup.html'>cryptsetup</a></li>
-<li><a href='https://translationproject.org/domain/datamash.html'>datamash</a></li>
-<li><a href='https://translationproject.org/domain/dfarc.html'>dfarc</a></li>
-<li><a href='https://translationproject.org/domain/dialog.html'>dialog</a></li>
-<li><a href='https://translationproject.org/domain/dico.html'>dico</a></li>
-<li><a href='https://translationproject.org/domain/diffutils.html'>diffutils</a></li>
-<li><a href='https://translationproject.org/domain/dink.html'>dink</a></li>
-<li><a href='https://translationproject.org/domain/direvent.html'>direvent</a></li>
-<li><a href='https://translationproject.org/domain/doodle.html'>doodle</a></li>
-<li><a href='https://translationproject.org/domain/dos2unix.html'>dos2unix</a></li>
-<li><a href='https://translationproject.org/domain/dos2unix-man.html'>dos2unix-man</a></li>
-<li><a href='https://translationproject.org/domain/e2fsprogs.html'>e2fsprogs</a></li>
-<li><a href='https://translationproject.org/domain/enscript.html'>enscript</a></li>
-<li><a href='https://translationproject.org/domain/exif.html'>exif</a></li>
-<li><a href='https://translationproject.org/domain/fetchmail.html'>fetchmail</a></li>
-<li><a href='https://translationproject.org/domain/findutils.html'>findutils</a></li>
-<li><a href='https://translationproject.org/domain/flex.html'>flex</a></li>
-<li><a href='https://translationproject.org/domain/freedink.html'>freedink</a></li>
-<li><a href='https://translationproject.org/domain/gas.html'>gas</a></li>
-<li><a href='https://translationproject.org/domain/gcal.html'>gcal</a></li>
-<li><a href='https://translationproject.org/domain/gdbm.html'>gdbm</a></li>
-<li><a href='https://translationproject.org/domain/gettext-examples.html'>gettext-examples</a></li>
-<li><a href='https://translationproject.org/domain/gettext-runtime.html'>gettext-runtime</a></li>
-<li><a href='https://translationproject.org/domain/gettext-tools.html'>gettext-tools</a></li>
-<li><a href='https://translationproject.org/domain/gnubik.html'>gnubik</a></li>
-<li><a href='https://translationproject.org/domain/gnuchess.html'>gnuchess</a></li>
-<li><a href='https://translationproject.org/domain/gnucobol.html'>gnucobol</a></li>
-<li><a href='https://translationproject.org/domain/gnulib.html'>gnulib</a></li>
-<li><a href='https://translationproject.org/domain/gnutls.html'>gnutls</a></li>
-<li><a href='https://translationproject.org/domain/gphoto2.html'>gphoto2</a></li>
-<li><a href='https://translationproject.org/domain/grep.html'>grep</a></li>
-<li><a href='https://translationproject.org/domain/grip.html'>grip</a></li>
-<li><a href='https://translationproject.org/domain/grub.html'>grub</a></li>
-<li><a href='https://translationproject.org/domain/gsasl.html'>gsasl</a></li>
-<li><a href='https://translationproject.org/domain/gss.html'>gss</a></li>
-<li><a href='https://translationproject.org/domain/gst-plugins-bad.html'>gst-plugins-bad</a></li>
-<li><a href='https://translationproject.org/domain/gst-plugins-base.html'>gst-plugins-base</a></li>
-<li><a href='https://translationproject.org/domain/gst-plugins-good.html'>gst-plugins-good</a></li>
-<li><a href='https://translationproject.org/domain/gst-plugins-ugly.html'>gst-plugins-ugly</a></li>
-<li><a href='https://translationproject.org/domain/gstreamer.html'>gstreamer</a></li>
-<li><a href='https://translationproject.org/domain/gtick.html'>gtick</a></li>
-<li><a href='https://translationproject.org/domain/gtkam.html'>gtkam</a></li>
-<li><a href='https://translationproject.org/domain/gtkspell.html'>gtkspell</a></li>
-<li><a href='https://translationproject.org/domain/gutenprint.html'>gutenprint</a></li>
-<li><a href='https://translationproject.org/domain/hello.html'>hello</a></li>
-<li><a href='https://translationproject.org/domain/help2man.html'>help2man</a></li>
-<li><a href='https://translationproject.org/domain/help2man-texi.html'>help2man-texi</a></li>
-<li><a href='https://translationproject.org/domain/i18nparse.html'>i18nparse</a></li>
-<li><a href='https://translationproject.org/domain/idutils.html'>idutils</a></li>
-<li><a href='https://translationproject.org/domain/kbd.html'>kbd</a></li>
-<li><a href='https://translationproject.org/domain/klavaro.html'>klavaro</a></li>
-<li><a href='https://translationproject.org/domain/ld.html'>ld</a></li>
-<li><a href='https://translationproject.org/domain/libc.html'>libc</a></li>
-<li><a href='https://translationproject.org/domain/libexif.html'>libexif</a></li>
-<li><a href='https://translationproject.org/domain/libextractor.html'>libextractor</a></li>
-<li><a href='https://translationproject.org/domain/libgphoto2_port.html'>libgphoto2_port</a></li>
-<li><a href='https://translationproject.org/domain/libiconv.html'>libiconv</a></li>
-<li><a href='https://translationproject.org/domain/libidn.html'>libidn</a></li>
-<li><a href='https://translationproject.org/domain/libidn2.html'>libidn2</a></li>
-<li><a href='https://translationproject.org/domain/lilypond.html'>lilypond</a></li>
-<li><a href='https://translationproject.org/domain/lordsawar.html'>lordsawar</a></li>
-<li><a href='https://translationproject.org/domain/lynx.html'>lynx</a></li>
-<li><a href='https://translationproject.org/domain/m4.html'>m4</a></li>
-<li><a href='https://translationproject.org/domain/mailutils.html'>mailutils</a></li>
-<li><a href='https://translationproject.org/domain/make.html'>make</a></li>
-<li><a href='https://translationproject.org/domain/man-db.html'>man-db</a></li>
-<li><a href='https://translationproject.org/domain/man-db-manpages.html'>man-db-manpages</a></li>
-<li><a href='https://translationproject.org/domain/meritous.html'>meritous</a></li>
-<li><a href='https://translationproject.org/domain/midi-instruments.html'>midi-instruments</a></li>
-<li><a href='https://translationproject.org/domain/minicom.html'>minicom</a></li>
-<li><a href='https://translationproject.org/domain/mpop.html'>mpop</a></li>
-<li><a href='https://translationproject.org/domain/msmtp.html'>msmtp</a></li>
-<li><a href='https://translationproject.org/domain/nano.html'>nano</a></li>
-<li><a href='https://translationproject.org/domain/opcodes.html'>opcodes</a></li>
-<li><a href='https://translationproject.org/domain/parted.html'>parted</a></li>
-<li><a href='https://translationproject.org/domain/pies.html'>pies</a></li>
-<li><a href='https://translationproject.org/domain/procps-ng.html'>procps-ng</a></li>
-<li><a href='https://translationproject.org/domain/procps-ng-man.html'>procps-ng-man</a></li>
-<li><a href='https://translationproject.org/domain/psmisc.html'>psmisc</a></li>
-<li><a href='https://translationproject.org/domain/psmisc-man.html'>psmisc-man</a></li>
-<li><a href='https://translationproject.org/domain/pyspread.html'>pyspread</a></li>
-<li><a href='https://translationproject.org/domain/radius.html'>radius</a></li>
-<li><a href='https://translationproject.org/domain/recode.html'>recode</a></li>
-<li><a href='https://translationproject.org/domain/recutils.html'>recutils</a></li>
-<li><a href='https://translationproject.org/domain/rush.html'>rush</a></li>
-<li><a href='https://translationproject.org/domain/sarg.html'>sarg</a></li>
-<li><a href='https://translationproject.org/domain/sed.html'>sed</a></li>
-<li><a href='https://translationproject.org/domain/sharutils.html'>sharutils</a></li>
-<li><a href='https://translationproject.org/domain/shepherd.html'>shepherd</a></li>
-<li><a href='https://translationproject.org/domain/shishi.html'>shishi</a></li>
-<li><a href='https://translationproject.org/domain/skribilo.html'>skribilo</a></li>
-<li><a href='https://translationproject.org/domain/sudo.html'>sudo</a></li>
-<li><a href='https://translationproject.org/domain/sudoers.html'>sudoers</a></li>
-<li><a href='https://translationproject.org/domain/sysstat.html'>sysstat</a></li>
-<li><a href='https://translationproject.org/domain/tar.html'>tar</a></li>
-<li><a href='https://translationproject.org/domain/texinfo.html'>texinfo</a></li>
-<li><a href='https://translationproject.org/domain/texinfo_document.html'>texinfo_document</a></li>
-<li><a href='https://translationproject.org/domain/tin-man.html'>tin-man</a></li>
-<li><a href='https://translationproject.org/domain/trader.html'>trader</a></li>
-<li><a href='https://translationproject.org/domain/util-linux.html'>util-linux</a></li>
-<li><a href='https://translationproject.org/domain/util-linux-man.html'>util-linux-man</a></li>
-<li><a href='https://translationproject.org/domain/vmm.html'>vmm</a></li>
-<li><a href='https://translationproject.org/domain/vorbis-tools.html'>vorbis-tools</a></li>
-<li><a href='https://translationproject.org/domain/wastesedge.html'>wastesedge</a></li>
-<li><a href='https://translationproject.org/domain/wcd.html'>wcd</a></li>
-<li><a href='https://translationproject.org/domain/wcd-man.html'>wcd-man</a></li>
-<li><a href='https://translationproject.org/domain/wdiff.html'>wdiff</a></li>
-<li><a href='https://translationproject.org/domain/wget.html'>wget</a></li>
-<li><a href='https://translationproject.org/domain/wget2.html'>wget2</a></li>
-<li><a href='https://translationproject.org/domain/wincoll.html'>wincoll</a></li>
-<li><a href='https://translationproject.org/domain/wyslij-po.html'>wyslij-po</a></li>
-<li><a href='https://translationproject.org/domain/xboard.html'>xboard</a></li>
-<li><a href='https://translationproject.org/domain/xdg-user-dirs.html'>xdg-user-dirs</a></li>
-<li><a href='https://translationproject.org/domain/xkeyboard-config.html'>xkeyboard-config</a></li>
-<li><a href='https://translationproject.org/domain/xz.html'>xz</a></li>
-<li><a href='https://translationproject.org/domain/xz-man.html'>xz-man</a></li>
-</ul></div>
-<div class="card">
-<h3 class="partial">🔶 Partial – 9 packages</h3>
-<table><thead><tr><th>Package</th><th>Coverage</th><th>Progress</th></tr></thead><tbody>
-<tr><td><a href='https://translationproject.org/domain/gawk.html'>gawk</a></td><td>99%</td><td><div class='progress' style='width:100px'><div class='progress-bar' style='width:99%;background:var(--warning)'></div></div></td></tr>
-<tr><td><a href='https://translationproject.org/domain/gprof.html'>gprof</a></td><td>98%</td><td><div class='progress' style='width:100px'><div class='progress-bar' style='width:98%;background:var(--warning)'></div></div></td></tr>
-<tr><td><a href='https://translationproject.org/domain/pspp.html'>pspp</a></td><td>97%</td><td><div class='progress' style='width:100px'><div class='progress-bar' style='width:97%;background:var(--warning)'></div></div></td></tr>
-<tr><td><a href='https://translationproject.org/domain/gcc.html'>gcc</a></td><td>93%</td><td><div class='progress' style='width:100px'><div class='progress-bar' style='width:93%;background:var(--warning)'></div></div></td></tr>
-<tr><td><a href='https://translationproject.org/domain/binutils.html'>binutils</a></td><td>92%</td><td><div class='progress' style='width:100px'><div class='progress-bar' style='width:92%;background:var(--warning)'></div></div></td></tr>
-<tr><td><a href='https://translationproject.org/domain/libgphoto2.html'>libgphoto2</a></td><td>89%</td><td><div class='progress' style='width:100px'><div class='progress-bar' style='width:89%;background:var(--warning)'></div></div></td></tr>
-<tr><td><a href='https://translationproject.org/domain/tigervnc.html'>tigervnc</a></td><td>82%</td><td><div class='progress' style='width:100px'><div class='progress-bar' style='width:82%;background:var(--warning)'></div></div></td></tr>
-<tr><td><a href='https://translationproject.org/domain/savane.html'>savane</a></td><td>45%</td><td><div class='progress' style='width:100px'><div class='progress-bar' style='width:45%;background:var(--warning)'></div></div></td></tr>
-<tr><td><a href='https://translationproject.org/domain/tin.html'>tin</a></td><td>6%</td><td><div class='progress' style='width:100px'><div class='progress-bar' style='width:6%;background:var(--warning)'></div></div></td></tr>
-</tbody></table></div>
-<div class="card">
-<h3 class="missing">❌ Missing – 2 packages</h3>
-<ul style="column-count:3;column-gap:1rem">
-<li><a href='https://translationproject.org/domain/denemo.html'>denemo</a></li>
-<li><a href='https://translationproject.org/domain/mailfromd.html'>mailfromd</a></li>
-</ul></div>
 
 <footer>
-    <p>Generated by <a href="https://github.com/yeager/tp-lint"><strong>tp-lint</strong></a> v1.8.4</p>
-    <p>Data from <a href="https://translationproject.org">GNU Translation Project</a> · 
-       Report issues on <a href="https://github.com/yeager/tp-lint/issues">GitHub</a> · 
-       <a href="https://app.transifex.com/danielnylander/tp-lint/">Help translate</a></p>
+    <p>Genererad av <a href="https://github.com/yeager/tp-lint"><strong>tp-lint</strong></a> med översättardata</p>
+    <p>Data från <a href="https://translationproject.org">GNU Translation Project</a> · 
+       Rapportera problem på <a href="https://github.com/yeager/tp-lint/issues">GitHub</a></p>
     <p>© 2026 <a href="https://www.danielnylander.se">Daniel Nylander</a> · GPL-3.0-or-later</p>
 </footer>
+
+<script>
+function filterTable() {
+    const translatorFilter = document.getElementById('translatorFilter').value;
+    const qualityFilter = document.getElementById('qualityFilter').value;
+    const table = document.getElementById('filesTable');
+    const rows = table.getElementsByTagName('tr');
+    
+    for (let i = 1; i < rows.length; i++) {
+        const row = rows[i];
+        const translator = row.cells[1].textContent;
+        const quality = row.cells[2].textContent.includes('✅') ? 'green' : (row.cells[2].textContent.includes('🔶') ? 'yellow' : 'red');
+        
+        let showRow = true;
+        
+        if (translatorFilter && !translator.includes(translatorFilter)) {
+            showRow = false;
+        }
+        
+        if (qualityFilter && quality !== qualityFilter) {
+            showRow = false;
+        }
+        
+        row.style.display = showRow ? '' : 'none';
+    }
+}
+
+function clearFilters() {
+    document.getElementById('translatorFilter').value = '';
+    document.getElementById('qualityFilter').value = '';
+    filterTable();
+}
+</script>
 </body>
 </html>
