@@ -22,7 +22,7 @@ jobs:
         run: |
           PKG=tp-lint
           VER=${{ steps.version.outputs.version }}
-          ROOT=pkg-deb/${PKG}_${VER}-1_all
+          ROOT=pkg-deb/${PKG}_${VER}-2_all
           mkdir -p ${ROOT}/DEBIAN
           mkdir -p ${ROOT}/usr/bin
           mkdir -p ${ROOT}/usr/share/${PKG}
@@ -74,7 +74,7 @@ jobs:
 
           cat > ${ROOT}/DEBIAN/control << EOF
           Package: ${PKG}
-          Version: ${VER}-1
+          Version: ${VER}-2
           Architecture: all
           Maintainer: Daniel Nylander <daniel@danielnylander.se>
           Depends: python3 (>= 3.9)
@@ -95,5 +95,5 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VER=${{ steps.version.outputs.version }}
-          gh release upload "v${VER}" ${PKG:-tp-lint}_${VER}-1_all.deb --clobber 2>/dev/null || \
-          gh release upload "${GITHUB_REF_NAME}" tp-lint_${VER}-1_all.deb --clobber
+          gh release upload "v${VER}" ${PKG:-tp-lint}_${VER}-2_all.deb --clobber 2>/dev/null || \
+          gh release upload "${GITHUB_REF_NAME}" tp-lint_${VER}-2_all.deb --clobber
